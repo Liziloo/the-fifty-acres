@@ -556,11 +556,6 @@ h1.site-title {
     margin: 0;
 }
 
-header {
-    margin: 0;
-    position: relative;
-}
-
 .site-title,
 #top-nav {
     @include container;
@@ -619,15 +614,44 @@ button.o-icon-search {
     }
 }
 
-.banner {
+/* --- Scrapbook Hero Banner --- */
+.hero-banner {
     position: relative;
+    height: 450px; // Adjust to match your WebP image aspect ratio
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     display: flex;
-    align-items: center;
-    overflow: hidden;
+    align-items: flex-end; // Puts the title at the bottom
+        padding: $spacing-l;
+        border-bottom: 8px solid $border-tan;
+    
+        // The "Typewriter" Title Box
+        .typewriter-box {
+            background-color: #fff;
+            padding: $spacing-m $spacing-l;
+            border: 4px solid #000;
+            box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.1);
+            transform: rotate(-1deg); // Slight tilt for the scrapbook feel
+            margin-bottom: -20px; // Overlaps the "paper" below
+            z-index: 20;
+    
+            h1 {
+                font-family: "Courier Prime", "Courier New", monospace;
+                margin: 0;
+                font-size: 2.5rem;
+                color: #000;
+                text-transform: none;
+                letter-spacing: -0.02em;
+            }
+        }
 }
 
-.banner img {
-    width: 100%;
+// Ensure the main content starts below the overlapping title
+#content {
+    padding-top: (2 * $spacing-l);
+    position: relative;
+    z-index: 5;
 }
 
 /* @end */
