@@ -18,6 +18,74 @@ body {
     overflow-x: hidden;
 }
 
+// Neutralize the default container for our custom layout
+// The Fifty Acres 3-Column Grid
+.site-wrapper {
+    display: grid;
+    // Col 1: Fixed Sidebar | Col 2: Main Content (Paper) | Col 3: Right Strip
+    grid-template-columns: $sidebar-width minmax(0, 1000px) 1fr;
+    min-height: 100vh;
+    background-color: $sage-green;
+}
+
+.sidebar {
+    grid-column: 1;
+    background-color: $sage-green;
+    position: fixed;
+    width: $sidebar-width;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 100;
+    padding: $spacing-l;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.est-stamp {
+    font-family: "Courier Prime", monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.4);
+    margin-top: auto; // Pushes it to the bottom of the sidebar
+    padding-bottom: $spacing-l;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: $spacing-m;
+    width: 100%;
+    text-align: center;
+}
+
+.main-stage {
+    grid-column: 2;
+    background-color: $cream-paper;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.15); // Deep shadow for "paper" depth
+    z-index: 10;
+    position: relative;
+
+    // Subtle paper texture overlay
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png"); // Or a local asset
+        opacity: 0.4;
+        pointer-events: none;
+    }
+}
+
+.right-strip {
+    grid-column: 3;
+    background-color: $sage-green;
+}
+
 a:link {
     text-decoration: none;
     color: var(--accent);
@@ -197,7 +265,7 @@ select {
   padding: $spacing-s;
   background-color: #fff;
   opacity: 0;
-  
+
   &:focus {
     z-index: 1000;
     opacity: 1;
@@ -208,17 +276,43 @@ header h1 {
   margin: 0;
 }
 
-header nav {
-    position: relative;
-    padding: 0;
-}
+#vertical-nav {
+    margin: (2 * $spacing-l) 0;
+    width: 100%;
 
-header nav ul {
-    height: 0;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: auto; // Override default theme height: 0
+        overflow: visible;
+    }
+
+    li {
+        margin-bottom: $spacing-l;
+        text-align: center;
+    }
+
+    a {
+        font-family: "EB Garamond", serif; // Matching your scrapbook font
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        font-size: 1.2rem;
+        color: $typewriter-black;
+        transition: opacity 0.2s;
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+
+    li.active a {
+        font-weight: bold;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    }
 }
 
 header nav ul ul {
@@ -287,11 +381,11 @@ header nav.open ul {
     li.active {
         font-weight: bold;
     }
-    
+
     li.parent {
         position: relative;
     }
-    
+
     .parent-link {
       display: flex;
     }
@@ -299,7 +393,7 @@ header nav.open ul {
     .parent-link > a {
         width: calc(100% - #{2 * $spacing-l});
     }
-    
+
 }
 
 header nav .child-toggle {
@@ -314,7 +408,7 @@ header nav .child-toggle {
         position: relative;
         z-index: 1000;
     }
-    
+
     &:before {
         font-family: "Font Awesome 5 Free";
         content: "\f105";
@@ -602,8 +696,8 @@ footer {
     a:link {
         font-weight: bold;
     }
-    
-    a:link, 
+
+    a:link,
     a:visited {
         color: #ddd;
     }
@@ -613,9 +707,9 @@ footer {
         border-color: #9b9b9b;
     }
 
-    button, 
-    a.button, 
-    .resource-list.preview + a, 
+    button,
+    a.button,
+    .resource-list.preview + a,
     [type="submit"] {
         background-color: #ddd;
         color: var(--bold);
@@ -822,7 +916,7 @@ ul.resource-list .resource h4 {
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;     
+    -webkit-box-orient: vertical;
 }
 
 ul.resource-list .resource img ~ * {
@@ -1058,7 +1152,7 @@ body.resource #content > h2:first-of-type + h3 {
 
 .results ul {
   list-style: none;
-  padding-left: 0;  
+  padding-left: 0;
 }
 
 .results .result-title {
