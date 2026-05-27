@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+vendor/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Build artifacts (if you use Sass/Gulp)
+.sass-cache/
+npm-debug.log
+
+# IDE files
+.vscode/
+.idea/
+
+# Omeka S specific
+asset/css/*.map
