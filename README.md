@@ -1,20 +1,31 @@
-# Default
+# Fifty Acres Theme (Custom Fork)
+
+This repository is a custom implementation of the **Default** theme for Omeka S, specifically tailored for the historical
+and narrative requirements of **TheFiftyAcres.com**.
+
+* **Customizations by:** Liz Casler Loomans
+* **Base Theme:** Default by the Omeka S Team
+* **Upstream Repository:** [Default](https://github.com/omeka-s-themes/default)
+
+---
+
+## Default
 
 This the default Omeka S theme.
 
-## Installation
+### Installation
 
-For basic out-of-the-box use of the theme, follow the [Omeka S User Manual instructions for installing themes](https://omeka.org/s/docs/user-manual/sites/site_theme/#installing-themes). 
+For basic out-of-the-box use of the theme, follow the [Omeka S User Manual instructions for installing themes](https://omeka.org/s/docs/user-manual/sites/site_theme/#installing-themes).
 
 For more advanced use, such as customizing the theme with Sass, you'll need to install the tools with [NodeJS](https://nodejs.org/en/) (0.12 or greater). Navigate to your theme directory and run `npm install`.
 
-## Customizing the Theme
+### Customizing the Theme
 
 For those dipping their toes into customizing sites with CSS, the [CSS Editor](https://omeka.org/s/modules/CSSEditor/) module allows site administrators to write style overrides.
 
 For advanced CSS and Sass users, Default provides variables for easily customizing typography, spacing, and colors in `asset/sass/_base.scss`. There is also a mixin for a set of standard container styles.
 
-### Sass Tasks
+#### Sass Tasks
 
 Run these commands within the theme's root directory.
 
@@ -22,7 +33,7 @@ Run these commands within the theme's root directory.
 * **gulp css**: This is the one-off task for compiling the current Sass/CSS.
   * **gulp css:watch**: This task watches for changes in the Sass, then compiles the CSS.
 
-## Theme Configuration
+### Theme Configuration
 
 * **Main accent color**: An accent color to be used on links. The default hex value is #920b0b.
 * **Top navigation depth**: If the main navigation is set to display child pages, this setting controls how many navigation levels to display. Setting this to '0' shows all levels.
@@ -34,12 +45,15 @@ Run these commands within the theme's root directory.
 * **Truncate Body Property**: Controls the size of the body property of resources in a browseable list. It can be set to show the full value, truncate after 4 lines and fade out, or truncate after 4 lines and clip with an ellipsis.
 * **Footer content**: Control what appears in the footer. This field takes HTML markup.
 
-## Resource Page Configuration
+### Resource Page Configuration
 
 Omeka S 4.0 introduced configurable resource pages. Default supports block configuration for items, item sets, and media show pages. Each of those views contains a single configurable region.
 
-## Copyright
+### Copyright
 Default is Copyright © 2016-present Corporation for Digital Scholarship, Vienna, Virginia, USA http://digitalscholar.org
+
+Customizations and site-specific asset modifications are
+Copyright © 2026-present Liz Casler Loomans.
 
 The Corporation for Digital Scholarship distributes the Omeka source code
 under the GNU General Public License, version 3 (GPLv3). The full text
