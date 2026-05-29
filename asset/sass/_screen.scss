@@ -59,7 +59,7 @@ body {
 
 .main-stage {
     grid-column: 2;
-    background-color: $cream-paper;
+    background-color: $old-lace;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -624,8 +624,7 @@ button.o-icon-search {
     display: flex;
     align-items: flex-end; // Puts the title at the bottom
         padding: $spacing-l;
-        border-bottom: 8px solid $border-tan;
-    
+        border-bottom: 8px solid $rusty-spice;
         // The "Typewriter" Title Box
         .typewriter-box {
             background-color: #fff;
@@ -635,7 +634,7 @@ button.o-icon-search {
             transform: rotate(-1deg); // Slight tilt for the scrapbook feel
             margin-bottom: -20px; // Overlaps the "paper" below
             z-index: 20;
-    
+
             h1 {
                 font-family: "Courier Prime", "Courier New", monospace;
                 margin: 0;
