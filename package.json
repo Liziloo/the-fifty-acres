@@ -4,7 +4,7 @@
   "description": "Omeka S theme created for TheFiftyAcres.com, a narrative history site",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "test"
+    "start": "gulp css:watch"
   },
   "author": "Liz Casler Loomans",
   "repository": {
@@ -21,7 +21,8 @@
     "autoprefixer": "^10.4.14",
     "gulp": "^5.0.0",
     "gulp-postcss": "^9.0.0",
-    "gulp-sass": "^5.0.0",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.100.0",
     "susy": "^2.2.12"
   },
   "browserslist": [
