@@ -16,3 +16,6 @@ npm-debug.log
 
 # Omeka S specific
 asset/css/*.map
+
+#Repomix
+repomix-output.xml
