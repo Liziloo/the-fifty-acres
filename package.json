@@ -1,29 +1,26 @@
 {
-  "name": "default",
-  "version": "1.9.2",
-  "description": "The default theme for Omeka S.",
+  "name": "fifty-acres-theme",
+  "version": "1.0.0",
+  "description": "Omeka S theme created for TheFiftyAcres.com, a narrative history site",
   "main": "gulpfile.js",
   "scripts": {
     "test": "test"
   },
+  "author": "Liz Casler Loomans",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/omeka-s-themes/default.git"
+    "url": "https://github.com/Liziloo/fifty-acres-theme.git"
   },
   "keywords": [
     "omeka-s",
     "theme"
   ],
-  "author": "Omeka Team",
   "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/omeka-s-themes/default/issues"
-  },
-  "homepage": "https://github.com/omeka-s-themes/default#readme",
+  "homepage": "https://github.com/Liziloo/fifty-acres-theme#readme",
   "devDependencies": {
-    "autoprefixer": "^10.4.16",
+    "autoprefixer": "^10.4.14",
     "gulp": "^5.0.0",
-    "gulp-postcss": "^9.0.1",
+    "gulp-postcss": "^9.0.0",
     "gulp-sass": "^5.0.0",
     "susy": "^2.2.12"
   },
@@ -32,6 +29,6 @@
     "> 1% in US"
   ],
   "dependencies": {
-    "minimist": "^1.2.6"
+    "minimist": "1.2.8"
   }
 }
