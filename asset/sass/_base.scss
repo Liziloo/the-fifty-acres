@@ -1,9 +1,47 @@
-// The Fifty Acres Palette
-$sage-green: #9da06f;
-$cream-paper: #faf1e3;
-$typewriter-black: #050609;
-$rusty-spice: #b25424;
-$dusty-mauve: #9a4649;
+$global-font-size: 16px;
+$global-width: rem-calc(1200);
+$global-lineheight: 1.5;
+
+$fiftyacres-palette: (
+    sage-green: #9da06fff,
+    old-lace: #faf1e3ff,
+    typewriter-black: #050609,
+    rusty-spice: #b25424ff,
+    dusty-mauve: #9a4649ff,
+    dusk-blue: #465775ff,
+
+    // Override Default Theme Variables
+    primary: #9da06fff,
+    secondary: #faf1e3ff,
+    success: #465775ff,
+    warning: #b25424ff,
+    alert: #9a4649ff,
+);
 
 // Layout Variables
 $sidebar-width: 280px;
+$light-gray: #e6e6e6;
+$medium-gray: #cacaca;
+$dark-gray: #6a6a6a;
+$black: #050609;
+$white: #fefefe;
+$body-background: $old-lace;
+$body-font-color: $black;
+$body-font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$body-antialiased: true;
+$global-margin: 1rem;
+$global-padding: 1rem;
+$global-position: 1rem;
+$global-weight-normal: normal;
+$global-weight-bold: bold;
+$global-radius: 0;
+$global-menu-padding: 0.7rem 1rem;
+$global-menu-nested-margin: 1rem;
+$global-text-direction: ltr;
+$global-flexbox: true;
+$global-prototype-breakpoints: false;
+$global-button-cursor: auto;
+$global-color-pick-contrast-tolerance: 0;
+$print-transparent-backgrounds: true;
+$dropdown-menu-item-background-active: transparent;
+$menu-item-background-active: transparent;
