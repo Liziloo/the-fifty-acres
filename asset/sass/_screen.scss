@@ -164,7 +164,7 @@ body {
 /* ==========================================================================
     Main Content Area
    ========================================================================== */
-.content {
+.main {
     grid-column: 2;
     grid-row: 2;
     background-color: $old-lace;
@@ -173,6 +173,12 @@ body {
     flex-direction: column;
     z-index: 10;
     position: relative;
+}
+
+.content {
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 /* ==========================================================================
     BANNER

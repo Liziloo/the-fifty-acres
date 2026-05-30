@@ -57,7 +57,7 @@ $userBar = $this->userBar();
             </div>
         </div>
 
-            <div class="content">
+            <div class="main">
 
                 <?php if ($banner = $this->themeSettingAssetUrl('banner')): ?>
                 <div class="hero-banner">
@@ -65,7 +65,7 @@ $userBar = $this->userBar();
                 </div>
                 <?php endif; ?>
 
-                <main id="content" role="main">
+                <main class="content" role="main">
                     <?php echo $this->content; ?>
                 </main>
                 <footer>
