@@ -29,12 +29,9 @@ $userBar = $this->userBar();
     </head>
 
     <?php echo $this->htmlElement('body'); ?>
-        <?php echo $userBar; ?>
         <a id="skipnav" href="#content"><?php echo $this->translate('Skip to main content'); ?></a>
-
-        <div class="site-wrapper">
-            <!-- COLUMN 1: FIXED SAGE SIDEBAR -->
-            <aside class="sidebar">
+        <?php echo $userBar; ?>
+            <div class="sidebar">
                 <div class="sidebar-header">
                     <a href="<?php echo $site->url(); ?>" class="site-emblem">
                         <?php if ($this->themeSetting('logo')): ?>
@@ -55,12 +52,10 @@ $userBar = $this->userBar();
                         <?php echo $this->partial('common/search-form'); ?>
                     </div>
                 </div>
-            </aside>
+            </div>
 
-            <!-- COLUMN 2: MAIN SCROLLING AREA -->
-            <div class="main-stage">
+            <div class="content">
 
-                <!-- HERO BANNER (Fixed WebP) -->
                 <?php if ($banner = $this->themeSettingAssetUrl('banner')): ?>
                 <header class="hero-banner" style="background-image: url('<?php echo $banner; ?>');">
                 </header>
@@ -70,17 +65,14 @@ $userBar = $this->userBar();
                     <?php echo $this->content; ?>
                 </main>
 
-                <footer>
-                    <?php if ($footerContent = $this->themeSetting('footer')): ?>
-                        <?php echo $footerContent; ?>
-                    <?php else: ?>
-                        <?php echo $this->translate('Powered by Omeka S'); ?>
-                    <?php endif; ?>
-                </footer>
             </div>
 
-            <!-- COLUMN 3: RESPONSIVE GREEN STRIP -->
-            <div class="right-strip"></div>
-        </div>
+            <footer>
+                <?php if ($footerContent = $this->themeSetting('footer')): ?>
+                    <?php echo $footerContent; ?>
+                <?php else: ?>
+                    <?php echo $this->translate('Powered by Omeka S'); ?>
+                <?php endif; ?>
+            </footer>
     </body>
 </html>
