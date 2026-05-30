@@ -31,6 +31,7 @@ $userBar = $this->userBar();
     <?php echo $this->htmlElement('body'); ?>
         <a id="skipnav" href="#content"><?php echo $this->translate('Skip to main content'); ?></a>
         <?php echo $userBar; ?>
+        <div class="container">
             <div class="sidebar">
                 <div class="sidebar-header">
                     <a href="<?php echo $site->url(); ?>" class="site-emblem">
@@ -74,5 +75,6 @@ $userBar = $this->userBar();
                     <?php echo $this->translate('Powered by Omeka S'); ?>
                 <?php endif; ?>
             </footer>
+        </div>
     </body>
 </html>

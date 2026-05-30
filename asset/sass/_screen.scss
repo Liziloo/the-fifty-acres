@@ -36,7 +36,6 @@ body {
     font-family: "EB Garamond", serif;
     color: var(--typewriter-black);
     font-weight: 500;
-    display: block;
 }
 
 // Top nav/user-bar
@@ -44,6 +43,53 @@ body.vertical-menu #user-bar {
     width: 100%;
 }
 
+// Grid layout
+/* The main wrapper */
+.container {
+    display: grid;
+    /* Sidebar: flexible between 200px and 18% | Content: fluid | Gutter: fluid */
+    grid-template-columns: minmax(200px, 18%) 1fr minmax(20px, 5vw);
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    background-color: var(--sage-green);
+}
+
+.sidebar {
+    grid-column: 1;
+    grid-row: 1 / 4; /* Spans all three rows */
+    background-color: var(--sage-green);
+    display: flex; /* Required for your .est-stamp margin-top: auto to work */
+    flex-direction: column;
+    padding: 40px 20px;
+    border: none;
+    box-shadow: none;
+}
+
+#user-bar {
+    grid-column: 2 / 4; /* Bleeds from content start to screen edge */
+    grid-row: 1;
+    z-index: 20; /* Ensures it stays above the .content shadow */
+}
+
+.content {
+    grid-column: 2;
+    grid-row: 2;
+    background-color: $old-lace;
+    width: 100%;
+    max-width: 1200px; /* Limits width on huge monitors */
+    justify-self: start; /* Keeps it pinned to the sidebar */
+}
+
+footer {
+    grid-column: 2;
+    grid-row: 3;
+    background-color: $old-lace; /* Matches .content for a continuous paper look */
+    padding: 40px 0;
+    text-align: center;
+}
+
+
+// User bar
 #user-bar {
     background-color: var(--black);
     font-family: "Lato", sans-serif;
@@ -75,12 +121,6 @@ body.vertical-menu #user-bar {
     text-align: center;
     margin-left: 12px;}
 
-.sidebar {
-    background: var(--sage-green);
-    border: none;
-    box-shadow: none;
-}
-
 .sidebar-header img {
     width: 140px;
     height: 140px;
@@ -103,6 +143,9 @@ body.vertical-menu #user-bar {
     border-top: 1px solid rgba(0, 0, 0, 0.05);
     padding-top: $spacing-m;
     width: 100%;
+    text-align: center;
+    margin-top: auto; /* Pushes to bottom of the sidebar grid cell */
+    padding-bottom: $spacing-l;
     text-align: center;
 }
 
@@ -660,16 +703,13 @@ button.o-icon-search {
 
 /* --- Scrapbook Hero Banner --- */
 .hero-banner {
-    position: relative;
-    height: 450px; // Adjust to match your WebP image aspect ratio
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 21 / 9;
+    background-size: cover;
+    background-position: center;
     display: flex;
-    align-items: flex-end; // Puts the title at the bottom
-        padding: $spacing-l;
-        border-bottom: 8px solid $rusty-spice;
-
+    align-items: flex-end;
 }
 
 // Ensure the main content starts below the overlapping title
@@ -689,9 +729,11 @@ footer {
     clear: both;
 }
 
-/* @end */
-
-/* @group ----- Page and Blocks ----- */
+img {
+    max-width: 100%;
+    height: auto; /* This allows images to shrink and grow with their containers */
+    display: block;
+}
 
 #content {
     @include container;
@@ -857,9 +899,9 @@ footer {
     --total-gap-width: calc(var(--gap-count) * var(--grid-layout-gap));
     --grid-item--max-width: calc((100% - var(--total-gap-width)) / var(--grid-column-count));
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(max(var(--grid-item--min-width), var(--grid-item--max-width)), 1fr));
-    grid-gap: var(--grid-layout-gap);
-    width: 100vw;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    width: 100%;
     max-width: 100%;
     align-items: stretch;
     color: #000;
@@ -1174,12 +1216,6 @@ body.resource #content > h2:first-of-type + h3 {
     align-items: center;
 }
 
-
-
-/* @end */
-
-/* @group ----- Advanced Search ----- */
-
 #advanced-search .value:not(:last-child) {
     margin-bottom: $spacing-m;
 }
@@ -1189,10 +1225,6 @@ body.resource #content > h2:first-of-type + h3 {
     width: 1.5 * $spacing-l;
     margin-left: $spacing-s;
 }
-
-/* @end */
-
-/* @group ----- Search ----- */
 
 .results {
   margin-bottom: 2 * $spacing-l;
@@ -1265,12 +1297,37 @@ body.resource #content > h2:first-of-type + h3 {
     display: none;
 }
 
-/* @end */
-
-/* @group ----- Common Modules ---- */
-
 a.metadata-browse-link {
     font-size: .75 * $base-font-size;
 }
 
-/* @end */
+@media (max-width: 1024px) {
+    .container {
+        /* Switch to a single column */
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+    }
+
+    /* Force every element to span the full width of the phone screen */
+    .sidebar, #user-bar, .content, footer {
+        grid-column: 1 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Vertical Order: User Bar -> Sidebar -> Content -> Footer */
+    #user-bar { grid-row: 1; }
+    .sidebar  { grid-row: 2; padding: 40px 20px; }
+    .content  { grid-row: 3; }
+    footer    { grid-row: 4; }
+
+    /* Adjust the banner for mobile so it isn't a tiny sliver */
+    .hero-banner {
+        aspect-ratio: 16 / 9;
+    }
+
+    /* Remove the right-side green gutter on mobile */
+    .container {
+        background-color: $old-lace; /* Make the whole background cream on mobile */
+    }
+}
