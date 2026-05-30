@@ -20,6 +20,15 @@ body {
     overflow-x: hidden;
 }
 
+// Top nav/user-bar
+body.vertical-menu #user-bar {
+    width: 100%;
+}
+
+#user-bar {
+    background-color: var(--black);
+}
+
 .sidebar {
     grid-column: 1;
     background-color: $sage-green;
