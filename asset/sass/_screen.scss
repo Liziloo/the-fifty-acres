@@ -20,16 +20,6 @@ body {
     overflow-x: hidden;
 }
 
-// Neutralize the default container for our custom layout
-// The Fifty Acres 3-Column Grid
-.site-wrapper {
-    display: grid;
-    // Col 1: Fixed Sidebar | Col 2: Main Content (Paper) | Col 3: Right Strip
-    grid-template-columns: $sidebar-width minmax(0, 1000px) 1fr;
-    min-height: 100vh;
-    background-color: $sage-green;
-}
-
 .sidebar {
     grid-column: 1;
     background-color: $sage-green;
@@ -70,7 +60,7 @@ body {
     text-align: center;
 }
 
-.main-stage {
+.content {
     grid-column: 2;
     background-color: $old-lace;
     min-height: 100vh;
@@ -92,11 +82,6 @@ body {
         opacity: 0.4;
         pointer-events: none;
     }
-}
-
-.right-strip {
-    grid-column: 3;
-    background-color: $sage-green;
 }
 
 a:link {
