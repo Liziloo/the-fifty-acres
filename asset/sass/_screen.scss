@@ -178,9 +178,14 @@ body {
     BANNER
    ========================================================================== */
 .hero-banner {
-    height: auto; aspect-ratio: 21 / 9;
-    background-size: cover; background-position: center;
     width: 100%;
+    line-height: 0;
+
+    img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
 }
 
 /* ==========================================================================

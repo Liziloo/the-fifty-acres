@@ -60,8 +60,9 @@ $userBar = $this->userBar();
             <div class="content">
 
                 <?php if ($banner = $this->themeSettingAssetUrl('banner')): ?>
-                <header class="hero-banner" style="background-image: url('<?php echo $banner; ?>');">
-                </header>
+                <div class="hero-banner">
+                    <img src="<?php echo $banner; ?>" alt="The Fifty Acres Banner" />
+                </div>
                 <?php endif; ?>
 
                 <main id="content" role="main">
