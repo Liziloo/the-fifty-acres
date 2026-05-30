@@ -23,7 +23,7 @@
 
 
     $(document).ready(function() {
-        var navElement = $('header nav');
+        var navElement = $('#vertical-nav');
         var expandString = Omeka.jsTranslate('Expand');
         var collapseString = Omeka.jsTranslate('Collapse');
 
@@ -51,7 +51,7 @@
                 $(this).attr('aria-expanded', "false");
             }
         });
-        
+
         navElement.find('ul ul').each(function(){
           var childMenu = $(this);
           var parentItem = childMenu.parent('li');
@@ -61,7 +61,7 @@
           parentItem.children('a').first().wrap('<div class="parent-link"></div>');
           parentItem.find('.parent-link').append(toggleButton);
         });
-        
+
         navElement.on('click', '.child-toggle', function() {
           var parentLi = $(this).parents('.parent').first();
           if ($(this).hasClass('open')) {
@@ -80,15 +80,15 @@
             }
         });
 
-        navElement.on('mouseenter', '.parent', function() {            
+        navElement.on('mouseenter', '.parent', function() {
             openChildNav($(this));
         });
 
-        navElement.on('mouseleave', '.parent', function() {            
+        navElement.on('mouseleave', '.parent', function() {
             closeChildNav($(this));
         });
 
-        navElement.on('mouseleave', '.child-toggle', function() {            
+        navElement.on('mouseleave', '.child-toggle', function() {
             var parentLi = $(this).parents('.parent').first();
             closeChildNav(parentLi);
         });
@@ -116,7 +116,7 @@
                 closeChildNav(parentLi);
             }
         });
-        
+
         // Maintain iframe aspect ratios
         $(window).on('load resize', framerateCallback(fixIframeAspect));
         fixIframeAspect();

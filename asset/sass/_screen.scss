@@ -199,3 +199,23 @@ body {
    ========================================================================== */
 footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.05); }
 
+
+/* ==========================================================================
+    Large Screen Overrides
+   ========================================================================== */
+/* Ensure Desktop Search remains a vertical stack */
+@media screen and (min-width: 1025px) {
+    .sidebar #search form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .sidebar #search button[type="submit"] {
+        font-size: 1.1rem !important; /* Show the word SEARCH on desktop */
+    }
+}
+
+/* Hide the mobile toggle button on desktop */
+#mobile-nav-toggle {
+    display: none;
+}

@@ -46,14 +46,17 @@ $userBar = $this->userBar();
             </div>
 
             <nav id="vertical-nav">
+                <button type="button" id="mobile-nav-toggle" aria-label="Open navigation menu">
+                </button>
                 <?php echo $site->publicNav()->menu()->renderMenu(); ?>
+
+                <div id="search">
+                    <?php echo $this->partial('common/search-form'); ?>
+                </div>
             </nav>
 
             <div class="sidebar-footer">
                 <div class="est-stamp">EST. 1856</div>
-                <div id="search">
-                    <?php echo $this->partial('common/search-form'); ?>
-                </div>
             </div>
         </div>
 

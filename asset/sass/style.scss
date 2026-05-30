@@ -1,6 +1,8 @@
 @import "base";
 @import "normalize";
+@import "screen";
 
-@media screen {
-    @import "screen";
+
+@media screen and (max-width: 1024px) {
+    @import "small";
 }

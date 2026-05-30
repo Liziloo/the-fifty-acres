@@ -1,0 +1,136 @@
+/* ==========================================================================
+    SMALL SCREEN STACK (Triggered at 1024px and below)
+   ========================================================================== */
+
+.container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    overflow-x: hidden; /* Prevents any accidental horizontal scrolling */
+    background-color: $old-lace !important;
+}
+
+.sidebar {
+    width: 100% !important;
+    height: 180px !important; /* Fixed height for the green header block */
+    flex: none !important;    /* Prevents iPad from stretching the height */
+    background-color: var(--sage-green) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 40px 0 0 !important; /* Space above the wreath */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 20;
+    position: relative;
+}
+
+.sidebar-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 !important;
+    z-index: 30;
+    position: relative;
+
+    img {
+        width: 240px !important;
+        height: 240px !important;
+        border-radius: 50%;
+        background-color: $old-lace;
+        padding: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+}
+
+#mobile-nav-toggle {
+    display: block !important;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent !important;
+    border: none !important;
+    z-index: 100;
+
+    &:before {
+        content: "\f0c9" !important;
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        font-size: 28px;
+        color: rgba(0,0,0,0.5);
+    }
+}
+
+.main {
+    width: 100% !important;
+    /* This math (130px) creates a perfect 30px gap below the wreath */
+    padding-top: 130px !important;
+    order: 3;
+    background-color: $old-lace !important;
+}
+
+.content {
+    width: 100% !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+    padding: 0 25px 60px !important; /* Top padding stays 0 */
+    margin: 0 !important;
+}
+
+#vertical-nav {
+    width: 100%;
+
+    ul {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    &.open ul {
+        display: flex;
+    }
+
+    /* Search styling inside the open menu */
+    #search {
+        display: none;
+        width: 100%;
+        margin-top: 20px;
+        padding: 0 20px;
+
+        form { display: flex; flex-direction: row; }
+        input[type="text"] { flex: 1; border-right: none; }
+        button[type="submit"] {
+            width: 60px !important;
+            font-size: 0 !important;
+            &:before {
+                content: "\f002" !important;
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                font-size: 18px;
+                display: block !important;
+            }
+        }
+    }
+
+    &.open #search {
+        display: block;
+    }
+}
+
+/* 6. Clean up */
+#user-bar, .hero-banner, .est-stamp {
+    display: none !important;
+}
+
+footer {
+    order: 4;
+    padding: 40px 20px;
+    background-color: $old-lace;
+}
+
+.main, .content {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
