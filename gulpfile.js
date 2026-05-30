@@ -21,3 +21,5 @@ gulp.task('css', function () {
 gulp.task('css:watch', function () {
     gulp.watch('./asset/sass/*.scss', gulp.parallel('css'));
 });
+
+gulp.task('default', gulp.series('css', 'css:watch'));
