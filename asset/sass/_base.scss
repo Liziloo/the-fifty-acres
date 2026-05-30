@@ -9,8 +9,11 @@ $dusty-mauve: #9a4649;
     --gray: #ababab;
     --bold: color-mix(in srgb, var(--gray), black 40%);
     --light: color-mix(in srgb, var(--gray), white 60%);
-    --bg: $old-lace;
-        --accent: $rusty-spice;
+    --sage-green: #{$sage-green};
+    --old-lace: #{$old-lace};
+    --typewriter-black: #{$typewriter-black};
+    --rusty-spice: #{$rusty-spice};
+    --dusty-mauve: #{$dusty-mauve};
 }
 
 // Typography
