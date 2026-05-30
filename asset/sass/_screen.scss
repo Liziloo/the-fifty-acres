@@ -66,6 +66,15 @@ body.vertical-menu #user-bar {
     margin: 0 12px;
 }
 
+#user-bar .logout {
+    font-size: 12px;
+    padding: 0 6px;
+    background-color: #222933;
+    border-radius: 3px;
+    display: inline-block;
+    text-align: center;
+    margin-left: 12px;}
+
 .sidebar {
     grid-column: 1;
     background-color: $sage-green;
