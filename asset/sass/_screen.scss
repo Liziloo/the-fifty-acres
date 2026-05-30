@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. FONTS & ACCESSIBILITY
+    FONTS & ACCESSIBILITY
    ========================================================================== */
 @font-face {
     font-family: 'EB Garamond';
@@ -23,12 +23,15 @@
     }
 }
 
+/* ==========================================================================
+    Primary html elements
+   ========================================================================== */
 * { box-sizing: border-box; }
 
 html, body {
     height: 100%;
-    margin: 0 !important; /* Kills the green gap at the top */
-    padding: 0 !important;
+    margin: 0; /* Kills the green gap at the top */
+    padding: 0;
 }
 
 body {
@@ -41,7 +44,7 @@ body {
 }
 
 /* ==========================================================================
-   2. THE GRID SYSTEM (DESKTOP)
+    Main Grid Container
    ========================================================================== */
 .container {
     display: grid;
@@ -51,7 +54,9 @@ body {
     background-color: var(--sage-green);
 }
 
-/* Force User Bar to stay horizontal and participate in grid */
+/* ==========================================================================
+    User Bar (Omeka S element)
+   ========================================================================== */
 #user-bar {
     grid-column: 2 / 4;
     grid-row: 1;
@@ -78,6 +83,9 @@ body {
     }
 }
 
+/* ==========================================================================
+    Left Sidebar
+   ========================================================================== */
 .sidebar {
     grid-column: 1;
     grid-row: 1 / 3;
@@ -86,29 +94,9 @@ body {
     flex-direction: column;
     padding: 40px 30px;
     z-index: 30;
+    max-height: 100vh;
 }
 
-.content {
-    grid-column: 2;
-    grid-row: 2;
-    background-color: $old-lace;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
-    z-index: 10;
-    position: relative;
-
-    &:before { /* Paper texture */
-        content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-        background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
-        opacity: 0.4; pointer-events: none;
-    }
-}
-
-/* ==========================================================================
-   3. SIDEBAR & SEARCH (FIXED BUTTON)
-   ========================================================================== */
 .sidebar-header img {
     width: 140px; height: 140px; border-radius: 50%;
     background-color: $old-lace; padding: 12px;
@@ -174,14 +162,29 @@ body {
 }
 
 /* ==========================================================================
-   4. CONTENT & BANNER
+    Main Content Area
    ========================================================================== */
-#content { padding: 40px; position: relative; z-index: 5; }
-
+.content {
+    grid-column: 2;
+    grid-row: 2;
+    background-color: $old-lace;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    position: relative;
+}
+/* ==========================================================================
+    BANNER
+   ========================================================================== */
 .hero-banner {
-    width: 100%; height: auto; aspect-ratio: 21 / 9;
+    height: auto; aspect-ratio: 21 / 9;
     background-size: cover; background-position: center;
+    width: 100%;
 }
 
+/* ==========================================================================
+    Footer
+   ========================================================================== */
 footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.05); }
 
