@@ -76,18 +76,9 @@ body.vertical-menu #user-bar {
     margin-left: 12px;}
 
 .sidebar {
-    grid-column: 1;
-    background-color: $sage-green;
-    position: fixed;
-    width: $sidebar-width;
-    height: 100vh;
-    overflow-y: auto;
-    z-index: 100;
-    padding: $spacing-l;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    background: var(--sage-green);
+    border: none;
+    box-shadow: none;
 }
 
 .sidebar-header img {
