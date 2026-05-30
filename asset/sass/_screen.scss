@@ -636,25 +636,7 @@ button.o-icon-search {
     align-items: flex-end; // Puts the title at the bottom
         padding: $spacing-l;
         border-bottom: 8px solid $rusty-spice;
-        // The "Typewriter" Title Box
-        .typewriter-box {
-            background-color: #fff;
-            padding: $spacing-m $spacing-l;
-            border: 4px solid #000;
-            box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.1);
-            transform: rotate(-1deg); // Slight tilt for the scrapbook feel
-            margin-bottom: -20px; // Overlaps the "paper" below
-            z-index: 20;
 
-            h1 {
-                font-family: "Courier Prime", "Courier New", monospace;
-                margin: 0;
-                font-size: 2.5rem;
-                color: #000;
-                text-transform: none;
-                letter-spacing: -0.02em;
-            }
-        }
 }
 
 // Ensure the main content starts below the overlapping title
