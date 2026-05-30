@@ -28,32 +28,34 @@ $userBar = $this->userBar();
         <?php echo $this->headScript(); ?>
     </head>
 
-    <?php echo $this->htmlElement('body'); ?>
-        <a id="skipnav" href="#content"><?php echo $this->translate('Skip to main content'); ?></a>
+<?php echo $this->htmlElement('body'); ?>
+    <a id="skipnav" href="#content"><?php echo $this->translate('Skip to main content'); ?></a>
+
+    <div class="container">
         <?php echo $userBar; ?>
-        <div class="container">
-            <div class="sidebar">
-                <div class="sidebar-header">
-                    <a href="<?php echo $site->url(); ?>" class="site-emblem">
-                        <?php if ($this->themeSetting('logo')): ?>
-                            <img src="<?php echo $this->themeSettingAssetUrl('logo'); ?>" alt="<?php echo $escape($siteTitle); ?>" />
-                        <?php else: ?>
-                            <div class="default-emblem">H</div>
-                        <?php endif; ?>
-                    </a>
-                </div>
 
-                <nav id="vertical-nav">
-                    <?php echo $site->publicNav()->menu()->renderMenu(); ?>
-                </nav>
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <a href="<?php echo $site->url(); ?>" class="site-emblem">
+                    <?php if ($this->themeSetting('logo')): ?>
+                        <img src="<?php echo $this->themeSettingAssetUrl('logo'); ?>" alt="<?php echo $escape($siteTitle); ?>" />
+                    <?php else: ?>
+                        <div class="default-emblem">H</div>
+                    <?php endif; ?>
+                </a>
+            </div>
 
-                <div class="sidebar-footer">
-                    <div class="est-stamp">EST. 1856</div>
-                    <div id="search">
-                        <?php echo $this->partial('common/search-form'); ?>
-                    </div>
+            <nav id="vertical-nav">
+                <?php echo $site->publicNav()->menu()->renderMenu(); ?>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="est-stamp">EST. 1856</div>
+                <div id="search">
+                    <?php echo $this->partial('common/search-form'); ?>
                 </div>
             </div>
+        </div>
 
             <div class="content">
 
@@ -65,16 +67,15 @@ $userBar = $this->userBar();
                 <main id="content" role="main">
                     <?php echo $this->content; ?>
                 </main>
-
+                <footer>
+                    <?php if ($footerContent = $this->themeSetting('footer')): ?>
+                        <?php echo $footerContent; ?>
+                    <?php else: ?>
+                        <?php echo $this->translate('Powered by Omeka S'); ?>
+                    <?php endif; ?>
+                </footer>
             </div>
 
-            <footer>
-                <?php if ($footerContent = $this->themeSetting('footer')): ?>
-                    <?php echo $footerContent; ?>
-                <?php else: ?>
-                    <?php echo $this->translate('Powered by Omeka S'); ?>
-                <?php endif; ?>
-            </footer>
         </div>
     </body>
 </html>
