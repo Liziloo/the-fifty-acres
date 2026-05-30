@@ -1,4 +1,19 @@
+@font-face {
+    font-family: 'EB Garamond';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/ebgaramond/v32/SlGWmQSNjdsmc35JDF1K5GRweDY1ZzPJ.woff2) format('woff2');
+    unicode-range: U +0460 -052F, U +1C80 -1C8A, U +20B4, U +2DE0 -2DFF, U + A640-A69F, U + FE2E-FE2F;
+}
 
+@font-face {
+    font-family: 'Lato';
+    font-style: italic;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/lato/v25/S6u8w4BMUTPHjxsAUi-qJCY.woff2) format('woff2');
+    unicode-range: U +0100 -02BA, U +02BD -02C5, U +02C7 -02CC, U +02CE -02D7, U +02DD -02FF, U +0304, U +0308, U +0329, U +1D00 -1DBF, U +1E00 -1E9F, U +1EF2 -1EFF, U +2020, U +20A0 -20AB, U +20AD -20C0, U +2113, U +2C60 -2C7F, U + A720-A7FF;
+}
 
 * {
     box-sizing: border-box;
@@ -11,13 +26,17 @@ html {
 }
 
 body {
-    background-color: var(--bg);
+    background-color: var(--sage-green);
     font-family: "Georgia", serif;
     font-size: $base-font-size;
     line-height: $base-line-height;
     margin: 0;
-    word-wrap: break-word;
-    overflow-x: hidden;
+    padding: 0;
+    background: #fefefe;
+    font-family: "EB Garamond", serif;
+    color: var(--typewriter-black);
+    font-weight: 500;
+    display: block;
 }
 
 // Top nav/user-bar
@@ -27,6 +46,24 @@ body.vertical-menu #user-bar {
 
 #user-bar {
     background-color: var(--black);
+    font-family: "Lato", sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff;
+    padding: 6px 24px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#user-bar a {
+    color: $old-lace;
+    font-variant: small-caps;
+    background-color: transparent;
+}
+
+#user-bar .admin:not(:last-child)::after {
+    content: "•";
+    margin: 0 12px;
 }
 
 .sidebar {
