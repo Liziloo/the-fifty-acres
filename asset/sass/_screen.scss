@@ -43,6 +43,10 @@ body {
     font-weight: 500;
 }
 
+a {
+    color: $rusty-spice;
+}
+
 /* ==========================================================================
     Main Grid Container
    ========================================================================== */
@@ -168,7 +172,7 @@ body {
         flex: 0 0 auto;
         margin: 0;
         white-space: nowrap;
-        background-color: $rusty-spice;
+        background-color: $dusty-mauve;
         color: white;
         height: 2.5rem;
         font-variant: small-caps;
