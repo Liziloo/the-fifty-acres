@@ -3,6 +3,8 @@ $old-lace: #faf1e3;
 $typewriter-black: #050609;
 $dusty-mauve: #783438;
 $rusty-spice: #b25424;
+$faded-mauve: #bc6268;
+$faded-spice: #dc8356;
 
 // 2. Then map them to the CSS variables
 :root {
@@ -15,6 +17,8 @@ $rusty-spice: #b25424;
     --rusty-spice: #{$rusty-spice};
     --dusty-mauve: #{$dusty-mauve};
     --black: #{$typewriter-black};
+    --faded-mauve: #{$faded-mauve};
+    --faded-spice: #{$faded-spice};
 }
 
 // Typography
