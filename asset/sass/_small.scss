@@ -88,12 +88,18 @@
         list-style: none;
     }
 
+    &.open {
+        background-color: var(--old-lace);
+        padding: 2rem;
+        margin: 20px 0;
+    }
+
     &.open ul {
         display: flex;
     }
 
     /* Search styling inside the open menu */
-    #search {
+    .search {
         display: none;
         width: 100%;
         margin-top: 20px;
@@ -114,7 +120,7 @@
         }
     }
 
-    &.open #search {
+    &.open .search {
         display: block;
     }
 }

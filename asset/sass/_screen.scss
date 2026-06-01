@@ -117,48 +117,78 @@ body {
     li.active a { font-weight: bold; border-bottom: 2px solid rgba(0, 0, 0, 0.1); }
 }
 
-.sidebar #search {
-    position: static !important;
-    width: 100% !important;
-    margin: 20px 0 0 0 !important;
-    transform: none !important;
+.search::before {
+    content: "EST. 1856";
+    display: block;
+    font-family: "Georgia", serif;
+    font-size: 0.8rem;
+    letter-spacing: 5px;
+    color: $dusty-mauve;
+    text-align: center;
+    margin-bottom: 1rem;
+}
 
-    form { display: flex; flex-direction: column; gap: 10px; padding: 0; border: none; background: transparent; }
+.search {
+    width: 100%;
+    margin: 20px 0 0 0;
+    transform: none;
+    padding: 0 1.5rem;
 
-    input[type="text"] {
-        width: 100%; padding: 10px; border: 1px solid rgba(0,0,0,0.1);
-        background: #fff; font-family: inherit; font-style: italic;
+    form {
+        display: flex;
+        flex-direction: column;
+        max-width: 200px;
+        margin: 0 auto;
+        border-radius: 4px;
+        overflow: hidden;
+        border: 1px solid rgba(0,0,0,0.15);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        gap: 0 !important;
     }
 
-    /* THE RUSTY ORANGE BUTTON - FIXING TEXT VISIBILITY */
-    button[type="submit"] {
-        background-color: var(--rusty-spice) !important;
-        color: #fff !important;
-        border: none !important;
-        padding: 12px !important;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        font-family: "EB Garamond", serif;
-        font-size: 1.1rem !important;
-        cursor: pointer;
-        width: 100% !important;
-        height: auto !important;
-        text-indent: 0 !important; /* CRITICAL: Forces the word SEARCH to show */
-        position: static !important;
-        overflow: visible !important;
+    #fulltext-search {
+        background-color: #fff;
+        border: none;
+        margin: 0;
+        padding: 0 1rem;
+        height: 2.5rem;
+        font-size: .95rem;
+        font-family: "Georgia", serif;
+        font-style: italic;
+        color: $typewriter-black;
+        border-radius: 0;
+        box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    }
 
-        /* Kill the magnifying glass icon */
-        &:before, &:after { display: none !important; content: "" !important; }
-
-        &:hover { background-color: darken(#b25424, 10%) !important; }
+    button {
+        padding-top: 0;
+        padding-bottom: 0;
+        text-align: center;
+        display: flex;
+        flex: 0 0 auto;
+        margin: 0;
+        white-space: nowrap;
+        background-color: $rusty-spice;
+        color: white;
+        height: 2.5rem;
+        font-variant: small-caps;
+        font-size: 1rem;
+        letter-spacing: 1.5px;
+        width: 100%;
+        border: none;
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
     }
 }
 
-.est-stamp {
-    margin-top: auto; padding: 20px 0; text-align: center;
-    font-family: "Courier Prime", monospace; text-transform: uppercase;
-    letter-spacing: 0.3em; font-size: 0.8rem; color: rgba(0, 0, 0, 0.4);
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+.o-icon-search:before {
+    content: "Search";
+    font-family: "Georgia", serif;
 }
 
 /* ==========================================================================
@@ -205,12 +235,12 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
    ========================================================================== */
 /* Ensure Desktop Search remains a vertical stack */
 @media screen and (min-width: 1025px) {
-    .sidebar #search form {
+    .sidebar .search form {
         display: flex;
         flex-direction: column;
         gap: 10px;
     }
-    .sidebar #search button[type="submit"] {
+    .sidebar .search button[type="submit"] {
         font-size: 1.1rem !important; /* Show the word SEARCH on desktop */
     }
 }
