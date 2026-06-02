@@ -108,13 +108,15 @@ a:visited { color: $faded-spice; }
     flex-direction: column;
     padding: 40px 30px;
     z-index: 30;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    align-self: start;
-    scrollbar-width: none;
-    &::-webkit-scrollbar { display: none; }
+    @media screen and (min-width: 1025px) {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow-y: auto;
+        align-self: start;
+        scrollbar-width: none;
+        &::-webkit-scrollbar { display: none; }
+    }
 }
 
 .sidebar-header img {
