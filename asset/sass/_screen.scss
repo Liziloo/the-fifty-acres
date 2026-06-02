@@ -256,3 +256,137 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
 #mobile-nav-toggle {
     display: none;
 }
+
+
+/* ==========================================================================
+    Special Elements
+   ========================================================================== */
+
+/* Carousel */
+/* Hyper-specific selectors to override global theme and native Slick image-stretching rules */
+.block-carousel .carousel-block .carousel-2 .slick-track {
+  display: flex !important;
+  align-items: flex-start !important;
+}
+
+.block-carousel .carousel-block .carousel-2 .slick-slide {
+  height: auto !important;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+/* Set the inner slide containers to block format with no background restrictions */
+.block-carousel .carousel-block .carousel-2 .slick-slide > div {
+  display: block !important;
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* Turn the anchor link into a flex layout to center the photo and explicitly prevent stretching */
+.block-carousel .carousel-block .carousel-2 .slick-slide a:has(img) {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  width: 100% !important;
+  height: auto !important;
+  text-decoration: none !important;
+}
+
+/* Apply white border and drop shadow directly to the naturally scaling image element */
+.block-carousel .carousel-block .carousel-2 .slick-slide img {
+  height: 260px !important;
+  width: auto !important;
+  max-width: 100% !important;
+  display: block !important;
+  background: #ffffff !important;
+  padding: 10px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  box-sizing: border-box !important;
+  object-fit: contain !important;
+}
+
+/* Typography Baseline Alignment */
+.block-carousel .carousel-block .carousel-2 .slide-text {
+  margin-top: 1.5rem !important;
+  width: 100% !important;
+  min-height: 4.5em !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+}
+
+.block-carousel .carousel-block .carousel-2 .slide-text .title {
+  width: 100% !important;
+  text-align: center !important;
+}
+
+.block-carousel .carousel-block .carousel-2 .slide-text .title a {
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+  color: #8b3a2b !important;
+  transition: opacity 0.2s ease-in-out !important;
+}
+
+.block-carousel .carousel-block .carousel-2 .slide-text .title a:hover {
+  opacity: 0.7 !important;
+}
+
+/* Navigation Arrow Placement */
+.block-carousel .carousel-block .carousel-2 .slick-prev,
+.block-carousel .carousel-block .carousel-2 .slick-next {
+  position: absolute !important;
+  top: 130px !important;
+  transform: translateY(-50%) !important;
+  z-index: 10 !important;
+  cursor: pointer !important;
+}
+
+.block-carousel .carousel-block .carousel-2 .slick-prev {
+  left: 10px !important;
+}
+
+.block-carousel .carousel-block .carousel-2 .slick-next {
+  right: 10px !important;
+}
+
+/* Pagination Indicators */
+.block-carousel .carousel-block .carousel-2 .slick-dots {
+  position: static !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 2rem 0 0 0 !important;
+  gap: 8px !important;
+}
+
+.block-carousel .carousel-block .carousel-2 .slick-dots li {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.block-carousel .carousel-block .carousel-2 .slick-dots li button {
+  font-size: 0 !important;
+  line-height: 0 !important;
+  display: block !important;
+  width: 8px !important;
+  height: 8px !important;
+  padding: 0 !important;
+  cursor: pointer !important;
+  border: none !important;
+  border-radius: 50% !important;
+  background: #cccccc !important;
+  transition: background 0.2s ease !important;
+}
+
+.block-carousel .carousel-block .carousel-2 .slick-dots li.slick-active button {
+  background: #4a4a4a !important;
+}
