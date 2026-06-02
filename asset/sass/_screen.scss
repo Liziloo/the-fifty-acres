@@ -465,10 +465,13 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
         width: auto;
         height: auto;
 
-        background: #fff;
-        padding: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        border: 1px solid rgba(0,0,0,0.05);
+        background: #fdfaf5;
+        padding: 12px;
+        box-shadow:
+            0 1px 2px rgba(0,0,0,0.1),
+            0 8px 15px rgba(0,0,0,0.05);
+        border: 1px solid rgba(0,0,0,0.08);
+        border-radius: 2px;
         display: block;
     }
 }
