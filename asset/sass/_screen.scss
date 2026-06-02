@@ -1,6 +1,14 @@
 /* ==========================================================================
     FONTS & ACCESSIBILITY
    ========================================================================== */
+/* EB Garamond - Regular (The missing piece) */
+@font-face {
+    font-family: 'EB Garamond';
+    font-style: normal; font-weight: 400; font-display: swap;
+    src: url(https://fonts.gstatic.com/s/ebgaramond/v32/SlG8mQSNjdsmc35JDF1K5GRwUjY1ZzcP.woff2) format('woff2');
+}
+
+/* EB Garamond - Italic */
 @font-face {
     font-family: 'EB Garamond';
     font-style: italic; font-weight: 400; font-display: swap;
@@ -40,7 +48,7 @@ body {
     font-size: $base-font-size;
     line-height: $base-line-height;
     color: var(--typewriter-black);
-    font-weight: 500;
+    font-weight: 400;
 }
 
 a {
