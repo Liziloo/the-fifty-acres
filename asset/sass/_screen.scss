@@ -280,9 +280,9 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
 .block-carousel .carousel-block .carousel-2 .slick-slide div:has(> img) {
   display: flex !important;
   flex-direction: column !important;
-  justify-content: flex-end !important;  /* Anchors bottoms of all photos to the same line */
+  justify-content: flex-end !important;
   align-items: center !important;
-  height: 240px !important;              /* Locks the image zone height */
+  height: 240px !important;
   width: 100% !important;
   background: transparent !important;
   border: none !important;
@@ -307,11 +307,11 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
 
 /* 4. Perfect Horizontal Title Alignment */
 .block-carousel .carousel-block .carousel-2 .slide-text {
-  margin-top: 1.25rem !important;        /* Uniform spacing below the photo baseline */
+  margin-top: 1.25rem !important;
   width: 100% !important;
   min-height: 4.5em !important;
   display: flex !important;
-  align-items: flex-start !important;    /* Aligns first lines of text perfectly across columns */
+  align-items: flex-start !important;
   justify-content: center !important;
   background: transparent !important;
   border: none !important;
@@ -354,7 +354,7 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
   right: 10px !important;
 }
 
-/* 6. Pagination Indicators */
+/* 6. Pagination Indicators (Scorched-Earth Double Dot Fix & Diamond Style) */
 .block-carousel .carousel-block .carousel-2 .slick-dots {
   position: static !important;
   display: flex !important;
@@ -362,29 +362,51 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
   align-items: center !important;
   list-style: none !important;
   padding: 0 !important;
-  margin: 2rem 0 0 0 !important;
-  gap: 8px !important;
+  margin: 2.5rem 0 0 0 !important;
+  gap: 14px !important;
 }
 
 .block-carousel .carousel-block .carousel-2 .slick-dots li {
   margin: 0 !important;
   padding: 0 !important;
+  display: inline-block !important;
 }
 
+/* Hard-kill the theme's native pseudo-dots across all structural variations */
+.slick-dots li button:before,
+.slick-dots li button::before,
+.block-carousel .carousel-block .carousel-2 .slick-dots li button:before,
+.block-carousel .carousel-block .carousel-2 .slick-dots li button::before {
+  content: none !important;
+  content: "" !important;
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Core Diamond Button Shape */
 .block-carousel .carousel-block .carousel-2 .slick-dots li button {
   font-size: 0 !important;
   line-height: 0 !important;
   display: block !important;
-  width: 8px !important;
-  height: 8px !important;
+  width: 7px !important;
+  height: 7px !important;
   padding: 0 !important;
   cursor: pointer !important;
   border: none !important;
-  border-radius: 50% !important;
-  background: #cccccc !important;
-  transition: background 0.2s ease !important;
+  overflow: hidden !important;                      /* Safety net: clips any rogue elements */
+  color: transparent !important;                    /* Blanks out native button text strings */
+  background: #e6d5d2 !important;
+  transform: rotate(45deg) !important;
+  transition: background 0.25s ease, transform 0.25s ease !important;
 }
 
+/* Active Diamond State */
 .block-carousel .carousel-block .carousel-2 .slick-dots li.slick-active button {
-  background: #4a4a4a !important;
+  background: #8b3a2b !important;
+  transform: rotate(45deg) scale(1.3) !important;
 }
