@@ -140,3 +140,26 @@ footer {
     margin-left: 0 !important;
     margin-right: 0 !important;
 }
+
+/* Mobile Browse Adjustments */
+@media screen and (max-width: 1024px) {
+    .resource-list {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Two columns on most phones */
+        gap: 1.5rem;
+        padding: 0 10px;
+    }
+
+    .resource-list .resource-link img {
+        height: 160px; /* Smaller, manageable height on mobile */
+        padding: 8px 8px 20px 8px;
+    }
+
+    .resource-list h4 {
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
+
+    .resource-list .description {
+        display: none; /* Hide descriptions on mobile browse to save space */
+    }
+}
