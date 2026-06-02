@@ -141,25 +141,117 @@ footer {
     margin-right: 0 !important;
 }
 
-/* Mobile Browse Adjustments */
-@media screen and (max-width: 1024px) {
-    .resource-list {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Two columns on most phones */
-        gap: 1.5rem;
-        padding: 0 10px;
+
+.resource-list {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Two columns on most phones */
+    gap: 1.5rem;
+    padding: 0 10px;
+}
+
+.resource-list .resource-link img {
+    height: 160px; /* Smaller, manageable height on mobile */
+    padding: 8px 8px 20px 8px;
+}
+
+.resource-list h4 {
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.resource-list .description {
+    display: none; /* Hide descriptions on mobile browse to save space */
+}
+
+/* ==========================================================================
+    Mobile Browse Controls - Vertical Stack
+   ========================================================================== */
+
+.browse-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.05);
+    border-radius: 4px;
+    font-family: "Lato", sans-serif;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+
+    /* 1. Pagination Row */
+    .pagination-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .pagination {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0;
+
+            input {
+                width: 45px;
+                height: 30px;
+                text-align: center;
+                border: 1px solid #ccc;
+            }
+        }
     }
 
-    .resource-list .resource-link img {
-        height: 160px; /* Smaller, manageable height on mobile */
-        padding: 8px 8px 20px 8px;
+    /* 2. Advanced Search Link */
+    .advanced-search {
+        color: var(--dusty-mauve);
+        font-weight: bold;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(120, 52, 56, 0.2);
+        padding-bottom: 2px;
+        margin: 0.5rem 0;
     }
 
-    .resource-list h4 {
-        font-size: 1rem;
-        margin-top: 1rem;
-    }
+    /* 3. Sorting Form - Forced Symmetry */
+    .sort-container {
+        width: 100%;
+        max-width: 280px; /* Limits width on larger mobile screens */
 
-    .resource-list .description {
-        display: none; /* Hide descriptions on mobile browse to save space */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+
+            select {
+                width: 100%;
+                height: 40px;
+                padding: 0 10px;
+                background: #fff;
+                border: 1px solid #ccc;
+                font-family: inherit;
+                border-radius: 0; /* Keeps it archival/sharp */
+            }
+
+            button {
+                width: 100%;
+                height: 40px;
+                background: var(--dusty-mauve);
+                color: #fff;
+                border: none;
+                font-family: inherit;
+                font-weight: bold;
+                letter-spacing: 2px;
+                cursor: pointer;
+                transition: background 0.2s;
+
+                &:hover { background: var(--rusty-spice); }
+            }
+        }
     }
+}
+
+/* Ensure the grid of items also adjusts for small screens */
+.grid-layout {
+    grid-template-columns: 1fr !important; /* Single column on phones */
+    gap: 3rem;
 }
