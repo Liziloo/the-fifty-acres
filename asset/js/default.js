@@ -80,19 +80,6 @@
             }
         });
 
-        navElement.on('mouseenter', '.parent', function() {
-            openChildNav($(this));
-        });
-
-        navElement.on('mouseleave', '.parent', function() {
-            closeChildNav($(this));
-        });
-
-        navElement.on('mouseleave', '.child-toggle', function() {
-            var parentLi = $(this).parents('.parent').first();
-            closeChildNav(parentLi);
-        });
-
         navElement.on('keydown', '.open li:last-child > a:only-child', function(e) {
             var currentLink = $(this);
             var parentBranch = currentLink.parents('.navigation > .parent');

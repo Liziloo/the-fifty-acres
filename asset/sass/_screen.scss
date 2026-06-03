@@ -129,14 +129,121 @@ a:visited { color: $faded-spice; }
 
 #vertical-nav {
     margin: 40px 0;
-    ul { list-style: none; padding: 0; display: flex; flex-direction: column; align-items: center; }
-    li { margin-bottom: 30px; text-align: center; }
+    font-family: "Georgia", serif;
+
+    ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    li {
+        margin-bottom: 25px;
+        text-align: center;
+        width: 100%;
+        position: relative;
+        border: none !important; /* Removes those lines from the bad screenshots */
+    }
+
+    /* 1. TOP-LEVEL LINKS: Unified size for Parents and Non-Parents */
     a {
-        text-transform: uppercase; letter-spacing: 0.15em; font-size: 1.2rem;
-        color: $typewriter-black; text-decoration: none;
+        text-transform: uppercase;
+        font-size: 1.4rem;        /* Matches the size of 'THE PEOPLE' in your good images */
+        font-variant: small-caps; /* Gives it the archival scrapbook look */
+        color: $typewriter-black;
+        text-decoration: none;
+        line-height: 1.2;
+        transition: opacity 0.2s;
+
         &:hover { opacity: 0.6; }
     }
-    li.active a { font-weight: bold; border-bottom: 2px solid rgba(0, 0, 0, 0.1); }
+
+    /* Active state styling */
+    li.active > a,
+    li.active > .parent-link > a {
+        font-weight: bold;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    }
+
+    /* 2. PARENT CONTAINER: Layout for links with arrows */
+    .parent-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        position: relative;
+
+        a {
+            margin-right: 40px; /* Space for the arrow */
+            margin-bottom: 0;
+            display: block;
+        }
+    }
+
+    /* 3. THE TOGGLE ARROW */
+    .child-toggle {
+        height: 40px; /* Larger hit area */
+        width: 40px;
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10; /* Ensures it sits above the link */
+
+        &:before {
+            content: "\f0d7"; /* Font Awesome caret-down */
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 16px;
+            color: rgba(0,0,0,0.4);
+            transition: transform 0.2s ease;
+        }
+
+        &.open:before {
+            transform: rotate(180deg);
+            color: $typewriter-black;
+        }
+    }
+
+    /* 4. SUB-MENU ITEMS: Smaller and distinct */
+    ul ul {
+        display: none !important;
+        margin-top: 15px;
+        padding: 0;
+
+        &.open {
+            display: flex !important;
+        }
+
+        li {
+            margin-bottom: 12px;
+
+            a {
+                font-size: 0.95rem;  /* Explicitly smaller for children */
+                font-variant: normal; /* No small-caps for sub-items */
+                letter-spacing: 1px;
+                opacity: 0.75;
+                margin-right: 0;      /* No arrow margin needed here */
+
+                &:hover { opacity: 1; }
+            }
+
+            /* Remove active border for sub-items to keep it clean */
+            &.active a {
+                border-bottom: none;
+                opacity: 1;
+            }
+        }
+    }
 }
 
 .search::before {
