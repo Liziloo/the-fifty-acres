@@ -713,8 +713,12 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
     Portrait Narrative Page Styles
    ========================================================================== */
 body.portrait-narrative {
+    .hero-banner  {
+        height: 80px;
+    }
+
     main.content {
-        max-width: 1000px;
+        max-width: none;
         margin: 0 auto;
         background-color: $old-lace;
     }
