@@ -62,7 +62,7 @@ a:visited { color: $faded-spice; }
    ========================================================================== */
 .container {
     display: grid;
-    grid-template-columns: 320px minmax(0, 1200px) 1fr;
+    grid-template-columns: 280px minmax(0, 1200px) 1fr;
     grid-template-rows: auto 1fr;
     min-height: 100vh;
     background-color: var(--sage-green);
@@ -106,7 +106,7 @@ a:visited { color: $faded-spice; }
     background-color: var(--sage-green);
     display: flex;
     flex-direction: column;
-    padding: 40px 30px;
+    padding: 40px 20px;
     z-index: 30;
     @media screen and (min-width: 1025px) {
         position: sticky;
@@ -544,35 +544,32 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
 }
 
 /* ==========================================================================
-    Interior Browse Grid - OVERLAP FIX
+    Interior Browse Grid - CABINET CARD STYLE
    ========================================================================== */
 
 .grid-layout {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* Large vertical gap (6rem) to ensure rows never touch */
-    gap: 6rem 30px;
+    gap: 5rem 30px; /* Increased vertical gap to accommodate the taller cards */
     list-style: none;
     padding: 0;
     margin: 40px 0;
 
     .item.resource {
         display: flex;
-        flex-direction: column; /* Force Title/Desc to stay BELOW the frame */
+        flex-direction: column;
         align-items: center;
         text-align: center;
-        height: 100%; /* Ensure all boxes in a row match height */
     }
 }
 
 .photo-frame {
-    /* Fixed height zone. Tall portraits will scale down to fit inside this. */
-    height: 280px;
+    height: 300px; /* Bumped slightly to 300px to give the "chin" room to breathe */
     width: 100%;
     display: flex;
-    align-items: flex-end;
+    align-items: center; /* Keeps the cards centered on a clean horizon line */
     justify-content: center;
-    margin-bottom: 25px; /* Forced gap between image and title */
+    margin-bottom: 30px;
     background: transparent;
 
     a {
@@ -584,18 +581,21 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
     }
 
     img {
-        /* This is the key: it fits the whole photo inside the 280px box without cropping or overflowing */
         max-height: 100%;
         max-width: 100%;
         width: auto;
         height: auto;
-
         background: #e3d7c3;
-        padding: 12px 12px 28px 12px;;
+
+        /* THE CABINET CARD "CHIN": 12px top/sides, 32px bottom */
+        padding: 12px 12px 32px 12px;
+
+        /* A slightly more "tangible" shadow for thick cardstock */
         box-shadow:
             inset 0 0 1px rgba(255,255,255,0.5),
             inset 0 0 8px rgba(0,0,0,0.05),
-            0 6px 15px rgba(0,0,0,0.1);
+            0 8px 18px rgba(0,0,0,0.15);
+
         border: 1px solid #cec1ac;
         outline: 1px solid rgba(255,255,255,.3);
         outline-offset: -8px;
@@ -605,30 +605,27 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
 }
 
 .item-metadata {
-    width: 100%;
-    /* Ensure this box starts exactly where the photo frame ends */
-    flex-grow: 1;
+    width: 90%;
 
     h4 {
-        margin: 0;
+        margin: 0 0 10px 0;
         font-family: "EB Garamond", serif;
         font-size: 1.15rem;
         line-height: 1.3;
-
         a {
             color: var(--dusty-mauve);
             text-decoration: none;
-            display: block; /* Prevents text from trying to wrap around images */
+            display: block;
         }
     }
 
     .description {
-        margin-top: 10px;
         font-size: 0.85rem;
         line-height: 1.5;
         color: var(--typewriter-black);
         font-style: italic;
-        /* Limit to 3 lines so one long description doesn't ruin the next row */
+        opacity: 0.8;
+        /* Limits to 3 lines to keep the grid height consistent */
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
@@ -636,35 +633,78 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
     }
 }
 
-/* Cleanup the pagination bar appearance */
+/* ==========================================================================
+    Browse Controls - CLEAN HORIZONTAL LAYOUT
+   ========================================================================== */
 .browse-controls {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem;
-    background: rgba(0,0,0,0.03);
-    border: 1px solid rgba(0,0,0,0.05);
-    margin-bottom: 2rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    margin-bottom: 3rem;
     font-family: "Lato", sans-serif;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 
+    /* Prevents the "10" from dropping to a new line */
     .pagination {
         display: flex;
         align-items: center;
-        gap: 8px;
+        white-space: nowrap; /* Forces text to stay on one line */
+        gap: 10px;
+
+        input {
+            width: 40px;
+            padding: 4px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        /* Targets the text "of 10" and the arrows */
+        span, a {
+            display: inline-block;
+        }
     }
 
     .sort-container {
         display: flex;
         align-items: center;
         gap: 15px;
-        form { display: flex; align-items: center; gap: 5px; }
+
+        form {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        select {
+            padding: 4px 8px;
+            border: 1px solid #ccc;
+            background: #fff;
+            font-size: 0.75rem;
+        }
+
+        button {
+            background: var(--dusty-mauve);
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            &:hover { background: var(--rusty-spice); }
+        }
     }
 
     .advanced-search {
         font-weight: bold;
-        text-transform: uppercase;
-        color: var(--rusty-spice);
+        color: var(--dusty-mauve);
         text-decoration: none;
+        white-space: nowrap;
+        border-bottom: 1px solid rgba(120, 52, 56, 0.2);
+        padding-bottom: 2px;
     }
 }
