@@ -713,31 +713,137 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
     Portrait Narrative Page Styles
    ========================================================================== */
 body.portrait-narrative {
-    .blocks-grid-container {
+    main.content {
+        max-width: 1000px;
+        margin: 0 auto;
         background-color: $old-lace;
-        width: 100%;
     }
 
-    .blocks {
-        display: grid;
-        grid-template-columns: 1fr 350px; // Narrative Lane | Artifact Lane
-        gap: 0 $spacing-l;
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: ($spacing-l * 2) $spacing-l;
-        align-items: start;
+    .blocks-inner {
+        padding: $spacing-l;
+        display: block;
 
-        // Full-width elements
-        .block-pageTitle,
-        .bibliography,
-        .block-browsePreview {
-            grid-column: 1 / -1;
+        &::after {
+            content: "";
+            display: table;
+            clear: both;
         }
 
-        // Narrative Column
-        .block-html {
-            grid-column: 1;
+        // --- 1. THE MAHOGANY OVAL HERO ---
+        .block-media.portrait-hero {
+            display: block;
+            float: none;
+            clear: both;
+            width: 420px;
+            margin: 0 auto ($spacing-l * 2);
+            text-align: center;
 
+            .media-embed, .media-render {
+                background: #2d1617; // Dark wood base
+                padding: 15px;
+                border-radius: 50%;
+                // Layered shadows to create a carved mahogany bevel effect
+                box-shadow:
+                    inset 0 0 20px #000,
+                    0 10px 25px rgba(0, 0, 0, 0.5),
+                    0 0 0 2px rgba(255,255,255,0.05);
+                border: 4px solid #4a2526; // Mahogany highlight
+                display: inline-block;
+                overflow: hidden;
+
+                img {
+                    display: block;
+                    width: 380px;
+                    height: 380px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                    filter: sepia(0.2) contrast(1.1); // Slight archival filter
+                }
+            }
+
+            h3 { display: none; } // Formal portraits don't use labels on the frame
+        }
+
+        // --- 2. CABINET CARD NARRATIVE PHOTOS ---
+        .block-media.narrative-photo {
+            margin-bottom: $spacing-l;
+            width: auto !important;
+
+            .media-embed, .media-render {
+                background: #e3d7c3;
+                padding: 12px 12px 42px 12px; // 42px bottom "Chin"
+                border: 1px solid #cec1ac;
+                outline: 1px solid rgba(255,255,255,.3);
+                outline-offset: -8px;
+                border-radius: 2px;
+                box-shadow:
+                    inset 0 0 1px rgba(255,255,255,0.5),
+                    inset 0 0 8px rgba(0,0,0,0.05),
+                    0 8px 18px rgba(0,0,0,0.15);
+                position: relative;
+                display: inline-block;
+
+                img {
+                    display: block;
+                    width: auto;
+                    max-width: 280px;
+                    height: auto;
+                    border: 1px solid rgba(0,0,0,0.1);
+                }
+            }
+
+            // Caption sitting on the "chin"
+            h3 {
+                position: absolute;
+                bottom: 12px;
+                left: 12px;
+                right: 12px;
+                margin: 0;
+                text-align: center;
+                border: none;
+                z-index: 10;
+                padding: 0;
+
+                a {
+                    font-family: "Courier New", Courier, monospace;
+                    font-size: 0.65rem;
+                    color: color-mix(in srgb, $typewriter-black, transparent 20%);
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    line-height: 1.2;
+                    display: block;
+
+                    &:hover {
+                        color: $dusty-mauve;
+                    }
+                }
+            }
+
+            // ALTERNATING LOGIC
+            // Note: Modern browsers support :nth-child(even of .selector)
+            // If Omeka's flat div structure interferes, we float the first Left
+            float: left;
+            margin-right: $spacing-l;
+
+            &:nth-child(even of .block-media.narrative-photo) {
+                float: right;
+                margin-left: $spacing-l;
+                margin-right: 0;
+            }
+        }
+
+        // --- 3. NARRATIVE TEXT & SUBTITLES ---
+        .block-pageTitle h2 {
+            font-family: "EB Garamond", serif;
+            font-size: 3.8rem;
+            line-height: 1.1;
+            text-align: center;
+            margin-bottom: $spacing-l;
+            font-weight: normal;
+        }
+
+        .block-html {
             h3 {
                 font-family: "EB Garamond", serif;
                 color: $dusty-mauve;
@@ -748,130 +854,86 @@ body.portrait-narrative {
             }
 
             p {
-                margin-bottom: $spacing-l;
                 font-family: "EB Garamond", serif;
                 font-size: $base-font-size;
-                line-height: $base-line-height;
-                color: $typewriter-black;
+                line-height: 1.8;
+                margin-bottom: $spacing-l;
                 text-align: left;
             }
 
+            // Drop cap for the very first paragraph
             &:first-of-type p:first-of-type::first-letter {
                 color: $dusty-mauve;
                 float: left;
                 font-size: 5.5rem;
                 line-height: 0.75;
                 margin: 0.6rem 0.6rem 0 0;
-                font-family: serif;
             }
         }
 
-        // Artifact Column (Cabinet Cards)
-        .block-media {
-            grid-column: 2;
-            margin-bottom: $spacing-l;
-
-            .media-embed, .media-render {
-                background: #e3d7c3;
-                padding: 12px 12px 32px 12px; // The Cabinet Card "Chin"
-                border: 1px solid #cec1ac;
-                outline: 1px solid rgba(255,255,255,.3);
-                outline-offset: -8px;
-                border-radius: 2px;
-                box-shadow:
-                    inset 0 0 1px rgba(255,255,255,0.5),
-                    inset 0 0 8px rgba(0,0,0,0.05),
-                    0 8px 18px rgba(0,0,0,0.15);
-
-                img {
-                    display: block;
-                    width: 100%;
-                    height: auto;
-                    border: 1px solid rgba(0,0,0,0.1);
-                }
-            }
-
-            h3 {
-                margin: -24px 0 0 0; // Pulls text onto the "chin"
-                text-align: center;
-                border: none;
-                position: relative;
-                z-index: 5;
-
-                a {
-                    font-family: "Courier New", Courier, monospace;
-                    font-size: 0.65rem;
-                    color: color-mix(in srgb, $typewriter-black, transparent 20%);
-                    text-decoration: none;
-                    text-transform: uppercase;
-                    letter-spacing: 0.5px;
-                    display: block;
-                    padding: 0 5px;
-
-                    &:hover {
-                        color: $dusty-mauve;
-                    }
-                }
-            }
-
-            &.portrait-hero {
-                margin-top: $spacing-l;
-                .media-embed, .media-render {
-                    padding: 15px 15px 40px 15px; // Slightly larger hero frame
-                }
-            }
-        }
-
-        .bibliography {
+        // --- 4. FOOTER & GALLERY ---
+        .block-html.bibliography {
+            clear: both;
+            width: 100% !important;
             margin-top: $spacing-l * 3;
             padding: $spacing-l;
             background: color-mix(in srgb, $old-lace, $typewriter-black 3%);
             border-top: 1px solid color-mix(in srgb, $old-lace, $typewriter-black 10%);
 
             h4 {
-                color: $dusty-mauve;
                 font-family: "Courier New", Courier, monospace;
+                color: $dusty-mauve;
                 text-transform: uppercase;
                 letter-spacing: 2px;
                 font-size: 0.85rem;
+                margin-bottom: $spacing-m;
             }
 
-            p {
-                font-size: 0.85rem;
-                margin-bottom: $spacing-s;
-            }
+            p { font-size: 0.85rem; line-height: 1.5; }
         }
 
         .block-browsePreview {
+            clear: both;
+            width: 100% !important;
             margin-top: $spacing-l * 3;
             border-top: 3px double color-mix(in srgb, $old-lace, $typewriter-black 15%);
             padding-top: $spacing-l;
 
+            h2 {
+                font-size: 1.8rem;
+                margin-bottom: $spacing-l;
+                text-align: center;
+            }
+
             .resource-list.preview {
                 display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
                 gap: $spacing-l;
                 list-style: none;
                 padding: 0;
 
-                .item.resource img {
-                    width: 100%;
-                    height: 180px;
-                    object-fit: cover;
-                    background: #e3d7c3;
-                    padding: 8px 8px 20px 8px;
-                    border: 1px solid #cec1ac;
-                    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                .item.resource {
+                    text-align: center;
+
+                    img {
+                        width: 100%;
+                        height: 200px;
+                        object-fit: contain; // Prevents cropping
+                        background: #e3d7c3;
+                        padding: 10px 10px 28px 10px;
+                        border: 1px solid #cec1ac;
+                        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                    }
+
+                    .resource-name {
+                        font-family: "Courier New", Courier, monospace;
+                        font-size: 0.7rem;
+                        text-transform: uppercase;
+                        margin-top: $spacing-s;
+                        display: block;
+                    }
                 }
             }
         }
-    }
-
-    .block-pageTitle h2 {
-        font-size: 3.5rem;
-        text-align: center;
-        margin-bottom: $spacing-l;
-        font-family: "EB Garamond", serif;
-        font-weight: normal;
     }
 }
