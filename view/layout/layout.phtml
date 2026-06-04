@@ -17,6 +17,8 @@ $this->headScript()->prependFile($this->assetUrl('vendor/jquery/jquery.min.js', 
 $this->jsTranslate();
 $this->trigger('view.layout');
 $userBar = $this->userBar();
+
+$pageTemplate = isset($page) ? $page->layoutDataValue('template_name') : '';
 ?>
 <?php echo $this->doctype(); ?>
 <?php echo $this->htmlElement('html'); ?>
@@ -58,11 +60,16 @@ $userBar = $this->userBar();
 
             <div class="main">
 
-                <?php if ($banner = $this->themeSettingAssetUrl('banner')): ?>
+                <?php
+
+                $assetName = (strpos($pageTemplate, 'portrait-narrative') !== false) ? 'croppedbanner' : 'banner';
+                ?>
+
                 <div class="hero-banner">
-                    <img src="<?php echo $banner; ?>" alt="The Fifty Acres Banner" />
+                    <?php if ($banner = $this->themeSettingAssetUrl($assetName)): ?>
+                        <img src="<?php echo $banner; ?>" alt="The Fifty Acres Banner" />
+                    <?php endif; ?>
                 </div>
-                <?php endif; ?>
 
                 <main class="content" role="main">
                     <?php echo $this->content; ?>
