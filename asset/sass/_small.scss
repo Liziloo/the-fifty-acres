@@ -2,6 +2,7 @@
     SMALL SCREEN STACK (Triggered at 1024px and below)
    ========================================================================== */
 
+
 .container {
     display: flex !important;
     flex-direction: column !important;
@@ -246,6 +247,44 @@ footer {
 
                 &:hover { background: var(--rusty-spice); }
             }
+        }
+    }
+}
+
+body.portrait-narrative {
+
+    .main {
+        padding-top: 90px !important; /* Reduce top padding for portrait narrative */
+    }
+
+    .blocks-inner {
+        padding: 0 !important;
+
+        h2 {
+            font-size: 2rem !important;
+        }
+
+        .block-media.portrait-hero {
+            .media-embed, .media-render {
+                width: 280px !important;
+                height: 368px !important;
+            }
+        }
+
+        .block-media.narrative-photo {
+            text-align: center;
+
+            .media-embed, .media-render {
+                box-sizing: border-box;
+                max-width: 100%;
+
+                img {
+                    max-width: 100%;
+                }
+            }
+
+            float: none;
+            margin-right: 0;
         }
     }
 }

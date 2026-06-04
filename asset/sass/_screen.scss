@@ -731,12 +731,8 @@ body.portrait-narrative {
 
         // --- FORMAL MAHOGANY OVAL HERO ---
         .block-media.portrait-hero {
-            display: block !important;
-            float: none !important;
-            clear: both !important;
-            width: 100% !important;
-            margin: 0 auto ($spacing-l * 4) !important;
-            text-align: center !important;
+            margin: 0 auto ($spacing-l * 4);
+            text-align: center;
 
             .media-embed, .media-render {
                 display: inline-block !important;
