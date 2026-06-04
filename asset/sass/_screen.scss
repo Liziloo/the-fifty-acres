@@ -708,3 +708,170 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
         padding-bottom: 2px;
     }
 }
+
+/* ==========================================================================
+    Portrait Narrative Page Styles
+   ========================================================================== */
+body.portrait-narrative {
+    .blocks-grid-container {
+        background-color: $old-lace;
+        width: 100%;
+    }
+
+    .blocks {
+        display: grid;
+        grid-template-columns: 1fr 350px; // Narrative Lane | Artifact Lane
+        gap: 0 $spacing-l;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: ($spacing-l * 2) $spacing-l;
+        align-items: start;
+
+        // Full-width elements
+        .block-pageTitle,
+        .bibliography,
+        .block-browsePreview {
+            grid-column: 1 / -1;
+        }
+
+        // Narrative Column
+        .block-html {
+            grid-column: 1;
+
+            h3 {
+                font-family: "EB Garamond", serif;
+                color: $dusty-mauve;
+                font-size: 1.8rem;
+                margin-top: $spacing-l;
+                margin-bottom: $spacing-m;
+                border-bottom: 1px solid color-mix(in srgb, $dusty-mauve, transparent 80%);
+            }
+
+            p {
+                margin-bottom: $spacing-l;
+                font-family: "EB Garamond", serif;
+                font-size: $base-font-size;
+                line-height: $base-line-height;
+                color: $typewriter-black;
+                text-align: left;
+            }
+
+            &:first-of-type p:first-of-type::first-letter {
+                color: $dusty-mauve;
+                float: left;
+                font-size: 5.5rem;
+                line-height: 0.75;
+                margin: 0.6rem 0.6rem 0 0;
+                font-family: serif;
+            }
+        }
+
+        // Artifact Column (Cabinet Cards)
+        .block-media {
+            grid-column: 2;
+            margin-bottom: $spacing-l;
+
+            .media-embed, .media-render {
+                background: #e3d7c3;
+                padding: 12px 12px 32px 12px; // The Cabinet Card "Chin"
+                border: 1px solid #cec1ac;
+                outline: 1px solid rgba(255,255,255,.3);
+                outline-offset: -8px;
+                border-radius: 2px;
+                box-shadow:
+                    inset 0 0 1px rgba(255,255,255,0.5),
+                    inset 0 0 8px rgba(0,0,0,0.05),
+                    0 8px 18px rgba(0,0,0,0.15);
+
+                img {
+                    display: block;
+                    width: 100%;
+                    height: auto;
+                    border: 1px solid rgba(0,0,0,0.1);
+                }
+            }
+
+            h3 {
+                margin: -24px 0 0 0; // Pulls text onto the "chin"
+                text-align: center;
+                border: none;
+                position: relative;
+                z-index: 5;
+
+                a {
+                    font-family: "Courier New", Courier, monospace;
+                    font-size: 0.65rem;
+                    color: color-mix(in srgb, $typewriter-black, transparent 20%);
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    display: block;
+                    padding: 0 5px;
+
+                    &:hover {
+                        color: $dusty-mauve;
+                    }
+                }
+            }
+
+            &.portrait-hero {
+                margin-top: $spacing-l;
+                .media-embed, .media-render {
+                    padding: 15px 15px 40px 15px; // Slightly larger hero frame
+                }
+            }
+        }
+
+        .bibliography {
+            margin-top: $spacing-l * 3;
+            padding: $spacing-l;
+            background: color-mix(in srgb, $old-lace, $typewriter-black 3%);
+            border-top: 1px solid color-mix(in srgb, $old-lace, $typewriter-black 10%);
+
+            h4 {
+                color: $dusty-mauve;
+                font-family: "Courier New", Courier, monospace;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                font-size: 0.85rem;
+            }
+
+            p {
+                font-size: 0.85rem;
+                margin-bottom: $spacing-s;
+            }
+        }
+
+        .block-browsePreview {
+            margin-top: $spacing-l * 3;
+            border-top: 3px double color-mix(in srgb, $old-lace, $typewriter-black 15%);
+            padding-top: $spacing-l;
+
+            .resource-list.preview {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: $spacing-l;
+                list-style: none;
+                padding: 0;
+
+                .item.resource img {
+                    width: 100%;
+                    height: 180px;
+                    object-fit: cover;
+                    background: #e3d7c3;
+                    padding: 8px 8px 20px 8px;
+                    border: 1px solid #cec1ac;
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                }
+            }
+        }
+    }
+
+    .block-pageTitle h2 {
+        font-size: 3.5rem;
+        text-align: center;
+        margin-bottom: $spacing-l;
+        font-family: "EB Garamond", serif;
+        font-weight: normal;
+    }
+}

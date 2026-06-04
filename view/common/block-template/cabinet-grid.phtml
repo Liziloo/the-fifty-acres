@@ -1,0 +1,18 @@
+<div class="cabinet-grid-block">
+    <?php if ($block->dataValue('heading')): ?>
+        <h3><?php echo $this->escapeHtml($block->dataValue('heading')); ?></h3>
+    <?php endif; ?>
+
+    <div class="resource-list grid-layout">
+        <?php foreach ($this->resources as $resource): ?>
+        <div class="item resource">
+            <div class="photo-frame">
+                <?php echo $resource->linkRaw($this->thumbnail($resource, 'medium')); ?>
+            </div>
+            <div class="item-metadata">
+                <h4><?php echo $resource->link($resource->displayTitle()); ?></h4>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+</div>

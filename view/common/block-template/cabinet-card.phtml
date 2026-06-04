@@ -1,0 +1,17 @@
+<div class="media-cabinet-block <?php echo $this->escapeHtml($block->dataValue('alignment', '')); ?>">
+    <?php foreach ($attachments as $attachment): ?>
+        <div class="attachment">
+            <div class="photo-frame">
+                <?php
+                $media = $attachment->media() ?: $attachment->item()->primaryMedia();
+                if ($media):
+                    echo $media->render(['thumbnailType' => 'medium']);
+                endif;
+                ?>
+            </div>
+            <?php if ($caption = $attachment->caption()): ?>
+                <div class="caption"><?php echo $caption; ?></div>
+            <?php endif; ?>
+        </div>
+    <?php endforeach; ?>
+</div>
