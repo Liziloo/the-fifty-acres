@@ -30,3 +30,28 @@ foreach ($item->media() as $media) {
 <?php endif; ?>
 
 <?php $this->trigger('view.show.after'); ?>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Map media IDs to their respective large thumbnail URLs
+    const mediaThumbnails = {
+        <?php foreach ($item->media() as $m): ?>
+            "<?php echo $m->id(); ?>": "<?php echo $this->escapeJs($m->thumbnailUrl('large')); ?>",
+        <?php endforeach; ?>
+    };
+
+    // Intercept media page links and point them directly to the large thumbnail asset
+    document.querySelectorAll('a').forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && href.includes('/media/')) {
+            const parts = href.split('/');
+            const mediaId = parts[parts.length - 1].split('?')[0];
+
+            if (mediaThumbnails[mediaId]) {
+                link.setAttribute('href', mediaThumbnails[mediaId]);
+                link.setAttribute('target', '_blank'); // Opens the large thumbnail in a safe tab
+            }
+        }
+    });
+});
+</script>
