@@ -16,10 +16,14 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
 </p>
 <?php echo $this->resourcePageBlocks($media)->getBlocks(); ?>
 
+<?php
+$adminEmail = $this->themeSetting('admin_email', 'your-email@example.com');
+?>
+
 <?php if (strpos($media->mediaType(), 'image') !== false): ?>
     <div class="full-res-notice">
         <p>Full-resolution scans are available upon request.</p>
-        <a href="mailto:admin@thefiftyacres.com?subject=Full-res request for: <?php echo $this->escapeHtml($media->displayTitle()); ?>">Request full-res version</a>
+        <a href="mailto:<?php echo $adminEmail; ?>?subject=Full-res request for: <?php echo $this->escapeHtml($media->displayTitle()); ?>">Request full-res version</a>
     </div>
 <?php endif; ?>
 

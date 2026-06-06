@@ -1164,7 +1164,10 @@ body.item.resource.show {
             }
         }
     }
+}
 
+body.item.resource.show,
+body.media.resource.show {
     .full-res-notice {
         margin: 0 auto 100px;
         max-width: 550px;
@@ -1187,6 +1190,7 @@ body.item.resource.show {
             color: var(--dusty-mauve);
             font-weight: bold;
             letter-spacing: 3px;
+            border: 1px solid gray;
         }
 
         p {
