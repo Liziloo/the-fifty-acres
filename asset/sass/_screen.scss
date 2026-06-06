@@ -979,3 +979,60 @@ body.portrait-narrative {
         }
     }
 }
+
+/* ==========================================================================
+    Individual Portraits Directory Grid
+   ========================================================================== */
+body.site-page-portraits {
+    .block-listOfPages {
+        > div > ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 2rem;
+            padding: 0;
+            margin: 40px 0;
+            list-style: none;
+
+            > li {
+                background: #ffffff;
+                border: 1px solid #e2ded0;
+                padding: 30px 20px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 120px;
+                border-radius: 2px;
+                margin: 0;
+
+                &:hover {
+                    transform: translateY(-4px) rotate(0.5deg);
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+                }
+
+                a {
+                    font-family: "Georgia", "Times New Roman", serif;
+                    font-weight: bold;
+                    font-size: 1.2rem;
+                    line-height: 1.4;
+                    color: $rusty-spice;
+                    text-decoration: none;
+                    display: block;
+                    width: 100%;
+
+                    &:hover {
+                        color: $dusty-mauve;
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        // Neutralize native nested list structures output by Omeka
+        ul ul {
+            display: none !important;
+        }
+    }
+}

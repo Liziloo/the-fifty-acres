@@ -20,7 +20,7 @@ gulp.task('css', function () {
 });
 
 gulp.task('bump-version', function (cb) {
-    var iniPath = './theme.ini';
+    var iniPath = './config/theme.ini';
     if (!fs.existsSync(iniPath)) {
         return cb(new Error('theme.ini not found'));
     }

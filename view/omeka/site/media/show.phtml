@@ -1,0 +1,26 @@
+<?php
+$translate = $this->plugin('translate');
+$item = $media->item();
+$this->headLink()->appendStylesheet($this->assetUrl('css/resource-page-blocks.css', 'Omeka'));
+$this->htmlElement('body')->appendAttribute('class', 'media resource show');
+$filterLocale = (bool) $this->siteSetting('filter_locale_values');
+$lang = $this->lang();
+$valueLang = $filterLocale ? [$lang, ''] : null;
+?>
+
+<?php echo $this->pageTitle($media->displayTitle(null, $valueLang), 2); ?>
+<h3><?php echo $translate('Media'); ?></h3>
+<?php $this->trigger('view.show.before'); ?>
+<p class="media-parent-item">
+    <?php echo sprintf($translate('Part of %s'), $item->link($item->displayTitle(null, $valueLang))); ?>
+</p>
+<?php echo $this->resourcePageBlocks($media)->getBlocks(); ?>
+
+<?php if (strpos($media->mediaType(), 'image') !== false): ?>
+    <div class="full-res-notice">
+        <p>Full-resolution scans are available upon request.</p>
+        <a href="mailto:admin@thefiftyacres.com?subject=Full-res request for: <?php echo $this->escapeHtml($media->displayTitle()); ?>">Request full-res version</a>
+    </div>
+<?php endif; ?>
+
+<?php $this->trigger('view.show.after'); ?>
