@@ -1036,3 +1036,183 @@ body.site-page-portraits {
         }
     }
 }
+
+/* ==========================================================================
+    Item Pages
+   ========================================================================== */
+body.item.resource.show {
+    main.content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    .title {
+        display: inline-block;
+        color: var(--dusty-mauve);
+        font-family: "EB Garamond", serif;
+        font-size: 2.2rem;
+        font-variant: small-caps;
+        font-weight: bold;
+        letter-spacing: 2px;
+        text-align: center;
+
+        background-color: #fffef9;
+        padding: 15px 45px;
+        border: 4px double var(--dusty-mauve);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+
+        max-width: 800px;
+        line-height: 1.2;
+        position: relative;
+        z-index: 5;
+    }
+
+    .values h3, .item-sets h3, .linked-resources h3 {
+        display: none !important;
+    }
+
+    .primary-photo-zone {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 120px;
+
+        .media-render {
+            display: inline-block !important;
+            background: #e3d7c3;
+            padding: 12px 12px 28px 12px;
+            border: 1px solid #cec1ac;
+            outline: 1px solid rgba(255, 255, 255, 0.3);
+            outline-offset: -8px;
+            border-radius: 2px;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+
+            img {
+                display: block;
+                max-height: 550px;
+                width: auto;
+                max-width: 100%;
+                border: 1px solid rgba(0, 0, 0, 0.1);
+            }
+        }
+    }
+
+    .archival-card-zone {
+        width: 100%;
+        max-width: 650px;
+        background-color: #fdfdfd !important;
+        background-image:
+            linear-gradient(90deg, transparent 149px, rgba(200, 0, 0, 0.15) 149px, rgba(200, 0, 0, 0.15) 150px, transparent 150px),
+            linear-gradient(rgba(0, 0, 200, 0.08) 1px, transparent 1px) !important;
+        background-size: 100% 100%, 100% 30px !important;
+        background-repeat: no-repeat, repeat !important;
+        border: 1px solid #d1d1d1 !important;
+
+        transform: rotate(-1deg) translateX(-20px);
+        box-shadow: -4px 8px 15px rgba(0, 0, 0, 0.06);
+
+        padding: 30px 0 !important;
+        margin: 30px 0 120px 60px;
+
+        .values, .item-sets {
+            background: transparent !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        dl {
+            margin: 0 !important;
+            padding-right: 15px;
+
+            div.property, &.item-sets {
+                display: grid !important;
+                grid-template-columns: 150px 1fr !important;
+                gap: 0 !important;
+                min-height: 30px !important;
+                line-height: 30px !important;
+                align-items: start !important;
+                background: transparent !important;
+
+                dt {
+                    font-family: "Courier New", Courier, monospace !important;
+                    font-size: 0.75rem !important;
+                    color: #222 !important;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    text-align: right;
+                    font-weight: 900;
+                    padding-right: 20px;
+                    margin: 0;
+                }
+
+                dd {
+                    margin: 0 !important;
+                    padding-left: 20px !important;
+                    font-family: "Courier New", Courier, monospace !important;
+                    font-size: 0.9rem !important;
+                    color: #444 !important;
+                    text-align: left;
+
+                    a {
+                        color: var(--dusty-mauve);
+                        text-decoration: underline;
+                        display: block;
+                        white-space: nowrap;
+                        &:hover { color: var(--rusty-spice); }
+                    }
+                }
+            }
+        }
+    }
+
+    .full-res-notice {
+        margin: 0 auto 100px;
+        max-width: 550px;
+        padding: 30px;
+        border: 1px solid rgba(120, 52, 56, 0.2);
+        background: rgba(120, 52, 56, 0.02);
+        text-align: center;
+        position: relative;
+
+        &::before {
+            content: "ARCHIVE ACCESS";
+            position: absolute;
+            top: -9px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--old-lace);
+            padding: 0 15px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.7rem;
+            color: var(--dusty-mauve);
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        p {
+            font-family: "EB Garamond", serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        a {
+            font-family: "Courier New", Courier, monospace;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            color: var(--dusty-mauve);
+            text-decoration: none;
+            border: 1px solid var(--dusty-mauve);
+            padding: 10px 25px;
+            display: inline-block;
+            transition: all 0.2s;
+
+            &:hover {
+                background: var(--dusty-mauve);
+                color: white;
+            }
+        }
+    }
+}

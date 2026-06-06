@@ -61,9 +61,10 @@ $pageTemplate = isset($page) ? $page->layoutDataValue('template_name') : '';
             <div class="main">
 
                 <?php
-
-                $assetName = (strpos($pageTemplate, 'portrait-narrative') !== false) ? 'croppedbanner' : 'banner';
-                ?>
+$isItem = $this->layout()->isItemPage;
+$isPortrait = (isset($pageTemplate) && strpos($pageTemplate, 'portrait-narrative') !== false);
+$assetName = ($isItem || $isPortrait) ? 'croppedbanner' : 'banner';
+?>
 
                 <div class="hero-banner">
                     <?php if ($banner = $this->themeSettingAssetUrl($assetName)): ?>
