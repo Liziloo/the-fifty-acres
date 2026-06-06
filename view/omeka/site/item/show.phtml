@@ -9,17 +9,62 @@ $valueLang = $filterLocale ? [$lang, ''] : null;
 <?php echo $this->pageTitle($item->displayTitle(null, $valueLang), 2); ?>
 <h3><?php echo $translate('Item'); ?></h3>
 <?php $this->trigger('view.show.before'); ?>
-<?php echo $this->resourcePageBlocks($item)->getBlocks(); ?>
 
 <?php
-// Check if any attached media is an image
+// Map media IDs and original asset paths to large thumbnail URLs
+$urlMap = [];
 $hasImage = false;
 foreach ($item->media() as $media) {
     if (strpos($media->mediaType(), 'image') !== false) {
         $hasImage = true;
-        break;
+    }
+    $largeThumb = $media->thumbnailUrl('large');
+    if ($largeThumb) {
+        $urlMap['/media/' . $media->id()] = $largeThumb;
+        $originalUrl = $media->originalUrl();
+        if ($originalUrl) {
+            $parseUrl = parse_url($originalUrl, PHP_URL_PATH);
+            if ($parseUrl) {
+                $urlMap[$parseUrl] = $largeThumb;
+            }
+        }
     }
 }
+
+// Intercept the blocks markup and rewrite blocked links to large thumbnails
+ob_start();
+echo $this->resourcePageBlocks($item)->getBlocks();
+$blocksHtml = ob_get_clean();
+
+if (!empty($urlMap) && class_exists('DOMDocument')) {
+    $doc = new DOMDocument();
+    libxml_use_internal_errors(true);
+    $doc->loadHTML(mb_convert_encoding($blocksHtml, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+    libxml_clear_errors();
+
+    $anchors = $doc->getElementsByTagName('a');
+    $modified = false;
+
+    foreach ($anchors as $anchor) {
+        $href = $anchor->getAttribute('href');
+        if ($href) {
+            $path = parse_url($href, PHP_URL_PATH);
+            foreach ($urlMap as $blockedPath => $safeUrl) {
+                if ($path === $blockedPath || strpos($path, $blockedPath) !== false) {
+                    $anchor->setAttribute('href', $safeUrl);
+                    $anchor->setAttribute('target', '_blank');
+                    $modified = true;
+                    break;
+                }
+            }
+        }
+    }
+    if ($modified) {
+        $blocksHtml = $doc->saveHTML();
+    }
+}
+
+echo $blocksHtml;
 ?>
 
 <?php if ($hasImage): ?>
@@ -30,28 +75,3 @@ foreach ($item->media() as $media) {
 <?php endif; ?>
 
 <?php $this->trigger('view.show.after'); ?>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Map media IDs to their respective large thumbnail URLs
-    const mediaThumbnails = {
-        <?php foreach ($item->media() as $m): ?>
-            "<?php echo $m->id(); ?>": "<?php echo $this->escapeJs($m->thumbnailUrl('large')); ?>",
-        <?php endforeach; ?>
-    };
-
-    // Intercept media page links and point them directly to the large thumbnail asset
-    document.querySelectorAll('a').forEach(link => {
-        const href = link.getAttribute('href');
-        if (href && href.includes('/media/')) {
-            const parts = href.split('/');
-            const mediaId = parts[parts.length - 1].split('?')[0];
-
-            if (mediaThumbnails[mediaId]) {
-                link.setAttribute('href', mediaThumbnails[mediaId]);
-                link.setAttribute('target', '_blank'); // Opens the large thumbnail in a safe tab
-            }
-        }
-    });
-});
-</script>
