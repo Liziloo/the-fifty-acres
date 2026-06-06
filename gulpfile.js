@@ -26,16 +26,26 @@ gulp.task('bump-version', function (cb) {
     }
 
     var iniContent = fs.readFileSync(iniPath, 'utf8');
+    var isMajor = process.argv.includes('--major');
 
     iniContent = iniContent.replace(/(version\s*=\s*["'])([^"']+)(["'])/, function (match, prefix, version, suffix) {
         var parts = version.split('.');
-        if (parts.length > 0) {
-            parts[parts.length - 1] = parseInt(parts[parts.length - 1], 10) + 1;
-        } else {
-            parts = ['1', '0', '1'];
+
+        if (parts.length < 2) {
+            parts = ['1', '0'];
         }
+
+        if (isMajor) {
+            parts[0] = parseInt(parts[0], 10) + 1;
+            parts[1] = 0;
+            if (parts[2] !== undefined) parts[2] = 0;
+        } else {
+            parts[1] = parseInt(parts[1], 10) + 1;
+            if (parts[2] !== undefined) parts[2] = 0;
+        }
+
         var newVersion = parts.join('.');
-        console.log('Bumping theme.ini version from ' + version + ' to ' + newVersion);
+        console.log('Bumping theme.ini version from ' + version + ' to ' + newVersion + (isMajor ? ' (Major)' : ' (Minor)'));
         return prefix + newVersion + suffix;
     });
 
