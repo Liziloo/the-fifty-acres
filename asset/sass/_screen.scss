@@ -80,14 +80,20 @@ h1, h2 {
     font-family: "EB Garamond", serif;
     color: var(--dusty-mauve);
     text-align: center;
-    margin-top: 1rem;
     margin-bottom: 2.5rem;
     font-weight: normal;
     line-height: 1.1;
 }
 
-h1 { font-size: 3.2rem; }
-h2 { font-size: 2.4rem; }
+h1 {
+    font-size: 3.2rem;
+    margin-top: 0; // Kills top margin to remove green strip
+    padding-top: 40px; // Adds internal padding instead
+}
+h2 {
+    font-size: 2.4rem;
+    margin-top: 1rem;
+}
 
 /* ==========================================================================
     Main Grid Container
@@ -289,11 +295,9 @@ h2 { font-size: 2.4rem; }
     margin-bottom: 1rem;
 }
 
-.search {
+.sidebar .search {
     width: 100%;
-    margin: 20px 0 0 0;
     transform: none;
-    padding: 0 1.5rem;
 
     form {
         display: flex;
@@ -440,37 +444,33 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
     Search Results
    ========================================================================== */
 
-/* Ledger Rule for Search Sections */
-.items.results h2 {
-    margin: 6rem 0 3rem;
-    padding-top: 2rem;
-    border-top: 4px double color-mix(in srgb, var(--dusty-mauve), transparent 75%);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 1.8rem;
-}
-
 .site_pages.results {
     background-color: #fffef9;
     border: 1px solid #e2ded0;
     box-shadow: 0 4px 20px rgba(0,0,0,0.06);
     width: 95%;
-    max-width: 600px;
-    margin: 0 auto 4rem;
+    margin: 0 auto 3rem;
     padding: 2rem;
     border-radius: 2px;
     text-align: center;
 
-    h2 { font-size: 1.8rem; margin-bottom: 1.5rem; border: none; }
+    h2 {
+        font-size: 1.6rem;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        border: none;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
 
     ul {
         list-style: none;
         padding: 0;
-        margin: 0 auto;
+        margin: 0;
 
         li {
             position: relative;
-            padding: 12px 0 12px 35px;
+            padding: 10px 0 10px 30px;
             border-bottom: 1px solid rgba(0,0,0,0.05);
             text-align: left;
 
@@ -478,54 +478,68 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
                 content: "";
                 position: absolute;
                 left: 5px; top: 50%;
-                width: 7px; height: 7px;
+                width: 6px; height: 6px;
                 background: var(--dusty-mauve);
                 transform: translateY(-50%) rotate(45deg);
             }
 
             a {
                 font-family: "EB Garamond", serif;
-                font-size: 1.25rem;
-                text-decoration: none;
+                font-size: 1.15rem;
                 font-weight: bold;
                 color: var(--typewriter-black);
+                text-decoration: none;
+                &:hover { color: var(--dusty-mauve); }
             }
         }
     }
 }
 
+/* ==========================================================================
+    SEARCH RESULTS: UNIFORM ANTI-CROP GRID (Items)
+   ========================================================================== */
 .items.results {
+    h2 {
+        margin: 4rem 0 3rem;
+        padding-top: 2rem;
+        border-top: 4px double color-mix(in srgb, var(--dusty-mauve), transparent 75%);
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-size: 1.8rem;
+    }
+
     ul {
         display: grid;
-        /* Responsive columns: at least 220px wide, filling available space */
-        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-        gap: 4rem 20px;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 5rem 25px;
         list-style: none;
         padding: 0;
         margin: 3rem 0;
-        align-items: start; // Prevents cards from stretching vertically
+        align-items: start;
     }
 
     .resource-link {
         @extend %artifact-card;
-        display: block;
-        text-decoration: none;
-        width: 100% !important; // Cards fill the responsive grid column
+        display: flex;
+        flex-direction: column;
+        width: 240px !important; /* Override fit-content for grid stability */
         height: auto !important;
         margin: 0 auto;
-        padding: 12px 12px 45px 12px !important;
+        padding: 10px 10px 45px 10px !important;
         transition: transform 0.3s ease;
 
-        &:hover { transform: translateY(-8px); }
+        &:hover {
+            transform: translateY(-5px);
+        }
 
         img {
             width: 100%;
-            height: auto;
-            max-height: 450px; // Limit extreme height
-            object-fit: contain; // Show whole photo
+            height: 200px; /* Fixed window height */
+            object-fit: contain; /* Shows 100% of the image */
+            background: #e3d7c3 !important; /* Matches cardstock perfectly */
             display: block;
-            border: 1px solid rgba(0,0,0,0.08);
-            background: #222;
+            border: 1px solid rgba(0,0,0,0.05);
+            /* Reset Master Styles */
             padding: 0 !important;
             box-shadow: none !important;
             outline: none !important;
@@ -540,34 +554,11 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
             justify-content: center;
             padding: 0 10px;
             font-family: "Courier New", Courier, monospace;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             color: var(--typewriter-black);
             line-height: 1.2;
             text-align: center;
-        }
-    }
-}
-
-.results {
-    text-align: center;
-    & > a {
-        display: inline-block;
-        margin: 2rem auto 0;
-        font-family: "Lato", sans-serif;
-        text-transform: uppercase;
-        font-weight: bold;
-        font-size: 0.8rem;
-        letter-spacing: 2px;
-        color: var(--dusty-mauve);
-        border: 1px solid var(--dusty-mauve);
-        padding: 12px 35px;
-        text-decoration: none;
-        transition: all 0.2s ease;
-
-        &:hover {
-            background: var(--dusty-mauve);
-            color: #fff;
         }
     }
 }
