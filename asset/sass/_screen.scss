@@ -382,8 +382,24 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
 
 
 /* ==========================================================================
-    Special Elements
+    Homepage Elements
    ========================================================================== */
+
+body.site-page-home {
+    .block-html, .block-heading {
+        padding: 0 32px;
+    }
+
+    .block-heading {
+        text-align: center;
+        color: var(--dusty-mauve);
+    }
+
+    .block-html {
+        line-height: 2;
+        margin: 2.5rem 0 6rem 0;
+    }
+}
 
 /* Carousel */
 /* 1. Track and Slide Layout Normalization */
