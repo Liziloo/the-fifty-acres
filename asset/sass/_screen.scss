@@ -21,6 +21,25 @@
     src: url(https://fonts.gstatic.com/s/lato/v25/S6u8w4BMUTPHjxsAUi-qJCY.woff2) format('woff2');
 }
 
+/* ==========================================================================
+    THE ARTIFACT MASTER (Hybrid Cabinet Card)
+   ========================================================================== */
+%artifact-card {
+    background: #e3d7c3 !important;
+    border: 1px solid #cec1ac !important;
+    border-radius: 2px !important;
+    box-shadow:
+        inset 0 0 1px rgba(255,255,255,0.5),
+        inset 0 0 8px rgba(0,0,0,0.05),
+        0 8px 18px rgba(0,0,0,0.15) !important;
+    outline: 1px solid rgba(255,255,255,.3) !important;
+    outline-offset: -8px !important;
+    padding: 12px 12px 45px 12px !important;
+    position: relative;
+    width: fit-content !important; // Forces card to hug the photo
+    display: block;
+}
+
 /* Visually hide "Skip to main content" disaster */
 #skipnav {
     position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -56,6 +75,10 @@ a {
 }
 
 a:visited { color: $faded-spice; }
+
+h2 {
+    color: var(--dusty-mauve);
+}
 
 /* ==========================================================================
     Main Grid Container
@@ -455,25 +478,11 @@ body.site-page-home {
   margin: 0 !important;
 }
 
-/* 3. Apply White Frame Directly to Photos */
+/* Carousel Items */
 .block-carousel .carousel-block .slick-slide img {
   display: inline-block !important;
-  height: auto !important;
+  @extend %artifact-card;
   max-height: 240px !important;
-  width: auto !important;
-  max-width: 100% !important;
-  background: #e3d7c3 !important;
-  padding: 12px 12px 28px 12px !important;
-  border: 1px solid #cec1ac !important;
-  border-radius: 2px !important;
-  box-shadow:
-    inset 0 0 1px rgba(255,255,255,0.5),
-    inset 0 0 8px rgba(0,0,0,0.05),
-    0 6px 15px rgba(0,0,0,0.1) !important;
-  outline: 1px solid rgba(255,255,255,.3) !important;
-  outline-offset: -8px !important;
-  margin: 0 !important;
-  box-sizing: border-box !important;
   object-fit: contain !important;
 }
 
@@ -621,27 +630,11 @@ body.site-page-home {
         width: 100%;
     }
 
+    /* Browse Grid Items */
     img {
+        @extend %artifact-card;
         max-height: 100%;
         max-width: 100%;
-        width: auto;
-        height: auto;
-        background: #e3d7c3;
-
-        /* THE CABINET CARD "CHIN": 12px top/sides, 32px bottom */
-        padding: 12px 12px 32px 12px;
-
-        /* A slightly more "tangible" shadow for thick cardstock */
-        box-shadow:
-            inset 0 0 1px rgba(255,255,255,0.5),
-            inset 0 0 8px rgba(0,0,0,0.05),
-            0 8px 18px rgba(0,0,0,0.15);
-
-        border: 1px solid #cec1ac;
-        outline: 1px solid rgba(255,255,255,.3);
-        outline-offset: -8px;
-        border-radius: 2px;
-        display: block;
     }
 }
 
@@ -653,6 +646,7 @@ body.site-page-home {
         font-family: "EB Garamond", serif;
         font-size: 1.15rem;
         line-height: 1.3;
+        text-wrap: pretty;
         a {
             color: var(--dusty-mauve);
             text-decoration: none;
@@ -753,7 +747,7 @@ body.site-page-home {
 /* ==========================================================================
     Portrait Narrative Page Styles
    ========================================================================== */
-body.portrait-narrative {
+body.narrative {
     main.content {
         max-width: 1000px;
         margin: 0 auto;
@@ -770,10 +764,11 @@ body.portrait-narrative {
             clear: both;
         }
 
-        // --- FORMAL MAHOGANY OVAL HERO ---
+        // --- 1. FORMAL MAHOGANY OVAL HERO ---
         .block-media.portrait-hero {
             margin: 0 auto ($spacing-l * 4);
             text-align: center;
+            float: none !important;
 
             .media-embed, .media-render {
                 display: inline-block !important;
@@ -783,133 +778,97 @@ body.portrait-narrative {
                 border-radius: 50% !important;
                 box-sizing: border-box !important;
 
-                // Polished Mahogany Finish: Radial gradient simulating light falloff on wood
-                background: radial-gradient(ellipse at 35% 30%, #5d2a2b 0%, #3d1a1c 50%, #1a0a0b 100%) !important;
+                // Brightened Mahogany: Saddle Brown to Deep Oxblood to Espresso
+                background: radial-gradient(ellipse at 35% 30%, #8b4513 0%, #5d2a2b 50%, #2b1112 100%) !important;
 
-                // Hand-Carved Bevel & Depth
                 box-shadow:
-                    0 30px 60px -12px rgba(0, 0, 0, 0.6),        // Soft Wall Shadow
-                    inset 0 0 40px #000,                        // Deep Inner Shadow
-                    inset 0 8px 10px rgba(255,255,255,0.15),     // Specular Highlight on Top Rim
-                    0 0 0 6px #3d1a1c,                          // Main Outer Frame Color
-                    0 0 0 8px #1a0a0b !important;               // Final Dark Edge
+                    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                    inset 0 0 40px rgba(0,0,0,0.8),
+                    inset 0 4px 6px rgba(255,255,255,0.2), // Specular highlight on wood
+                    0 0 0 6px #5d2a2b,
+                    0 0 0 8px #2b1112 !important;
 
-                // The Antique Gold Fillet (Inner Bezel) - Fixed Oval
                 &::before {
-                    content: "" !important;
-                    position: absolute !important;
-                    top: 14px !important;
-                    left: 14px !important;
-                    right: 14px !important;
-                    bottom: 14px !important;
-                    border-radius: 50% !important; // Forces the Gold to follow the Oval
-                    z-index: 5 !important;
-                    pointer-events: none !important;
-                    border: 2px solid #b39b5d !important;
-                    box-shadow:
-                        inset 0 0 6px rgba(0,0,0,0.8),
-                        0 0 2px rgba(0,0,0,0.5) !important;
+                    content: "" !important; position: absolute !important; top: 14px; left: 14px; right: 14px; bottom: 14px;
+                    border-radius: 50%; z-index: 5; border: 2px solid #b39b5d !important;
+                    box-shadow: inset 0 0 6px rgba(0,0,0,0.8), 0 0 2px rgba(0,0,0,0.5) !important;
                 }
 
-                // Glass Glare Overlay
                 &::after {
-                    content: "" !important;
-                    position: absolute !important;
-                    top: 16px !important;
-                    left: 16px !important;
-                    right: 16px !important;
-                    bottom: 16px !important;
-                    border-radius: 50% !important;
-                    background: linear-gradient(135deg,
-                        rgba(255,255,255,0.1) 0%,
-                        rgba(255,255,255,0) 50%,
-                        rgba(255,255,255,0.03) 100%) !important;
-                    z-index: 4 !important;
-                    pointer-events: none !important;
+                    content: "" !important; position: absolute !important; top: 16px; left: 16px; right: 16px; bottom: 16px;
+                    border-radius: 50%; background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.03) 100%) !important;
+                    z-index: 4;
                 }
 
-                // The Photograph
                 img {
-                    width: calc(100% - 32px) !important;
-                    height: calc(100% - 32px) !important;
-                    position: absolute !important;
-                    top: 16px !important;
-                    left: 16px !important;
-                    object-fit: cover !important;
-                    object-position: center 20% !important;
-                    border-radius: 50% !important;
-                    display: block !important;
-                    filter: sepia(0.1) contrast(1.05) !important;
-                    z-index: 1 !important;
-                    background-color: #000 !important;
+                    width: calc(100% - 32px) !important; height: calc(100% - 32px) !important;
+                    position: absolute; top: 16px; left: 16px; object-fit: cover; border-radius: 50%;
+                    filter: sepia(0.1) contrast(1.05); z-index: 1; background-color: #000 !important;
+                    // Protect from rectangular card inheritance
+                    box-shadow: none !important; border: none !important; outline: none !important; padding: 0 !important;
                 }
             }
             h3 { display: none !important; }
         }
 
         // --- 2. CABINET CARD NARRATIVE PHOTOS ---
-        .block-media.narrative-photo {
+        .block-media:not(.portrait-hero) {
             margin-bottom: $spacing-l;
-            width: auto !important;
+            max-width: 310px; // Clamps the unit size
+            float: left;
+            margin-right: $spacing-l;
 
-            .media-embed, .media-render {
-                background: #e3d7c3;
-                padding: 12px 12px 42px 12px; // 42px bottom "Chin"
-                border: 1px solid #cec1ac;
-                outline: 1px solid rgba(255,255,255,.3);
-                outline-offset: -8px;
-                border-radius: 2px;
-                box-shadow:
-                    inset 0 0 1px rgba(255,255,255,0.5),
-                    inset 0 0 8px rgba(0,0,0,0.05),
-                    0 8px 18px rgba(0,0,0,0.15);
-                position: relative;
-                display: inline-block;
-
-                img {
-                    display: block;
-                    width: auto;
-                    max-width: 280px;
-                    height: auto;
-                    border: 1px solid rgba(0,0,0,0.1);
-                }
+            .item.resource {
+                @extend %artifact-card;
+                margin: 0;
             }
 
-            // Caption sitting on the "chin"
-            h3 {
-                position: absolute;
-                bottom: 12px;
-                left: 12px;
-                right: 12px;
-                margin: 0;
-                text-align: center;
-                border: none;
-                z-index: 10;
-                padding: 0;
+            // Reset all inner containers to prevent shifting
+            .media-render, .media-render a {
+                display: block !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                line-height: 0;
+            }
 
-                a {
+            .media-render img {
+                display: block;
+                width: 100%;
+                height: auto;
+                max-width: 280px;
+                border: 1px solid rgba(0,0,0,0.1);
+                // Clear artifact inheritance from inner image
+                background: transparent !important;
+                box-shadow: none !important;
+                outline: none !important;
+                padding: 0 !important;
+            }
+
+            h3, .caption {
+                position: absolute;
+                bottom: 0; left: 0; right: 0;
+                height: 45px; // Matches the fixed chin
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin: 0 !important;
+                padding: 0 12px !important;
+                z-index: 10;
+                line-height: 1.2;
+
+                a, p {
                     font-family: "Courier New", Courier, monospace;
                     font-size: 0.65rem;
                     color: color-mix(in srgb, $typewriter-black, transparent 20%);
                     text-decoration: none;
                     text-transform: uppercase;
                     letter-spacing: 0.5px;
-                    line-height: 1.2;
+                    text-align: center;
                     display: block;
-
-                    &:hover {
-                        color: $dusty-mauve;
-                    }
                 }
             }
 
-            // ALTERNATING LOGIC
-            // Note: Modern browsers support :nth-child(even of .selector)
-            // If Omeka's flat div structure interferes, we float the first Left
-            float: left;
-            margin-right: $spacing-l;
-
-            &:nth-child(even of .block-media.narrative-photo) {
+            &:nth-child(even of .block-media:not(.portrait-hero)) {
                 float: right;
                 margin-left: $spacing-l;
                 margin-right: 0;
@@ -972,7 +931,17 @@ body.portrait-narrative {
                 margin-bottom: $spacing-m;
             }
 
-            p { font-size: 0.85rem; line-height: 1.5; }
+            p, ol li { font-size: 0.85rem; line-height: 1.5; }
+
+            ol li {
+                margin-bottom: 1rem;
+                padding-left: 0.5rem;
+                &::marker {
+                    color: var(--dusty-mauve);
+                    font-weight: bold;
+                    font-family: "Courier New", Courier, monospace;
+                }
+            }
         }
 
         .block-browsePreview {
@@ -1120,13 +1089,7 @@ body.item.resource.show {
 
         .media-render {
             display: inline-block !important;
-            background: #e3d7c3;
-            padding: 12px 12px 28px 12px;
-            border: 1px solid #cec1ac;
-            outline: 1px solid rgba(255, 255, 255, 0.3);
-            outline-offset: -8px;
-            border-radius: 2px;
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            @extend %artifact-card;
 
             img {
                 display: block;
@@ -1134,6 +1097,11 @@ body.item.resource.show {
                 width: auto;
                 max-width: 100%;
                 border: 1px solid rgba(0, 0, 0, 0.1);
+                // Reset card styles on inner image
+                padding: 0 !important;
+                background: transparent !important;
+                box-shadow: none !important;
+                outline: none !important;
             }
         }
     }
