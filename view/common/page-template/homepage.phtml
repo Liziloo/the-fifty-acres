@@ -5,6 +5,7 @@ $this->htmlElement('body')->appendAttribute('class', $pageBodyClass);
 $this->htmlElement('body')->appendAttribute('class', 'home-template');
 $this->pageTitle($page->title(), 2);
 $nav = $site->publicNav();
+$this->layout()->setVariable('page', $page);
 $assetLayout = new Omeka\Site\BlockLayout\Asset;
 $mediaLayout = new Omeka\Site\BlockLayout\Media;
 $showPagePagination = $this->siteSetting('show_page_pagination', true);
@@ -12,7 +13,7 @@ $showPagePagination = $this->siteSetting('show_page_pagination', true);
 
 <?php $this->trigger('view.show.before'); ?>
 <div class="blocks">
-    <?php 
+    <?php
     $blocks = $page->blocks();
     foreach($blocks as $block) {
         $blockLayout = $block->layout();

@@ -61,9 +61,8 @@ $pageTemplate = isset($page) ? $page->layoutDataValue('template_name') : '';
             <div class="main">
 
                 <?php
-                $isItem = $this->layout()->isItemPage;
-                $isNarrative = (isset($pageTemplate) && strpos($pageTemplate, 'narrative') !== false);
-                $assetName = ($isItem || $isNarrative) ? 'croppedbanner' : 'banner';
+                $isHero = (isset($pageTemplate) && strpos($pageTemplate, 'page-with-hero') !== false);
+                $assetName = $isHero ? 'banner' : 'croppedbanner';
                 ?>
 
                 <div class="hero-banner">

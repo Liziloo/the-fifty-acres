@@ -500,12 +500,14 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
    ========================================================================== */
 .items.results {
     h2 {
-        margin: 4rem 0 3rem;
+        margin: 6rem 0 3rem;
         padding-top: 2rem;
         border-top: 4px double color-mix(in srgb, var(--dusty-mauve), transparent 75%);
         text-transform: uppercase;
         letter-spacing: 3px;
         font-size: 1.8rem;
+        display: block;
+        width: 100%;
     }
 
     ul {
@@ -522,24 +524,30 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
         @extend %artifact-card;
         display: flex;
         flex-direction: column;
-        width: 240px !important; /* Override fit-content for grid stability */
-        height: auto !important;
+        width: 240px !important; // Fixed width for grid alignment
+        height: 300px !important; // Fixed height like Browse page cards
         margin: 0 auto;
-        padding: 10px 10px 45px 10px !important;
+        padding: 12px 12px 45px 12px !important; // Standard 45px chin
+        position: relative;
+        text-decoration: none;
         transition: transform 0.3s ease;
 
         &:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
         }
 
         img {
-            width: 100%;
-            height: 200px; /* Fixed window height */
-            object-fit: contain; /* Shows 100% of the image */
-            background: #e3d7c3 !important; /* Matches cardstock perfectly */
+            /* Browse Page Image Logic: No Cropping */
+            max-height: 100%;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
             display: block;
+            margin: auto; // Centers photo in the card window
+            background: #e3d7c3 !important; // Matches cardstock for seamless look
             border: 1px solid rgba(0,0,0,0.05);
-            /* Reset Master Styles */
+            /* Reset Master Artifact styles from inner image */
             padding: 0 !important;
             box-shadow: none !important;
             outline: none !important;
@@ -548,7 +556,7 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
         .resource-name {
             position: absolute;
             bottom: 0; left: 0; right: 0;
-            height: 45px;
+            height: 45px; // Sits perfectly in the chin
             display: flex;
             align-items: center;
             justify-content: center;
@@ -559,6 +567,31 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
             color: var(--typewriter-black);
             line-height: 1.2;
             text-align: center;
+        }
+    }
+}
+
+.results {
+    text-align: center;
+
+    & > a {
+        display: inline-block;
+        margin: 3rem auto 0;
+        font-family: "Lato", sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        color: var(--dusty-mauve);
+        border: 1px solid var(--dusty-mauve);
+        padding: 12px 35px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: var(--dusty-mauve);
+            color: #fff;
+            transform: translateY(-3px);
         }
     }
 }
