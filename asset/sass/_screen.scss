@@ -375,6 +375,7 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
         text-decoration: none;
         color: var(--dusty-mauve);
         font-weight: bold;
+        transition: color 0.2s;
 
         &:hover {
             color: var(--rusty-spice);
