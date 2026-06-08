@@ -1,6 +1,6 @@
 <?php
 $this->headLink()->appendStylesheet($this->assetUrl('css/page-blocks.css', 'Omeka'));
-$this->htmlElement('body')->appendAttribute('class', 'portrait-narrative');
+$this->htmlElement('body')->appendAttribute('class', 'narrative');
 $this->pageTitle($page->title(), 2);
 $this->layout()->setVariable('page', $page);
 $nav = $site->publicNav();

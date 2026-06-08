@@ -361,6 +361,29 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
 
 
 /* ==========================================================================
+    Breadcrumbs
+   ========================================================================== */
+.breadcrumbs {
+    font-family: "Lato", sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2rem;
+    color: var(--gray);
+
+    a {
+        text-decoration: none;
+        color: var(--dusty-mauve);
+        font-weight: bold;
+
+        &:hover {
+            color: var(--rusty-spice);
+        }
+    }
+}
+
+
+/* ==========================================================================
     Large Screen Overrides
    ========================================================================== */
 /* Ensure Desktop Search remains a vertical stack */
