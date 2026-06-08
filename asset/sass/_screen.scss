@@ -78,7 +78,6 @@ a:visited { color: $faded-spice; }
 
 h1, h2 {
     font-family: "EB Garamond", serif;
-    font-size: 2.8rem; // Standardized large size
     color: var(--dusty-mauve);
     text-align: center;
     margin-top: 1rem;
@@ -86,6 +85,9 @@ h1, h2 {
     font-weight: normal;
     line-height: 1.1;
 }
+
+h1 { font-size: 3.2rem; }
+h2 { font-size: 2.4rem; }
 
 /* ==========================================================================
     Main Grid Container
@@ -276,7 +278,7 @@ h1, h2 {
     }
 }
 
-.search::before {
+.sidebar .search::before {
     content: "EST. 1856";
     display: block;
     font-family: "Georgia", serif;
@@ -432,6 +434,142 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
 /* Hide the mobile toggle button on desktop */
 #mobile-nav-toggle {
     display: none;
+}
+
+/* ==========================================================================
+    Search Results
+   ========================================================================== */
+
+/* Ledger Rule for Search Sections */
+.items.results h2 {
+    margin: 6rem 0 3rem;
+    padding-top: 2rem;
+    border-top: 4px double color-mix(in srgb, var(--dusty-mauve), transparent 75%);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1.8rem;
+}
+
+.site_pages.results {
+    background-color: #fffef9;
+    border: 1px solid #e2ded0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    width: 95%;
+    max-width: 600px;
+    margin: 0 auto 4rem;
+    padding: 2rem;
+    border-radius: 2px;
+    text-align: center;
+
+    h2 { font-size: 1.8rem; margin-bottom: 1.5rem; border: none; }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0 auto;
+
+        li {
+            position: relative;
+            padding: 12px 0 12px 35px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            text-align: left;
+
+            &::before {
+                content: "";
+                position: absolute;
+                left: 5px; top: 50%;
+                width: 7px; height: 7px;
+                background: var(--dusty-mauve);
+                transform: translateY(-50%) rotate(45deg);
+            }
+
+            a {
+                font-family: "EB Garamond", serif;
+                font-size: 1.25rem;
+                text-decoration: none;
+                font-weight: bold;
+                color: var(--typewriter-black);
+            }
+        }
+    }
+}
+
+.items.results {
+    ul {
+        display: grid;
+        /* Responsive columns: at least 220px wide, filling available space */
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 4rem 20px;
+        list-style: none;
+        padding: 0;
+        margin: 3rem 0;
+        align-items: start; // Prevents cards from stretching vertically
+    }
+
+    .resource-link {
+        @extend %artifact-card;
+        display: block;
+        text-decoration: none;
+        width: 100% !important; // Cards fill the responsive grid column
+        height: auto !important;
+        margin: 0 auto;
+        padding: 12px 12px 45px 12px !important;
+        transition: transform 0.3s ease;
+
+        &:hover { transform: translateY(-8px); }
+
+        img {
+            width: 100%;
+            height: auto;
+            max-height: 450px; // Limit extreme height
+            object-fit: contain; // Show whole photo
+            display: block;
+            border: 1px solid rgba(0,0,0,0.08);
+            background: #222;
+            padding: 0 !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+        .resource-name {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--typewriter-black);
+            line-height: 1.2;
+            text-align: center;
+        }
+    }
+}
+
+.results {
+    text-align: center;
+    & > a {
+        display: inline-block;
+        margin: 2rem auto 0;
+        font-family: "Lato", sans-serif;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        color: var(--dusty-mauve);
+        border: 1px solid var(--dusty-mauve);
+        padding: 12px 35px;
+        text-decoration: none;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background: var(--dusty-mauve);
+            color: #fff;
+        }
+    }
 }
 
 /* ==========================================================================
