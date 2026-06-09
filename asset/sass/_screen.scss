@@ -371,7 +371,7 @@ h2 {
 }
 
 .content {
-    padding: 60px;
+    padding: 0 60px;
     max-width: 900px;
     margin: 0 auto;
     width: 90%;
@@ -749,7 +749,11 @@ body.site-page-home {
 }
 
 /* Carousel */
-/* 1. Track and Slide Layout Normalization */
+
+.block-carousel {
+    margin-top: 3rem !important;
+}
+/* Track and Slide Layout Normalization */
 .block-carousel .carousel-block .slick-track {
   display: flex !important;
   align-items: flex-start !important;
