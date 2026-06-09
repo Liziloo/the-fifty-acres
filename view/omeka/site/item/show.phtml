@@ -40,11 +40,36 @@ foreach ($item->media() as $media) {
 
     echo '<div class="primary-photo-zone">' . $photoHtml . '</div>';
 
-    if (!empty($urlMap) && class_exists('DOMDocument')) {
+    if (class_exists('DOMDocument')) {
         $doc = new DOMDocument();
         libxml_use_internal_errors(true);
         $doc->loadHTML(mb_convert_encoding($dataHtml, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         libxml_clear_errors();
+
+        $xpath = new DOMXPath($doc);
+
+        $properties = $xpath->query("//div[contains(@class, 'property')]");
+        foreach ($properties as $property) {
+            $dt = $xpath->query(".//dt", $property)->item(0);
+            if ($dt && trim($dt->nodeValue) === 'Identifier') {
+                $property->parentNode->removeChild($property);
+            }
+        }
+
+        $clutter = $xpath->query("//div[contains(@class, 'linked-header')] | //div[contains(@class, 'pagination')] | //thead");
+        foreach ($clutter as $node) {
+            $node->parentNode->removeChild($node);
+        }
+
+        $linkedRows = $xpath->query("//tr[contains(@class, 'linked-resource')]");
+        foreach ($linkedRows as $row) {
+            $cells = $row->getElementsByTagName('td');
+            if ($cells->length >= 2) {
+                $cells->item(0)->setAttribute('class', 'linked-value');
+                $cells->item(1)->setAttribute('class', 'linked-label');
+            }
+        }
+
         $anchors = $doc->getElementsByTagName('a');
         foreach ($anchors as $anchor) {
             $href = $anchor->getAttribute('href');
