@@ -181,6 +181,7 @@ h2 {
     margin: 0 auto;
     text-align: left;
     position: relative;
+    transform: translateX(15px);
 
     ul.navigation {
         list-style: none;
@@ -310,6 +311,7 @@ h2 {
 .sidebar .search {
     width: 210px;
     margin: 50px auto 0;
+    transform: translate(-15px);
 
     &::before {
         content: "EST. 1856";
