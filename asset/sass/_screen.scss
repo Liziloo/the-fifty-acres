@@ -1499,7 +1499,10 @@ body.item.resource.show {
             margin: 0 !important;
             padding-right: 15px;
 
-            div.property, &.item-sets {
+            /* Target the rows, including the broken container wrapper */
+            div.property,
+            &.item-sets,
+            #linked-resources-container {
                 display: grid !important;
                 grid-template-columns: 150px 1fr !important;
                 gap: 0 !important;
@@ -1508,7 +1511,9 @@ body.item.resource.show {
                 align-items: start !important;
                 background: transparent !important;
                 padding: 4px 0 !important;
+            }
 
+            div.property, &.item-sets {
                 dt {
                     grid-column: 1 !important;
                     font-family: "Courier New", Courier, monospace !important;
@@ -1549,91 +1554,97 @@ body.item.resource.show {
             }
         }
 
-        .linked-resources {
-            background: transparent !important;
-            border: none !important;
-            padding: 0 !important;
-            margin: 0 !important;
+        /* Target the linked resources inside the container block */
+        #linked-resources-container {
+            grid-column: 1 / span 2 !important; /* Let the table container take full width */
 
-            .linked-header, thead {
-                display: none !important;
-            }
+            #linked-resources {
+                width: 100%;
+                background: transparent !important;
+                border: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
 
-            #linked-filter, .pagination {
-                margin: 10px 15px 15px 170px !important;
-                font-family: "Courier New", Courier, monospace !important;
-                font-size: 0.8rem !important;
-                color: #444;
+                .linked-header, thead {
+                    display: none !important;
+                }
 
-                select, input, button {
+                #linked-filter, .pagination {
+                    margin: 10px 15px 15px 170px !important;
                     font-family: "Courier New", Courier, monospace !important;
                     font-size: 0.8rem !important;
-                    background: #fffef9;
-                    border: 1px solid #d1d1d1;
-                    padding: 2px 5px;
+                    color: #444;
+
+                    select, input, button {
+                        font-family: "Courier New", Courier, monospace !important;
+                        font-size: 0.8rem !important;
+                        background: #fffef9;
+                        border: 1px solid #d1d1d1;
+                        padding: 2px 5px;
+                    }
                 }
-            }
 
-            table {
-                width: 100%;
-                border-collapse: collapse;
-                border: none !important;
-                background: transparent !important;
-                margin: 0 !important;
-            }
-
-            tbody {
-                display: flex;
-                flex-direction: column;
-                gap: 4px;
-            }
-
-            tr.linked-resource {
-                display: grid !important;
-                grid-template-columns: 150px 1fr !important;
-                min-height: unset !important;
-                line-height: 1.4 !important;
-                border: none !important;
-                background: transparent !important;
-                align-items: start !important;
-                padding: 4px 0 !important;
-
-                td {
-                    background: transparent !important;
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
                     border: none !important;
-                    padding: 0 !important;
+                    background: transparent !important;
                     margin: 0 !important;
                 }
 
-                td.linked-label {
-                    grid-column: 1 !important;
-                    font-family: "Courier New", Courier, monospace !important;
-                    font-size: 0.75rem !important;
-                    color: #222 !important;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                    text-align: right;
-                    font-weight: 900;
-                    padding-right: 20px;
-                    margin-top: 2px;
+                tbody {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
                 }
 
-                td.linked-value {
-                    grid-column: 2 !important;
-                    padding-left: 20px !important;
-                    font-family: "Courier New", Courier, monospace !important;
-                    font-size: 0.9rem !important;
-                    color: #444 !important;
-                    text-align: left;
-                    word-break: break-word;
+                tr.linked-resource {
+                    display: grid !important;
+                    grid-template-columns: 150px 1fr !important;
+                    min-height: unset !important;
+                    line-height: 1.4 !important;
+                    border: none !important;
+                    background: transparent !important;
+                    align-items: start !important;
+                    padding: 4px 0 !important;
 
-                    a {
-                        color: var(--dusty-mauve);
-                        text-decoration: underline;
-                        display: inline-block !important;
-                        white-space: normal !important;
-                        &:hover {
-                            color: var(--rusty-spice);
+                    td {
+                        background: transparent !important;
+                        border: none !important;
+                        padding: 0 !important;
+                        margin: 0 !important;
+                    }
+
+                    td.linked-label {
+                        grid-column: 1 !important;
+                        font-family: "Courier New", Courier, monospace !important;
+                        font-size: 0.75rem !important;
+                        color: #222 !important;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        text-align: right;
+                        font-weight: 900;
+                        padding-right: 20px;
+                        margin-top: 2px;
+                    }
+
+                    td.linked-value {
+                        grid-column: 2 !important;
+                        padding-left: 20px !important;
+                        font-family: "Courier New", Courier, monospace !important;
+                        font-size: 0.9rem !important;
+                        color: #444 !important;
+                        text-align: left;
+                        word-break: break-word;
+
+                        a {
+                            color: var(--dusty-mauve);
+                            text-decoration: underline;
+                            display: inline-block !important;
+                            white-space: normal !important;
+                            &:hover {
+                                color: var(--rusty-spice);
+                            }
                         }
                     }
                 }
