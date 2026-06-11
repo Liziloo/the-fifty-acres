@@ -1415,7 +1415,7 @@ body.site-page-portraits {
 }
 
 /* ==========================================================================
-    Item Pages
+    Item Pages - Root Semantic Fix
    ========================================================================== */
 body.item.resource.show {
     main.content {
@@ -1433,19 +1433,20 @@ body.item.resource.show {
         font-weight: bold;
         letter-spacing: 2px;
         text-align: center;
-
         background-color: #fffef9;
         padding: 15px 45px;
         border: 4px double var(--dusty-mauve);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-
         max-width: 800px;
         line-height: 1.2;
         position: relative;
         z-index: 5;
     }
 
-    .values h3, .item-sets h3, .linked-resources h3 {
+    /* Clear the default plugin block headings out of the card layout */
+    .archival-card-zone h3,
+    .card-extensions-zone h3,
+    .card-extensions-zone .linked-resources h3 {
         display: none !important;
     }
 
@@ -1482,32 +1483,20 @@ body.item.resource.show {
         background-size: 100% 100%, 100% 30px !important;
         background-repeat: no-repeat, repeat !important;
         border: 1px solid #d1d1d1 !important;
-
         transform: rotate(-1deg) translateX(-20px);
         box-shadow: -4px 8px 15px rgba(0, 0, 0, 0.06);
-
         padding: 30px 0 !important;
         margin: 30px 0 120px 60px;
 
-        .values, .item-sets {
-            background: transparent !important;
-            padding: 0 !important;
-            margin: 0 !important;
-        }
-
-        /* Enforce a single grid coordinate map across the whole card area */
-        dl, #linked-resources-container {
+        /* Standard Item Fields Layout Grid */
+        dl.metadata-property-list {
             display: grid !important;
             grid-template-columns: 150px 1fr !important;
             background: transparent !important;
             margin: 0 !important;
-            padding: 0 !important;
-        }
+            padding: 0 15px 0 0 !important;
 
-        dl {
-            padding-right: 15px;
-
-            div.property, &.item-sets {
+            div.property {
                 display: contents !important;
             }
 
@@ -1548,7 +1537,7 @@ body.item.resource.show {
                     &:hover { color: var(--rusty-spice); }
                 }
 
-                .value-literal, .value-resource-items {
+                .value-literal {
                     display: block;
                     margin-bottom: 6px;
                     &:last-child { margin-bottom: 0; }
@@ -1556,25 +1545,40 @@ body.item.resource.show {
             }
         }
 
-        #linked-resources-container {
-            grid-column: 1 / span 2 !important;
-            width: 100%;
+        /* Linked Block/Table Extensions Zone Layout */
+        .card-extensions-zone {
+            display: block !important;
+            width: 100% !important;
+            margin-top: 10px !important;
+            padding: 0 30px 0 170px !important; /* Stays clean on the right of the red line */
+            box-sizing: border-box !important;
 
-            #linked-resources {
-                display: contents !important;
+            .linked-resources {
+                display: block !important;
+                width: 100% !important;
+                background: transparent !important;
+                border: none !important;
 
-                .linked-header, thead {
-                    display: none !important;
+                .linked-header {
+                    display: block !important;
+                    font-family: "Courier New", Courier, monospace !important;
+                    font-size: 0.85rem !important;
+                    font-weight: bold !important;
+                    color: #222 !important;
+                    margin: 15px 0 10px 0 !important;
+                    text-align: left !important;
+                    line-height: 1.4 !important;
                 }
 
+                thead { display: none !important; }
+
                 #linked-filter, .pagination {
-                    grid-column: 2 !important;
-                    margin: 15px 0 15px 20px !important;
+                    display: block !important;
+                    margin: 10px 0 !important;
                     font-family: "Courier New", Courier, monospace !important;
                     font-size: 0.8rem !important;
                     color: #444;
-                    line-height: 1.4 !important;
-                    text-align: left;
+                    text-align: left !important;
 
                     select, input, button {
                         font-family: "Courier New", Courier, monospace !important;
@@ -1585,47 +1589,45 @@ body.item.resource.show {
                     }
                 }
 
-                /* Neutralize table and layout trees so inner row items find the card grid */
-                table, tbody, tr.linked-resource {
-                    display: contents !important;
+                table {
+                    display: table !important;
+                    width: 100% !important;
+                    border-collapse: collapse !important;
+                    border: none !important;
+                    background: transparent !important;
+                    margin: 10px 0 0 0 !important;
                 }
 
-                td.linked-label {
-                    grid-column: 1 !important;
-                    font-family: "Courier New", Courier, monospace !important;
-                    font-size: 0.75rem !important;
-                    color: #222 !important;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                    text-align: right;
-                    font-weight: 900;
-                    padding-right: 20px !important;
-                    padding-top: 6px !important;
-                    padding-bottom: 6px !important;
-                    margin: 0;
-                    line-height: 1.4 !important;
-                }
+                tbody { display: table-row-group !important; }
 
-                td.linked-value {
-                    grid-column: 2 !important;
-                    padding-left: 20px !important;
-                    padding-top: 4px !important;
-                    padding-bottom: 6px !important;
-                    font-family: "Courier New", Courier, monospace !important;
-                    font-size: 0.9rem !important;
-                    color: #444 !important;
-                    text-align: left;
-                    line-height: 1.4 !important;
-                    word-break: break-word;
+                tr.linked-resource {
+                    display: table-row !important;
+                    background: transparent !important;
 
-                    a {
-                        color: var(--dusty-mauve);
-                        text-decoration: underline;
-                        display: inline-block !important;
-                        white-space: normal !important;
-                        &:hover {
-                            color: var(--rusty-spice);
-                        }
+                    td {
+                        display: table-cell !important;
+                        background: transparent !important;
+                        border: none !important;
+                        padding: 6px 0 !important;
+                        vertical-align: top !important;
+                        font-family: "Courier New", Courier, monospace !important;
+                        line-height: 1.4 !important;
+                    }
+
+                    td.linked-label {
+                        width: 40% !important;
+                        font-size: 0.85rem !important;
+                        color: var(--dusty-mauve) !important;
+                        text-decoration: underline !important;
+                        text-align: left !important;
+                        padding-right: 15px !important;
+                    }
+
+                    td.linked-value {
+                        width: 60% !important;
+                        font-size: 0.85rem !important;
+                        color: #666 !important;
+                        text-align: left !important;
                     }
                 }
             }

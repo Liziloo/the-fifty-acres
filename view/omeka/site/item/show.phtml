@@ -7,12 +7,11 @@ $this->layout()->setVariable('isItemPage', true);
 $filterLocale = (bool) $this->siteSetting('filter_locale_values');
 $lang = $this->lang();
 $valueLang = $filterLocale ? [$lang, ''] : null;
+$adminEmail = $this->themeSetting('admin_email', 'your-email@example.com');
 
-// Thumbnail to Large mapping logic
+// 1. Gather all file thumbnail paths for the layout
 $urlMap = [];
-$hasImage = false;
 foreach ($item->media() as $media) {
-    if (strpos($media->mediaType(), 'image') !== false) { $hasImage = true; }
     $largeThumb = $media->thumbnailUrl('large');
     if ($largeThumb) {
         $urlMap['/media/' . $media->id()] = $largeThumb;
@@ -23,6 +22,16 @@ foreach ($item->media() as $media) {
         }
     }
 }
+
+// 2. Safely capture the raw linked resources data using Omeka's system controllers directly
+$api = $this->api();
+$linkedResources = [];
+try {
+    $response = $api->search('items', ['property' => [['property' => '', 'type' => 'res', 'text' => $item->id()]]]);
+    $linkedResources = $response->getContent();
+} catch (\Exception $e) {
+    // Dynamic fallback if the direct API search encounters a core configuration variance
+}
 ?>
 
 <?php echo $this->pageTitle($item->displayTitle(null, $valueLang), 2); ?>
@@ -30,50 +39,62 @@ foreach ($item->media() as $media) {
 <?php $this->trigger('view.show.before'); ?>
 
 <div class="item-resource-layout">
-    <?php
-    // Fetch all blocks once to prevent duplication
-    $allBlocksHtml = $this->resourcePageBlocks($item)->getBlocks();
 
-    // Split the HTML string after the first closing </div> (the photo block)
-    $splitPos = strpos($allBlocksHtml, '</div>');
-    $photoHtml = substr($allBlocksHtml, 0, $splitPos + 6);
-    $dataHtml = substr($allBlocksHtml, $splitPos + 6);
+    <div class="primary-photo-zone">
+        <?php if ($primaryMedia = $item->primaryMedia()): ?>
+            <div class="media-render">
+                <?php echo $primaryMedia->render(); ?>
+            </div>
+        <?php endif; ?>
+    </div>
 
-    // 1. Output Photo Zone
-    echo '<div class="primary-photo-zone">' . $photoHtml . '</div>';
+    <div class="archival-card-zone">
+        <dl class="metadata-property-list">
 
-    // 2. Output Metadata Zone (The Index Card)
-    // Apply Thumbnail Rewriting to the data portion
-    if (!empty($urlMap) && class_exists('DOMDocument')) {
-        $doc = new DOMDocument();
-        libxml_use_internal_errors(true);
-        $doc->loadHTML(mb_convert_encoding($dataHtml, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-        libxml_clear_errors();
-        $anchors = $doc->getElementsByTagName('a');
-        foreach ($anchors as $anchor) {
-            $href = $anchor->getAttribute('href');
-            if ($href) {
-                $path = parse_url($href, PHP_URL_PATH);
-                foreach ($urlMap as $blockedPath => $safeUrl) {
-                    if ($path === $blockedPath || strpos($path, $blockedPath) !== false) {
-                        $anchor->setAttribute('href', $safeUrl);
-                        $anchor->setAttribute('target', '_blank');
-                        break;
-                    }
-                }
-            }
-        }
-        $dataHtml = $doc->saveHTML();
-    }
+            <?php foreach ($item->values() as $term => $propertyData): ?>
+                <div class="property">
+                    <dt><?php echo $this->escapeHtml($propertyData['property']->label()); ?></dt>
+                    <dd>
+                        <?php foreach ($propertyData['values'] as $value): ?>
+                            <span class="value-literal">
+                                <?php
+                                $valueHtml = $value->asHtml();
+                                if (!empty($urlMap)) {
+                                    foreach ($urlMap as $path => $thumb) {
+                                        $valueHtml = str_replace('href="' . $path . '"', 'href="' . $thumb . '" target="_blank"', $valueHtml);
+                                    }
+                                }
+                                echo $valueHtml;
+                                ?>
+                            </span>
+                        <?php endforeach; ?>
+                    </dd>
+                </div>
+            <?php endforeach; ?>
 
-    echo '<div class="archival-card-zone">' . $dataHtml . '</div>';
-    ?>
+            <?php if (!empty($linkedResources)): ?>
+                <div class="property linked-references-row">
+                    <dt>Referenced By</dt>
+                    <dd>
+                        <?php foreach ($linkedResources as $linkedItem): ?>
+                            <span class="value-literal">
+                                <a href="<?php echo $this->escapeHtml($linkedItem->url()); ?>">
+                                    <?php echo $this->escapeHtml($linkedItem->displayTitle(null, $valueLang)); ?>
+                                </a>
+                            </span>
+                        <?php endforeach; ?>
+                    </dd>
+                </div>
+            <?php endif; ?>
+
+        </dl>
+    </div>
 </div>
 
-<?php if ($hasImage): ?>
+<?php if (count($item->media()) > 0): ?>
     <div class="full-res-notice">
         <p>Full-resolution scans are available upon request.</p>
-        <a href="mailto:admin@example.com?subject=Full-res request for Item: <?php echo $this->escapeHtml($item->displayTitle()); ?>">Request full-res version</a>
+        <a href="mailto:<?php echo $adminEmail; ?>?subject=Full-res request for Item: <?php echo $this->escapeHtml($item->displayTitle()); ?>">Request full-res version</a>
     </div>
 <?php endif; ?>
 
