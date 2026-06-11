@@ -1495,85 +1495,86 @@ body.item.resource.show {
             margin: 0 !important;
         }
 
-        dl {
+        /* Enforce a single grid coordinate map across the whole card area */
+        dl, #linked-resources-container {
+            display: grid !important;
+            grid-template-columns: 150px 1fr !important;
+            background: transparent !important;
             margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        dl {
             padding-right: 15px;
 
-            /* Target the rows, including the broken container wrapper */
-            div.property,
-            &.item-sets,
-            #linked-resources-container {
-                display: grid !important;
-                grid-template-columns: 150px 1fr !important;
-                gap: 0 !important;
-                min-height: unset !important;
-                line-height: 1.4 !important;
-                align-items: start !important;
-                background: transparent !important;
-                padding: 4px 0 !important;
+            div.property, &.item-sets {
+                display: contents !important;
             }
 
-            div.property, &.item-sets {
-                dt {
-                    grid-column: 1 !important;
-                    font-family: "Courier New", Courier, monospace !important;
-                    font-size: 0.75rem !important;
-                    color: #222 !important;
-                    text-transform: uppercase;
-                    letter-spacing: 1px;
-                    text-align: right;
-                    font-weight: 900;
-                    padding-right: 20px;
-                    margin: 2px 0 0 0;
+            dt {
+                grid-column: 1 !important;
+                font-family: "Courier New", Courier, monospace !important;
+                font-size: 0.75rem !important;
+                color: #222 !important;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-align: right;
+                font-weight: 900;
+                padding-right: 20px;
+                padding-top: 6px;
+                padding-bottom: 6px;
+                margin: 0;
+                line-height: 1.4 !important;
+            }
+
+            dd {
+                grid-column: 2 !important;
+                margin: 0 !important;
+                padding-left: 20px !important;
+                padding-top: 4px;
+                padding-bottom: 6px;
+                font-family: "Courier New", Courier, monospace !important;
+                font-size: 0.9rem !important;
+                color: #444 !important;
+                text-align: left;
+                line-height: 1.4 !important;
+                word-break: break-word;
+
+                a {
+                    color: var(--dusty-mauve);
+                    text-decoration: underline;
+                    display: inline-block;
+                    white-space: normal !important;
+                    &:hover { color: var(--rusty-spice); }
                 }
 
-                dd {
-                    grid-column: 2 !important;
-                    margin: 0 !important;
-                    padding-left: 20px !important;
-                    font-family: "Courier New", Courier, monospace !important;
-                    font-size: 0.9rem !important;
-                    color: #444 !important;
-                    text-align: left;
-                    word-break: break-word;
-
-                    a {
-                        color: var(--dusty-mauve);
-                        text-decoration: underline;
-                        display: inline-block;
-                        white-space: normal !important;
-                        &:hover { color: var(--rusty-spice); }
-                    }
-
-                    .value-literal, .value-resource-items {
-                        display: block;
-                        margin-bottom: 6px;
-                        &:last-child { margin-bottom: 0; }
-                    }
+                .value-literal, .value-resource-items {
+                    display: block;
+                    margin-bottom: 6px;
+                    &:last-child { margin-bottom: 0; }
                 }
             }
         }
 
-        /* Target the linked resources inside the container block */
         #linked-resources-container {
-            grid-column: 1 / span 2 !important; /* Let the table container take full width */
+            grid-column: 1 / span 2 !important;
+            width: 100%;
 
             #linked-resources {
-                width: 100%;
-                background: transparent !important;
-                border: none !important;
-                padding: 0 !important;
-                margin: 0 !important;
+                display: contents !important;
 
                 .linked-header, thead {
                     display: none !important;
                 }
 
                 #linked-filter, .pagination {
-                    margin: 10px 15px 15px 170px !important;
+                    grid-column: 2 !important;
+                    margin: 15px 0 15px 20px !important;
                     font-family: "Courier New", Courier, monospace !important;
                     font-size: 0.8rem !important;
                     color: #444;
+                    line-height: 1.4 !important;
+                    text-align: left;
 
                     select, input, button {
                         font-family: "Courier New", Courier, monospace !important;
@@ -1584,67 +1585,46 @@ body.item.resource.show {
                     }
                 }
 
-                table {
-                    width: 100%;
-                    border-collapse: collapse;
-                    border: none !important;
-                    background: transparent !important;
-                    margin: 0 !important;
+                /* Neutralize table and layout trees so inner row items find the card grid */
+                table, tbody, tr.linked-resource {
+                    display: contents !important;
                 }
 
-                tbody {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 4px;
-                }
-
-                tr.linked-resource {
-                    display: grid !important;
-                    grid-template-columns: 150px 1fr !important;
-                    min-height: unset !important;
+                td.linked-label {
+                    grid-column: 1 !important;
+                    font-family: "Courier New", Courier, monospace !important;
+                    font-size: 0.75rem !important;
+                    color: #222 !important;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    text-align: right;
+                    font-weight: 900;
+                    padding-right: 20px !important;
+                    padding-top: 6px !important;
+                    padding-bottom: 6px !important;
+                    margin: 0;
                     line-height: 1.4 !important;
-                    border: none !important;
-                    background: transparent !important;
-                    align-items: start !important;
-                    padding: 4px 0 !important;
+                }
 
-                    td {
-                        background: transparent !important;
-                        border: none !important;
-                        padding: 0 !important;
-                        margin: 0 !important;
-                    }
+                td.linked-value {
+                    grid-column: 2 !important;
+                    padding-left: 20px !important;
+                    padding-top: 4px !important;
+                    padding-bottom: 6px !important;
+                    font-family: "Courier New", Courier, monospace !important;
+                    font-size: 0.9rem !important;
+                    color: #444 !important;
+                    text-align: left;
+                    line-height: 1.4 !important;
+                    word-break: break-word;
 
-                    td.linked-label {
-                        grid-column: 1 !important;
-                        font-family: "Courier New", Courier, monospace !important;
-                        font-size: 0.75rem !important;
-                        color: #222 !important;
-                        text-transform: uppercase;
-                        letter-spacing: 1px;
-                        text-align: right;
-                        font-weight: 900;
-                        padding-right: 20px;
-                        margin-top: 2px;
-                    }
-
-                    td.linked-value {
-                        grid-column: 2 !important;
-                        padding-left: 20px !important;
-                        font-family: "Courier New", Courier, monospace !important;
-                        font-size: 0.9rem !important;
-                        color: #444 !important;
-                        text-align: left;
-                        word-break: break-word;
-
-                        a {
-                            color: var(--dusty-mauve);
-                            text-decoration: underline;
-                            display: inline-block !important;
-                            white-space: normal !important;
-                            &:hover {
-                                color: var(--rusty-spice);
-                            }
+                    a {
+                        color: var(--dusty-mauve);
+                        text-decoration: underline;
+                        display: inline-block !important;
+                        white-space: normal !important;
+                        &:hover {
+                            color: var(--rusty-spice);
                         }
                     }
                 }
