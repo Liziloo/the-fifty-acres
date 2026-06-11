@@ -43,7 +43,7 @@ try {
     <div class="primary-photo-zone">
         <?php if ($primaryMedia = $item->primaryMedia()): ?>
             <div class="media-render">
-                <?php echo $primaryMedia->render(); ?>
+                <img src="<?php echo $this->escapeHtml($primaryMedia->thumbnailUrl('large') ?: $primaryMedia->source()); ?>" alt="<?php echo $this->escapeHtml($item->displayTitle()); ?>">
             </div>
         <?php endif; ?>
     </div>

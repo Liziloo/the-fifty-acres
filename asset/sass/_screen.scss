@@ -1415,13 +1415,16 @@ body.site-page-portraits {
 }
 
 /* ==========================================================================
-    Item Pages - Root Semantic Fix
+    Item Pages - Consolidated Root Fix
    ========================================================================== */
 body.item.resource.show {
     main.content {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
+        width: 100% !important;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
     .title {
@@ -1441,23 +1444,33 @@ body.item.resource.show {
         line-height: 1.2;
         position: relative;
         z-index: 5;
+        margin-bottom: 30px;
     }
 
-    /* Clear the default plugin block headings out of the card layout */
+    .item-resource-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100%;
+    }
+
+    /* Clear default module subheadings out of the card area entirely */
     .archival-card-zone h3,
     .card-extensions-zone h3,
     .card-extensions-zone .linked-resources h3 {
         display: none !important;
     }
 
+    /* 1. Primary Photo Zone - Restores Cabinet Card Base Framing */
     .primary-photo-zone {
         width: 100%;
         text-align: center;
-        margin-bottom: 120px;
+        margin-bottom: 25px !important; /* Drops the huge vertical gap */
+        padding: 0 !important;
 
         .media-render {
             display: inline-block !important;
-            @extend %artifact-card;
+            @extend %artifact-card; /* Restores the matting borders and shadows */
 
             img {
                 display: block;
@@ -1473,6 +1486,7 @@ body.item.resource.show {
         }
     }
 
+    /* 2. Archival Index Card Zone */
     .archival-card-zone {
         width: 100%;
         max-width: 650px;
@@ -1483,10 +1497,11 @@ body.item.resource.show {
         background-size: 100% 100%, 100% 30px !important;
         background-repeat: no-repeat, repeat !important;
         border: 1px solid #d1d1d1 !important;
-        transform: rotate(-1deg) translateX(-20px);
+        transform: rotate(-0.5deg);
         box-shadow: -4px 8px 15px rgba(0, 0, 0, 0.06);
+
         padding: 30px 0 !important;
-        margin: 30px 0 120px 60px;
+        margin: 0 auto 60px auto !important;
 
         /* Standard Item Fields Layout Grid */
         dl.metadata-property-list {
@@ -1550,7 +1565,7 @@ body.item.resource.show {
             display: block !important;
             width: 100% !important;
             margin-top: 10px !important;
-            padding: 0 30px 0 170px !important; /* Stays clean on the right of the red line */
+            padding: 0 30px 0 170px !important; /* Aligns content cleanly to the right of the red margin rule */
             box-sizing: border-box !important;
 
             .linked-resources {
