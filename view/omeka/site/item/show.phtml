@@ -8,10 +8,11 @@ $filterLocale = (bool) $this->siteSetting('filter_locale_values');
 $lang = $this->lang();
 $valueLang = $filterLocale ? [$lang, ''] : null;
 
-$adminEmail = $this->themeSetting('admin_email', 'your-email@example.com');
-
+// Thumbnail to Large mapping logic
 $urlMap = [];
+$hasImage = false;
 foreach ($item->media() as $media) {
+    if (strpos($media->mediaType(), 'image') !== false) { $hasImage = true; }
     $largeThumb = $media->thumbnailUrl('large');
     if ($largeThumb) {
         $urlMap['/media/' . $media->id()] = $largeThumb;
@@ -30,31 +31,49 @@ foreach ($item->media() as $media) {
 
 <div class="item-resource-layout">
     <?php
+    // Fetch all blocks once to prevent duplication
     $allBlocksHtml = $this->resourcePageBlocks($item)->getBlocks();
 
-    // Safely split the blocks. The first block is the photo, the rest is data.
-    // We split after the first closing </div> of a top-level block.
-    $blocks = preg_split('/(<\/div>)/', $allBlocksHtml, 2, PREG_SPLIT_DELIM_CAPTURE);
+    // Split the HTML string after the first closing </div> (the photo block)
+    $splitPos = strpos($allBlocksHtml, '</div>');
+    $photoHtml = substr($allBlocksHtml, 0, $splitPos + 6);
+    $dataHtml = substr($allBlocksHtml, $splitPos + 6);
 
-    $photoHtml = isset($blocks[0]) && isset($blocks[1]) ? $blocks[0] . $blocks[1] : '';
-    $dataHtml = isset($blocks[2]) ? $blocks[2] : '';
+    // 1. Output Photo Zone
+    echo '<div class="primary-photo-zone">' . $photoHtml . '</div>';
 
-    // Update media links for lightbox behavior in the metadata
-    if (!empty($urlMap)) {
-        foreach ($urlMap as $path => $thumb) {
-            $dataHtml = str_replace('href="' . $path . '"', 'href="' . $thumb . '" target="_blank"', $dataHtml);
+    // 2. Output Metadata Zone (The Index Card)
+    // Apply Thumbnail Rewriting to the data portion
+    if (!empty($urlMap) && class_exists('DOMDocument')) {
+        $doc = new DOMDocument();
+        libxml_use_internal_errors(true);
+        $doc->loadHTML(mb_convert_encoding($dataHtml, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        libxml_clear_errors();
+        $anchors = $doc->getElementsByTagName('a');
+        foreach ($anchors as $anchor) {
+            $href = $anchor->getAttribute('href');
+            if ($href) {
+                $path = parse_url($href, PHP_URL_PATH);
+                foreach ($urlMap as $blockedPath => $safeUrl) {
+                    if ($path === $blockedPath || strpos($path, $blockedPath) !== false) {
+                        $anchor->setAttribute('href', $safeUrl);
+                        $anchor->setAttribute('target', '_blank');
+                        break;
+                    }
+                }
+            }
         }
+        $dataHtml = $doc->saveHTML();
     }
 
-    echo '<div class="primary-photo-zone">' . $photoHtml . '</div>';
     echo '<div class="archival-card-zone">' . $dataHtml . '</div>';
     ?>
 </div>
 
-<?php if (count($item->media()) > 0): ?>
+<?php if ($hasImage): ?>
     <div class="full-res-notice">
         <p>Full-resolution scans are available upon request.</p>
-        <a href="mailto:<?php echo $adminEmail; ?>?subject=Full-res request for Item: <?php echo $this->escapeHtml($item->displayTitle()); ?>">Request full-res version</a>
+        <a href="mailto:admin@example.com?subject=Full-res request for Item: <?php echo $this->escapeHtml($item->displayTitle()); ?>">Request full-res version</a>
     </div>
 <?php endif; ?>
 
