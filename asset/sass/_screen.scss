@@ -1,27 +1,4 @@
 /* ==========================================================================
-    FONTS & ACCESSIBILITY
-   ========================================================================= */
-/* EB Garamond - Regular (The missing piece) */
-@font-face {
-    font-family: 'EB Garamond';
-    font-style: normal; font-weight: 400; font-display: swap;
-    src: url(https://fonts.gstatic.com/s/ebgaramond/v32/SlG8mQSNjdsmc35JDF1K5GRwUjY1ZzcP.woff2) format('woff2');
-}
-
-/* EB Garamond - Italic */
-@font-face {
-    font-family: 'EB Garamond';
-    font-style: italic; font-weight: 400; font-display: swap;
-    src: url(https://fonts.gstatic.com/s/ebgaramond/v32/SlGWmQSNjdsmc35JDF1K5GRweDY1ZzPJ.woff2) format('woff2');
-}
-
-@font-face {
-    font-family: 'Lato';
-    font-style: italic; font-weight: 400;
-    src: url(https://fonts.gstatic.com/s/lato/v25/S6u8w4BMUTPHjxsAUi-qJCY.woff2) format('woff2');
-}
-
-/* ==========================================================================
     THE ARTIFACT MASTER (Hybrid Cabinet Card)
    ========================================================================== */
 %artifact-card {

@@ -25,6 +25,12 @@ $faded-spice: #dc8356;
 $base-font-size: 1.2rem;
 $base-line-height: 1.7rem;
 
+@font-face {
+    font-family: 'Lato';
+    font-style: italic; font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/lato/v25/S6u8w4BMUTPHjxsAUi-qJCY.woff2) format('woff2');
+}
+
 // Units
 
 $spacing-s: .25 * $base-line-height;
