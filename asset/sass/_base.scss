@@ -5,6 +5,7 @@ $dusty-mauve: #783438;
 $rusty-spice: #b25424;
 $faded-mauve: #bc6268;
 $faded-spice: #dc8356;
+$wheat: #f3ddba;
 
 // 2. Then map them to the CSS variables
 :root {
@@ -19,6 +20,7 @@ $faded-spice: #dc8356;
     --black: #{$typewriter-black};
     --faded-mauve: #{$faded-mauve};
     --faded-spice: #{$faded-spice};
+    --wheat: #{$wheat};
 }
 
 // Typography

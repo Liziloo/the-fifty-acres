@@ -1743,11 +1743,11 @@ body.recipe .blocks-inner.page-layout-normal {
 
     .recipe-people-references {
         grid-column: 1 / 13;
-        background: rgba(0,0,0,0.03);
-        padding: 1rem;
+        background-color: var(--wheat);
+        padding: 0 1rem;
         border-radius: 4px;
-        height: 100%;
-        font-size: 1.2rem;
+        font-size: 0.9rem;
+        line-height: 1rem;
 
         a::after {
             content: "*";
@@ -1756,14 +1756,42 @@ body.recipe .blocks-inner.page-layout-normal {
 
     .recipe-card-container {
         grid-column: 1 / 13;
-        background-color: #fffef0;
-        padding: 2rem;
+        background-color: #fdfdfd;
+        padding: 0 2rem 2rem 2rem;
         box-shadow: 3px 3px 10px rgba(0,0,0,0.15);
+        background-image:
+            linear-gradient(rgba(200, 0, 0, 0.15) 1px, transparent 1px),
+            linear-gradient(rgba(0, 0, 200, 0.08) 1px, transparent 1px);
+        background-size: 100% 100%, 100% 30px;
+        background-repeat: no-repeat, repeat;
+        background-position: 0 30px, 0 0;
         transform: rotate(1.5deg);
-        border: 1px solid #e6e3c1;
         position: relative;
         z-index: 1;
         margin-top: 1rem;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: stretch;
+
+        > h4 {
+            width: 100%;
+            margin-top: 31px;
+        }
+
+        > div {
+            flex: 1 1 auto;
+            width: 50%;
+            line-height: 30px;
+            padding-top: 10px;
+
+            h4 {
+                margin: 0;
+            }
+
+            p {
+                margin: 0;
+            }
+        }
     }
 
     .recipe-body {
