@@ -33,6 +33,21 @@ $base-line-height: 1.7rem;
     src: url(https://fonts.gstatic.com/s/lato/v25/S6u8w4BMUTPHjxsAUi-qJCY.woff2) format('woff2');
 }
 
+@font-face {
+    font-family: 'Blokletters';
+    src: url('../fonts/blokletterspotlood_potlood_macroman/Blokletters-Potlood-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Balpen';
+    src: url('../fonts/bloklettersbalpen_balpen_macroman/Blokletters-Balpen-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 // Units
 
 $spacing-s: .25 * $base-line-height;

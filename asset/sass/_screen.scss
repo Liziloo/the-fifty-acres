@@ -1775,6 +1775,10 @@ body.recipe .blocks-inner.page-layout-normal {
         flex-flow: row wrap;
         align-items: stretch;
 
+        > * {
+            font-family: "Architects Daughter", serif;
+        }
+
         > h4 {
             width: 100%;
             margin-top: 31px;
@@ -1785,6 +1789,8 @@ body.recipe .blocks-inner.page-layout-normal {
             width: 50%;
             line-height: 30px;
             padding-top: 10px;
+            font-size: 14px;
+            font-family: "Balpen", serif;
 
             h4 {
                 margin: 0;
