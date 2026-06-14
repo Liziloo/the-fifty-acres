@@ -1734,11 +1734,53 @@ body.recipe .blocks-inner.page-layout-normal {
         justify-self: center;
         text-align: center;
 
+        .media-render {
+            width: 180px;
+            height: 230px;
+            position: relative;
+            border-radius: 50% / 50%;
+            overflow: hidden;
+            background-color: #000;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+            border: 6px solid #3d1a1c;
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                border-radius: 50% / 50%;
+                border: 3px solid #b39b5d;
+                pointer-events: none;
+                z-index: 5;
+                box-shadow: inset 0 0 20px rgba(0,0,0,0.7);
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                filter: sepia(0.1) contrast(1.05);
+                /* Reset Standard Artifacts */
+                padding: 0 !important;
+                background: transparent !important;
+                border: none !important;
+                box-shadow: none !important;
+                outline: none !important;
+            }
+        }
+
         img {
             border-radius: 50%;
             object-fit: cover;
             border: 8px solid #fff;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .caption {
+            font-size: 1.5rem;
         }
     }
 
