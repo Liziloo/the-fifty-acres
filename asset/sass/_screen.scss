@@ -361,7 +361,7 @@ h2 {
 }
 
 .content {
-    padding: 0 60px;
+    padding: 0 30px;
     max-width: 900px;
     margin: 0 auto;
     width: 90%;
@@ -1692,5 +1692,96 @@ body.media.resource.show {
                 color: white;
             }
         }
+    }
+}
+
+/* ==========================================================================
+    Recipe Pages
+   ========================================================================== */
+body.recipe .blocks-inner.page-layout-normal {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 0.5rem;
+    align-items: start;
+    margin-top: 30px;
+
+    .recipe-header-title {
+        grid-column: 1 / 9;
+        grid-row: 1 / 2;
+        margin-bottom: 0;
+        width: 100%;
+        h2 {
+            font-size: 1.7rem;
+            margin: 0;
+            width: 100%;
+            text-align: left;
+        }
+    }
+
+    .recipe-intro-text {
+        grid-column: 1 / 9;
+        grid-row: 2 / 4;
+        font-style: italic;
+        font-size: 1rem;
+        height: 100%;
+        margin: 0;
+    }
+
+    .recipe-author-cameo {
+        grid-column: 9 / 13;
+        grid-row: 1 / 4;
+        z-index: 2;
+        justify-self: center;
+
+        img {
+            border-radius: 50%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border: 8px solid #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+    }
+
+    .recipe-people-references {
+        grid-column: 1 / 13;
+        background: rgba(0,0,0,0.03);
+        padding: 1rem;
+        border-radius: 4px;
+        height: 100%;
+        font-size: 1rem;
+    }
+
+    .recipe-card-container {
+        grid-column: 1 / 13;
+        background-color: #fffef0;
+        padding: 2rem;
+        box-shadow: 3px 3px 10px rgba(0,0,0,0.15);
+        transform: rotate(1.5deg);
+        border: 1px solid #e6e3c1;
+        position: relative;
+        z-index: 1;
+        margin-top: 1rem;
+    }
+
+    .recipe-body {
+        grid-column: 1 / 9;
+    }
+
+    .marginalia,
+    .media-clipping,
+    .recipe-body-photo,
+    .recipe-alert {
+        grid-column: 9 / 13;
+        width: 100%;
+    }
+
+    .recipe-accession-tag {
+        grid-column: 1 / 13;
+        margin-top: 3rem;
+        background: #f3e5ab;
+        padding: 0.5rem 2rem;
+        border-left: 15px solid #8b4513;
+        font-family: monospace;
+        text-transform: uppercase;
     }
 }
