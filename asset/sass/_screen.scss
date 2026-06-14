@@ -1720,7 +1720,7 @@ body.recipe .blocks-inner.page-layout-normal {
 
     .recipe-intro-text {
         grid-column: 1 / 9;
-        grid-row: 2 / 9;
+        grid-row: 2 / 7;
         font-style: italic;
         font-size: 1rem;
         height: 100%;
@@ -1742,15 +1742,17 @@ body.recipe .blocks-inner.page-layout-normal {
     }
 
     .recipe-people-references {
-        grid-column: 1 / 13;
+        grid-column: 1 / 9;
+        grid-row: 7 / 9;
         background-color: var(--wheat);
         padding: 0 1rem;
         border-radius: 4px;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         line-height: 1rem;
+        width: 95%;
 
-        a::after {
-            content: "*";
+        a {
+            margin-right: 7px;
         }
     }
 
