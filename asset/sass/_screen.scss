@@ -1706,7 +1706,7 @@ body.recipe .blocks-inner.page-layout-normal {
     margin-top: 30px;
 
     .recipe-header-title {
-        grid-column: 1 / 9;
+        grid-column: 1 / 10;
         grid-row: 1 / 2;
         margin-bottom: 0;
         width: 100%;
@@ -1720,7 +1720,7 @@ body.recipe .blocks-inner.page-layout-normal {
 
     .recipe-intro-text {
         grid-column: 1 / 9;
-        grid-row: 2 / 4;
+        grid-row: 2 / 9;
         font-style: italic;
         font-size: 1rem;
         height: 100%;
@@ -1729,7 +1729,7 @@ body.recipe .blocks-inner.page-layout-normal {
 
     .recipe-author-cameo {
         grid-column: 9 / 13;
-        grid-row: 1 / 4;
+        grid-row: 1 / 9;
         z-index: 2;
         justify-self: center;
 
@@ -1747,7 +1747,11 @@ body.recipe .blocks-inner.page-layout-normal {
         padding: 1rem;
         border-radius: 4px;
         height: 100%;
-        font-size: 1rem;
+        font-size: 1.2rem;
+
+        a::after {
+            content: "*";
+        }
     }
 
     .recipe-card-container {
