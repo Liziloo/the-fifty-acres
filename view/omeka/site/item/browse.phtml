@@ -22,19 +22,17 @@ $this->htmlElement('body')->appendAttribute('class', 'item resource browse');
 
 <ul class="resource-list grid-layout">
     <?php foreach ($items as $item): ?>
-        <?php if (!empty($item->media())): ?>
-            <li class="item resource">
-                <div class="photo-frame">
-                    <?php echo $item->linkRaw($this->thumbnail($item, 'medium')); ?>
-                </div>
-                <div class="item-metadata">
-                    <h4><?php echo $item->link($item->displayTitle()); ?></h4>
-                    <?php if ($description = $item->displayDescription()): ?>
-                    <div class="description"><?php echo $escape($description); ?></div>
-                    <?php endif; ?>
-                </div>
-            </li>
-        <?php endif; ?>
+        <li class="item resource">
+            <div class="photo-frame">
+                <?php echo $item->linkRaw($this->thumbnail($item, 'medium')); ?>
+            </div>
+            <div class="item-metadata">
+                <h4><?php echo $item->link($item->displayTitle()); ?></h4>
+                <?php if ($description = $item->displayDescription()): ?>
+                <div class="description"><?php echo $escape($description); ?></div>
+                <?php endif; ?>
+            </div>
+        </li>
     <?php endforeach; ?>
 </ul>
 
