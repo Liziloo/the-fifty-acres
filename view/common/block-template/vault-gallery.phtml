@@ -1,0 +1,99 @@
+<div class="vault-gallery-engine">
+    <?php
+    $firstItem = $this->resources[0];
+    $firstMedia = $firstItem->primaryMedia();
+    ?>
+
+    <!-- Stage -->
+    <div id="vault-stage" class="vault-stage">
+        <button id="vault-prev" class="vault-arrow">‹</button>
+        <div class="stage-viewport" id="vault-trigger-lightbox">
+            <img id="vault-main-display"
+                 src="<?php echo $firstMedia->thumbnailUrl('large'); ?>"
+                 alt="<?php echo $this->escapeHtml($firstItem->displayTitle()); ?>">
+        </div>
+        <button id="vault-next" class="vault-arrow">›</button>
+    </div>
+
+    <!-- Control Panel -->
+    <div class="vault-control-panel">
+        <div class="vault-label-plaque">
+        <h2 id="vault-title"><?php echo $firstItem->displayTitle(); ?></h2>
+        <div id="vault-description" class="vault-description-text">
+            <?php echo $firstItem->displayDescription(); ?>
+        </div>
+    </div>
+
+        <div class="vault-vitrine-tray">
+            <div class="vitrine-scroll">
+                <?php foreach ($this->resources as $index => $resource): ?>
+                    <?php $media = $resource->primaryMedia(); ?>
+                    <div class="vitrine-item <?php echo $index === 0 ? 'active' : ''; ?>"
+                         data-img="<?php echo $media->thumbnailUrl('large'); ?>"
+                         data-title="<?php echo $this->escapeHtml($resource->displayTitle()); ?>"
+                         data-desc="<?php echo $this->escapeHtml($resource->displayDescription()); ?>">
+                        <?php echo $this->thumbnail($resource, 'square'); ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="vault-lightbox">
+        <img id="lightbox-img" src="" alt="Full view">
+    </div>
+</div>
+
+<script>
+(function() {
+    const items = document.querySelectorAll('.vitrine-item');
+    const display = document.getElementById('vault-main-display');
+    const title = document.getElementById('vault-title');
+    const desc = document.getElementById('vault-description');
+    const lightbox = document.getElementById('vault-lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    let currentIndex = 0;
+
+    function updateVault(index) {
+        items.forEach(i => i.classList.remove('active'));
+        const selected = items[index];
+        selected.classList.add('active');
+        currentIndex = index;
+
+        display.style.opacity = '0';
+        setTimeout(() => {
+            display.src = selected.dataset.img;
+            title.innerText = selected.dataset.title;
+            desc.innerHTML = selected.dataset.desc;
+            display.style.opacity = '1';
+        }, 200);
+
+        selected.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+
+    items.forEach((item, idx) => {
+        item.addEventListener('click', () => updateVault(idx));
+    });
+
+    document.getElementById('vault-prev').addEventListener('click', () => {
+        let newIdx = currentIndex === 0 ? items.length - 1 : currentIndex - 1;
+        updateVault(newIdx);
+    });
+
+    document.getElementById('vault-next').addEventListener('click', () => {
+        let newIdx = currentIndex === items.length - 1 ? 0 : currentIndex + 1;
+        updateVault(newIdx);
+    });
+
+    // Lightbox Logic
+    document.getElementById('vault-trigger-lightbox').addEventListener('click', () => {
+        lightboxImg.src = display.src;
+        lightbox.classList.add('open');
+    });
+
+    lightbox.addEventListener('click', () => {
+        lightbox.classList.remove('open');
+    });
+})();
+</script>

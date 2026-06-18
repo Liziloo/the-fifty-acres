@@ -1,0 +1,12 @@
+<?php
+$this->headLink()->appendStylesheet($this->assetUrl('css/page-blocks.css', 'Omeka'));
+$this->htmlElement('body')->appendAttribute('class', 'vault-exhibit-page');
+$this->pageTitle($page->title(), 2);
+$this->layout()->setVariable('page', $page);
+?>
+
+<?php $this->trigger('view.show.before'); ?>
+<div class="vault-blocks-container">
+    <?php echo $this->content; ?>
+</div>
+<?php $this->trigger('view.show.after'); ?>

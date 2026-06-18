@@ -18,8 +18,15 @@ $this->jsTranslate();
 $this->trigger('view.layout');
 $userBar = $this->userBar();
 
-$pageTemplate = isset($page) ? $page->layoutDataValue('template_name') : '';
+// --- LOGIC: Detect Page Template & Vault Mode ---
+$pageTemplate = (isset($page) && method_exists($page, 'layoutDataValue')) ? $page->layoutDataValue('template_name') : '';
+$isVault = ($pageTemplate === 'vault-exhibit');
+
+if ($isVault) {
+    $this->htmlElement('body')->appendAttribute('class', 'vault-theme');
+}
 ?>
+
 <?php echo $this->doctype(); ?>
 <?php echo $this->htmlElement('html'); ?>
     <head>
@@ -33,9 +40,35 @@ $pageTemplate = isset($page) ? $page->layoutDataValue('template_name') : '';
 <?php echo $this->htmlElement('body'); ?>
     <a id="skipnav" href="#content"><?php echo $this->translate('Skip to main content'); ?></a>
 
-    <div class="container">
-        <?php echo $userBar; ?>
+    <!-- Vault Horizontal Header -->
+    <?php if ($isVault): ?>
+    <header class="vault-horizontal-nav">
+        <div class="vault-nav-left">
+            <a href="<?php echo $site->url(); ?>" class="vault-back-link">← Back to The Homestead</a>
+        </div>
 
+        <div class="vault-logo-anchor">
+            <div class="vault-mini-logo">
+                <?php if ($this->themeSetting('logo')): ?>
+                    <img src="<?php echo $this->themeSettingAssetUrl('logo'); ?>" alt="<?php echo $escape($siteTitle); ?>" />
+                <?php else: ?>
+                    <div class="default-emblem">H</div>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <div class="vault-nav-right">
+            <span class="exhibit-label">Archive Exhibit</span>
+        </div>
+    </header>
+    <?php endif; ?>
+
+    <div class="container">
+        <?php if (!$isVault): ?>
+            <?php echo $userBar; ?>
+        <?php endif; ?>
+
+        <?php if (!$isVault): ?>
         <div class="sidebar">
             <div class="sidebar-header">
                 <a href="<?php echo $site->url(); ?>" class="site-emblem">
@@ -48,8 +81,7 @@ $pageTemplate = isset($page) ? $page->layoutDataValue('template_name') : '';
             </div>
 
             <nav id="vertical-nav">
-                <button type="button" id="mobile-nav-toggle" aria-label="Open navigation menu">
-                </button>
+                <button type="button" id="mobile-nav-toggle" aria-label="Open navigation menu"></button>
                 <?php echo $site->publicNav()->menu()->renderMenu(); ?>
 
                 <div class="search">
@@ -57,32 +89,31 @@ $pageTemplate = isset($page) ? $page->layoutDataValue('template_name') : '';
                 </div>
             </nav>
         </div>
+        <?php endif; ?>
 
-            <div class="main">
-
+        <div class="main">
+            <?php if (!$isVault): ?>
                 <?php
                 $isHero = (isset($pageTemplate) && strpos($pageTemplate, 'page-with-hero') !== false);
                 $assetName = $isHero ? 'banner' : 'croppedbanner';
-                ?>
-
-                <div class="hero-banner">
-                    <?php if ($banner = $this->themeSettingAssetUrl($assetName)): ?>
+                if ($banner = $this->themeSettingAssetUrl($assetName)): ?>
+                    <div class="hero-banner">
                         <img src="<?php echo $banner; ?>" alt="The Fifty Acres Banner" />
-                    <?php endif; ?>
-                </div>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
 
-                <main class="content" role="main">
-                    <?php echo $this->content; ?>
-                </main>
-                <footer>
-                    <?php if ($footerContent = $this->themeSetting('footer')): ?>
-                        <?php echo $footerContent; ?>
-                    <?php else: ?>
-                        <?php echo $this->translate('Powered by Omeka S'); ?>
-                    <?php endif; ?>
-                </footer>
-            </div>
-
+            <main class="content" role="main">
+                <?php echo $this->content; ?>
+            </main>
+            <footer>
+                <?php if ($footerContent = $this->themeSetting('footer')): ?>
+                    <?php echo $footerContent; ?>
+                <?php else: ?>
+                    <?php echo $this->translate('Powered by Omeka S'); ?>
+                <?php endif; ?>
+            </footer>
         </div>
-    </body>
+    </div>
+</body>
 </html>

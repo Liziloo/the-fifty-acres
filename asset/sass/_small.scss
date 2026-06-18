@@ -458,3 +458,31 @@ body.recipe {
         }
     }
 }
+
+/* Vault Exhibit Mobile Stacking */
+body.vault-theme {
+        height: auto !important;
+        overflow-y: auto !important;
+
+        .container, .main, .content, .vault-blocks-container,
+        .blocks-inner, .block-browsePreview, .vault-gallery-engine {
+            display: block !important;
+            height: auto !important;
+        }
+
+        .vault-horizontal-nav {
+            height: auto;
+            padding: 1.5rem;
+            flex-direction: column;
+            .vault-logo-anchor { position: static; transform: none; margin: 10px 0; }
+        }
+
+        .vault-stage { height: 60vh; padding: 1rem; }
+
+        .vault-control-panel {
+            height: auto;
+            grid-template-columns: 1fr;
+            .vault-label-plaque { border-right: none; }
+            .vault-vitrine-tray { padding: 2rem; }
+        }
+    }
