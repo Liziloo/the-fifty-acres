@@ -200,16 +200,49 @@ body.vault-theme {
     }
 }
 
-/* --- Lightbox --- */
+/* --- Lightbox Total Blackout State --- */
+body.vault-theme.lightbox-active {
+    .vault-horizontal-nav,
+    .vault-control-panel,
+    .vault-stage .vault-arrow {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+}
+
 #vault-lightbox {
     display: none;
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.98);
-    z-index: 9999;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: #000;
+    z-index: 10000;
     justify-content: center;
     align-items: center;
     cursor: zoom-out;
-    img { max-width: 95%; max-height: 95%; object-fit: contain; }
+
     &.open { display: flex; }
+
+    img {
+        max-width: 95%;
+        max-height: 90%;
+        object-fit: contain;
+        box-shadow: 0 0 50px rgba(0,0,0,1);
+    }
+
+    #vault-lightbox-close {
+        position: absolute;
+        top: 30px;
+        right: 40px;
+        background: transparent;
+        border: none;
+        color: var(--wheat);
+        font-family: "EB Garamond", serif;
+        font-size: 4.5rem;
+        line-height: 1;
+        cursor: pointer;
+        z-index: 10001;
+        transition: transform 0.2s ease;
+        &:hover { transform: scale(1.1); color: #fff; }
+    }
 }

@@ -18,11 +18,11 @@
     <!-- Control Panel -->
     <div class="vault-control-panel">
         <div class="vault-label-plaque">
-        <h2 id="vault-title"><?php echo $firstItem->displayTitle(); ?></h2>
-        <div id="vault-description" class="vault-description-text">
-            <?php echo $firstItem->displayDescription(); ?>
+            <h2 id="vault-title"><?php echo $firstItem->displayTitle(); ?></h2>
+            <div id="vault-description" class="vault-description-text">
+                <?php echo $firstItem->displayDescription(); ?>
+            </div>
         </div>
-    </div>
 
         <div class="vault-vitrine-tray">
             <div class="vitrine-scroll">
@@ -32,7 +32,7 @@
                          data-img="<?php echo $media->thumbnailUrl('large'); ?>"
                          data-title="<?php echo $this->escapeHtml($resource->displayTitle()); ?>"
                          data-desc="<?php echo $this->escapeHtml($resource->displayDescription()); ?>">
-                        <?php echo $this->thumbnail($resource, 'square'); ?>
+                        <img src="<?php echo $media->thumbnailUrl('square'); ?>" alt="">
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -41,6 +41,7 @@
 
     <!-- Lightbox Modal -->
     <div id="vault-lightbox">
+        <button id="vault-lightbox-close" aria-label="Close">×</button>
         <img id="lightbox-img" src="" alt="Full view">
     </div>
 </div>
@@ -70,7 +71,6 @@
             display.style.opacity = '1';
         }, 200);
 
-        // Manual Horizontal Scroll Logic (Stops vertical jumping)
         const trayWidth = tray.offsetWidth;
         const itemOffset = selected.offsetLeft;
         const itemWidth = selected.offsetWidth;
@@ -95,13 +95,20 @@
         updateVault(newIdx);
     });
 
+    const closeLightbox = () => {
+        lightbox.classList.remove('open');
+        document.body.classList.remove('lightbox-active');
+    };
+
     document.getElementById('vault-trigger-lightbox').addEventListener('click', () => {
         lightboxImg.src = display.src;
         lightbox.classList.add('open');
+        document.body.classList.add('lightbox-active');
     });
 
-    lightbox.addEventListener('click', () => {
-        lightbox.classList.remove('open');
+    document.getElementById('vault-lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+        if (e.target !== lightboxImg) closeLightbox();
     });
 })();
 </script>
