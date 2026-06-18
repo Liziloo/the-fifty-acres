@@ -8,7 +8,6 @@ body.vault-theme {
     flex-direction: column !important;
     margin: 0 !important;
 
-    // Force height through Omeka's nested wrappers
     .container, .main, .content, .vault-blocks-container,
     .blocks-inner, .block-browsePreview, .vault-gallery-engine {
         display: flex !important;
@@ -26,7 +25,7 @@ body.vault-theme {
     .sidebar, footer { display: none !important; }
 }
 
-/* --- Header & Champagne Gold Seal --- */
+/* --- Header & Antique Brass Seal --- */
 .vault-horizontal-nav {
     flex: 0 0 80px;
     height: 80px;
@@ -35,26 +34,22 @@ body.vault-theme {
     justify-content: space-between;
     padding: 0 4rem;
     background: #000;
-    border-bottom: 1px solid rgba(243, 221, 186, 0.15); // Wheat rule
+    border-bottom: 1px solid rgba(243, 221, 186, 0.15);
     position: relative;
     z-index: 1000;
 
     .vault-logo-anchor {
         position: absolute;
         left: 50%;
-        top: 80px; // Bisects the bottom rule
+        top: 80px;
         transform: translate(-50%, -50%);
         z-index: 1100;
     }
 
     .vault-mini-logo {
-        width: 100px;
-        height: 100px;
-        background: #000;
-        border-radius: 50%;
-        padding: 10px;
-        border: 1px solid rgba(243, 221, 186, 0.3);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        width: 110px;
+        height: 110px;
+        background: transparent; // Remove black blob
         display: flex;
         align-items: center;
         justify-content: center;
@@ -63,9 +58,9 @@ body.vault-theme {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            border-radius: 50%;
-            // Sophisticated Champagne Gold Filter
-            filter: brightness(0) saturate(100%) invert(90%) sepia(20%) saturate(600%) hue-rotate(340deg) brightness(100%) contrast(100%);
+            // Antique Brass Filter: Preserves wreath detail and "H"
+            filter: sepia(0.8) brightness(0.9) contrast(1.2) saturate(1.5) hue-rotate(-10deg);
+            drop-shadow: 0 5px 15px rgba(0,0,0,0.8);
         }
     }
 
@@ -89,15 +84,15 @@ body.vault-theme {
     }
 }
 
-/* --- The Cinematic Stage --- */
+/* --- The Cinematic Stage & Navigation --- */
 .vault-stage {
-    flex: 1; // Takes all remaining vertical space
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     background: radial-gradient(circle at center, rgba(243, 221, 186, 0.04) 0%, #050609 80%);
-    padding: 40px 10%;
+    padding: 20px 12%; // Extra padding for arrows
     min-height: 0;
 
     .stage-viewport {
@@ -107,6 +102,7 @@ body.vault-theme {
         justify-content: center;
         align-items: center;
         cursor: zoom-in;
+        z-index: 5;
 
         img {
             max-height: 100%;
@@ -124,15 +120,18 @@ body.vault-theme {
         transform: translateY(-50%);
         background: transparent;
         border: none;
-        color: rgba(255,255,255,0.05);
-        font-size: 6rem;
+        color: var(--wheat);
+        opacity: 0.3; // Ghosted by default
+        font-size: 7rem; // Larger for visibility
+        line-height: 1;
         cursor: pointer;
         z-index: 100;
-        transition: color 0.2s, opacity 0.2s;
+        transition: all 0.3s ease;
+        padding: 20px;
 
-        &#vault-prev { left: 4rem; }
-        &#vault-next { right: 4rem; }
-        &:hover { color: var(--wheat); opacity: 1; }
+        &#vault-prev { left: 2rem; }
+        &#vault-next { right: 2rem; }
+        &:hover { opacity: 1; transform: translateY(-50%) scale(1.1); text-shadow: 0 0 20px rgba(243, 221, 186, 0.4); }
     }
 }
 
@@ -144,6 +143,7 @@ body.vault-theme {
     grid-template-columns: 450px 1fr;
     background: #000;
     border-top: 1px solid rgba(255,255,255,0.1);
+    z-index: 200;
 
     .vault-label-plaque {
         padding: 2.5rem;
@@ -156,7 +156,6 @@ body.vault-theme {
             font-size: 1.4rem !important;
             color: var(--wheat) !important;
             border: none !important;
-            line-height: 1.2;
         }
 
         .vault-description-text {
@@ -179,7 +178,7 @@ body.vault-theme {
         }
 
         .vitrine-item {
-            flex: 0 0 120px; // Fixed square container
+            flex: 0 0 120px;
             height: 120px;
             cursor: pointer;
             opacity: 0.2;
@@ -193,14 +192,14 @@ body.vault-theme {
             img {
                 max-width: 100%;
                 max-height: 100%;
-                object-fit: contain; // No cropping
+                object-fit: contain;
             }
 
             &.active {
                 opacity: 1;
                 transform: translateY(-8px);
-                background: rgba(255,255,255,0.05);
                 border: 1px solid var(--dusty-mauve);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
             }
         }
     }
