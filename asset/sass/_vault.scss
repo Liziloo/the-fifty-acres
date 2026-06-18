@@ -25,7 +25,7 @@ body.vault-theme {
     .sidebar, footer { display: none !important; }
 }
 
-/* --- Header & Antique Brass Seal --- */
+/* --- Header & Logo Bisection --- */
 .vault-horizontal-nav {
     flex: 0 0 80px;
     height: 80px;
@@ -47,9 +47,9 @@ body.vault-theme {
     }
 
     .vault-mini-logo {
-        width: 110px;
-        height: 110px;
-        background: transparent; // Remove black blob
+        width: 120px;
+        height: 120px;
+        background: transparent;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -58,9 +58,7 @@ body.vault-theme {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            // Antique Brass Filter: Preserves wreath detail and "H"
-            filter: sepia(0.8) brightness(0.9) contrast(1.2) saturate(1.5) hue-rotate(-10deg);
-            drop-shadow: 0 5px 15px rgba(0,0,0,0.8);
+            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.8));
         }
     }
 
@@ -84,7 +82,7 @@ body.vault-theme {
     }
 }
 
-/* --- The Cinematic Stage & Navigation --- */
+/* --- The Cinematic Stage & Side Navigation --- */
 .vault-stage {
     flex: 1;
     display: flex;
@@ -92,7 +90,7 @@ body.vault-theme {
     justify-content: center;
     position: relative;
     background: radial-gradient(circle at center, rgba(243, 221, 186, 0.04) 0%, #050609 80%);
-    padding: 20px 12%; // Extra padding for arrows
+    padding: 80px 15% 20px 15%;
     min-height: 0;
 
     .stage-viewport {
@@ -102,7 +100,6 @@ body.vault-theme {
         justify-content: center;
         align-items: center;
         cursor: zoom-in;
-        z-index: 5;
 
         img {
             max-height: 100%;
@@ -121,17 +118,16 @@ body.vault-theme {
         background: transparent;
         border: none;
         color: var(--wheat);
-        opacity: 0.3; // Ghosted by default
-        font-size: 7rem; // Larger for visibility
-        line-height: 1;
+        opacity: 0.25;
+        font-size: 7rem;
         cursor: pointer;
         z-index: 100;
         transition: all 0.3s ease;
         padding: 20px;
 
-        &#vault-prev { left: 2rem; }
-        &#vault-next { right: 2rem; }
-        &:hover { opacity: 1; transform: translateY(-50%) scale(1.1); text-shadow: 0 0 20px rgba(243, 221, 186, 0.4); }
+        &#vault-prev { left: 3rem; }
+        &#vault-next { right: 3rem; }
+        &:hover { opacity: 1; transform: translateY(-50%) scale(1.1); }
     }
 }
 
@@ -199,7 +195,6 @@ body.vault-theme {
                 opacity: 1;
                 transform: translateY(-8px);
                 border: 1px solid var(--dusty-mauve);
-                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
             }
         }
     }

@@ -49,8 +49,13 @@ if ($isVault) {
 
         <div class="vault-logo-anchor">
             <div class="vault-mini-logo">
-                <?php if ($this->themeSetting('logo')): ?>
-                    <img src="<?php echo $this->themeSettingAssetUrl('logo'); ?>" alt="<?php echo $escape($siteTitle); ?>" />
+                <?php
+                $vaultLogo = $this->themeSettingAssetUrl('vault_logo');
+                $standardLogo = $this->themeSettingAssetUrl('logo');
+                $displayLogo = $vaultLogo ?: $standardLogo;
+                ?>
+                <?php if ($displayLogo): ?>
+                    <img src="<?php echo $displayLogo; ?>" alt="<?php echo $escape($siteTitle); ?>" />
                 <?php else: ?>
                     <div class="default-emblem">H</div>
                 <?php endif; ?>
@@ -90,6 +95,18 @@ if ($isVault) {
             </nav>
         </div>
         <?php endif; ?>
+
+        <div class="main">
+            <?php if (!$isVault): ?>
+                <?php
+                $isHero = (isset($pageTemplate) && strpos($pageTemplate, 'page-with-hero') !== false);
+                $assetName = $isHero ? 'banner' : 'croppedbanner';
+                if ($banner = $this->themeSettingAssetUrl($assetName)): ?>
+                    <div class="hero-banner">
+                        <img src="<?php echo $banner; ?>" alt="The Fifty Acres Banner" />
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
 
         <div class="main">
             <?php if (!$isVault): ?>
