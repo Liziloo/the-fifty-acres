@@ -53,6 +53,7 @@
     const desc = document.getElementById('vault-description');
     const lightbox = document.getElementById('vault-lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
+    const tray = document.querySelector('.vault-vitrine-tray');
     let currentIndex = 0;
 
     function updateVault(index) {
@@ -69,7 +70,15 @@
             display.style.opacity = '1';
         }, 200);
 
-        selected.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        // Manual Horizontal Scroll Logic (Stops vertical jumping)
+        const trayWidth = tray.offsetWidth;
+        const itemOffset = selected.offsetLeft;
+        const itemWidth = selected.offsetWidth;
+
+        tray.scrollTo({
+            left: itemOffset - (trayWidth / 2) + (itemWidth / 2),
+            behavior: 'smooth'
+        });
     }
 
     items.forEach((item, idx) => {
@@ -86,7 +95,6 @@
         updateVault(newIdx);
     });
 
-    // Lightbox Logic
     document.getElementById('vault-trigger-lightbox').addEventListener('click', () => {
         lightboxImg.src = display.src;
         lightbox.classList.add('open');
