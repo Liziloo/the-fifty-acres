@@ -460,30 +460,121 @@ body.recipe {
 }
 
 /* Vault Exhibit Mobile Stacking */
-body.vault-theme {
+html body.vault-theme {
+    height: auto !important;
+    min-height: 100vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    display: block !important;
+
+    .container,
+    .main,
+    .content,
+    .vault-blocks-container,
+    .blocks-inner,
+    .block-browsePreview,
+    .vault-gallery-engine {
+        display: block !important;
         height: auto !important;
-        overflow-y: auto !important;
+        min-height: 0 !important;
+        overflow: visible !important;
+        flex: none !important;
+    }
 
-        .container, .main, .content, .vault-blocks-container,
-        .blocks-inner, .block-browsePreview, .vault-gallery-engine {
-            display: block !important;
-            height: auto !important;
+    /* Tightened Mobile Header */
+    .vault-horizontal-nav {
+        height: auto !important;
+        flex-direction: column !important;
+        padding: 1.5rem 1rem !important; // Reduced from 3rem
+        gap: 1rem !important; // Reduced from 2rem
+        background: #000 !important;
+        border-bottom: 1px solid rgba(243, 221, 186, 0.1) !important;
+
+        .vault-nav-left,
+        .vault-nav-right {
+            width: 100% !important;
+            text-align: center !important;
         }
 
-        .vault-horizontal-nav {
-            height: auto;
-            padding: 1.5rem;
-            flex-direction: column;
-            .vault-logo-anchor { position: static; transform: none; margin: 10px 0; }
-            .vault-mini-logo { width: 80px; height: 80px; }
+        .vault-logo-anchor {
+            position: static !important;
+            transform: none !important;
+            margin: 0 auto !important;
+            order: -1;
         }
 
-        .vault-stage { height: 60vh; padding: 1rem; }
-
-        .vault-control-panel {
-            height: auto;
-            grid-template-columns: 1fr;
-            .vault-label-plaque { border-right: none; }
-            .vault-vitrine-tray { padding: 2rem; }
+        .vault-mini-logo {
+            width: 80px !important; // Reduced from 100px
+            height: 80px !important;
         }
     }
+
+    /* Compact Stage - Pulls Image Up */
+    .vault-stage {
+        height: 55vh !important; // Reduced from 65vh
+        min-height: 350px !important;
+        padding: 1rem !important; // Resets the 80px desktop clearance
+        display: flex !important;
+        align-items: center !important;
+        background: #050609 !important;
+
+        .stage-viewport {
+            height: 100% !important;
+            width: 100% !important;
+        }
+
+        .vault-arrow {
+            font-size: 3rem !important; // Slightly smaller for better fit
+            opacity: 0.7 !important;
+            z-index: 110 !important;
+            &#vault-prev { left: 0.5rem !important; }
+            &#vault-next { right: 0.5rem !important; }
+        }
+    }
+
+    .vault-control-panel {
+        display: block !important;
+        height: auto !important;
+        background: #000 !important;
+        border-top: 1px solid rgba(255,255,255,0.1) !important;
+
+        .vault-label-plaque {
+            width: 100% !important;
+            border-right: none !important;
+            border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+            padding: 2rem !important;
+            overflow: visible !important;
+
+            h2 {
+                font-size: 1.4rem !important;
+                margin-bottom: 1rem !important;
+                text-align: center !important;
+                color: var(--wheat) !important;
+            }
+        }
+
+        .vault-vitrine-tray {
+            width: 100% !important;
+            padding: 2rem 1rem !important;
+            display: block !important;
+
+            .vitrine-scroll {
+                display: flex !important;
+                gap: 1rem !important;
+                overflow-x: auto !important;
+                padding-bottom: 1rem !important;
+            }
+
+            .vitrine-item {
+                flex: 0 0 100px !important;
+                height: 100px !important;
+
+                img {
+                    width: 100px !important;
+                    height: 100px !important;
+                    object-fit: contain !important;
+                }
+            }
+        }
+    }
+}
