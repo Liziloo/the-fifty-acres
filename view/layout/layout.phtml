@@ -108,18 +108,6 @@ if ($isVault) {
                 <?php endif; ?>
             <?php endif; ?>
 
-        <div class="main">
-            <?php if (!$isVault): ?>
-                <?php
-                $isHero = (isset($pageTemplate) && strpos($pageTemplate, 'page-with-hero') !== false);
-                $assetName = $isHero ? 'banner' : 'croppedbanner';
-                if ($banner = $this->themeSettingAssetUrl($assetName)): ?>
-                    <div class="hero-banner">
-                        <img src="<?php echo $banner; ?>" alt="The Fifty Acres Banner" />
-                    </div>
-                <?php endif; ?>
-            <?php endif; ?>
-
             <main class="content" role="main">
                 <?php echo $this->content; ?>
             </main>
