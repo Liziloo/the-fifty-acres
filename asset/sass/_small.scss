@@ -485,8 +485,8 @@ html body.vault-theme {
     .vault-horizontal-nav {
         height: auto !important;
         flex-direction: column !important;
-        padding: 1.5rem 1rem !important; // Reduced from 3rem
-        gap: 1rem !important; // Reduced from 2rem
+        padding: 1rem !important;
+        gap: 0.5rem !important;
         background: #000 !important;
         border-bottom: 1px solid rgba(243, 221, 186, 0.1) !important;
 
@@ -504,29 +504,57 @@ html body.vault-theme {
         }
 
         .vault-mini-logo {
-            width: 80px !important; // Reduced from 100px
+            width: 80px !important;
             height: 80px !important;
         }
     }
 
-    /* Compact Stage - Pulls Image Up */
+    /* Stage - Stack vertically on mobile */
     .vault-stage {
-        height: 55vh !important; // Reduced from 65vh
-        min-height: 350px !important;
-        padding: 1rem !important; // Resets the 80px desktop clearance
-        display: flex !important;
+        flex-direction: column !important;
+        padding: 1rem !important;
+        height: auto !important;
+        min-height: 0 !important;
         align-items: center !important;
-        background: #050609 !important;
+
+        .stage-wrapper {
+            display: flex !important;
+            flex-direction: column !important;
+            width: 100% !important;
+            gap: 1rem !important;
+        }
 
         .stage-viewport {
-            height: 100% !important;
             width: 100% !important;
+            max-width: 100% !important;
+            height: auto !important;
+            margin: 0 auto 1rem !important;
+
+            img {
+                max-height: 50vh !important;
+                max-width: 100% !important;
+                width: auto !important;
+                height: auto !important;
+            }
+        }
+
+        .vault-label-plaque {
+            position: relative !important;
+            right: auto !important;
+            top: auto !important;
+            bottom: auto !important;
+            width: 100% !important;
+            height: auto !important;
+            padding: 1rem !important;
+            margin-top: 0 !important;
+
+            h2 {
+                text-align: center !important;
+                font-size: 1.3rem !important;
+            }
         }
 
         .vault-arrow {
-            font-size: 3rem !important; // Slightly smaller for better fit
-            opacity: 0.7 !important;
-            z-index: 110 !important;
             &#vault-prev { left: 0.5rem !important; }
             &#vault-next { right: 0.5rem !important; }
         }
@@ -538,42 +566,32 @@ html body.vault-theme {
         background: #000 !important;
         border-top: 1px solid rgba(255,255,255,0.1) !important;
 
-        .vault-label-plaque {
-            width: 100% !important;
-            border-right: none !important;
-            border-bottom: 1px solid rgba(255,255,255,0.1) !important;
-            padding: 2rem !important;
-            overflow: visible !important;
-
-            h2 {
-                font-size: 1.4rem !important;
-                margin-bottom: 1rem !important;
-                text-align: center !important;
-                color: var(--wheat) !important;
-            }
-        }
-
         .vault-vitrine-tray {
             width: 100% !important;
-            padding: 2rem 1rem !important;
+            padding: 1rem !important;
             display: block !important;
 
             .vitrine-scroll {
                 display: flex !important;
-                gap: 1rem !important;
+                gap: 0.75rem !important;
                 overflow-x: auto !important;
-                padding-bottom: 1rem !important;
+                padding: 0 2rem !important;
             }
 
             .vitrine-item {
-                flex: 0 0 100px !important;
-                height: 100px !important;
+                flex: 0 0 80px !important;
+                height: 80px !important;
 
                 img {
-                    width: 100px !important;
-                    height: 100px !important;
+                    width: 80px !important;
+                    height: 80px !important;
                     object-fit: contain !important;
                 }
+            }
+
+            .vitrine-arrow {
+                &#vitrine-prev { left: 0 !important; }
+                &#vitrine-next { right: 0 !important; }
             }
         }
     }
