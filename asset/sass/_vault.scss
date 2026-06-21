@@ -134,7 +134,10 @@ body.vault-theme {
             object-fit: contain;
             box-shadow: 0 40px 100px rgba(0,0,0,0.9);
             border: 1px solid rgba(255,255,255,0.05);
-            transition: opacity 0.3s ease;
+            transition: opacity 0.25s ease-in-out;
+            will-change: opacity;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
         }
     }
 

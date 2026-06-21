@@ -66,13 +66,24 @@
         selected.classList.add('active');
         currentIndex = index;
 
+        display.style.transition = 'none';
         display.style.opacity = '0';
+
         setTimeout(() => {
             display.src = selected.dataset.img;
             title.innerText = selected.dataset.title;
             desc.innerHTML = selected.dataset.desc;
-            display.style.opacity = '1';
-        }, 200);
+
+            display.onload = () => {
+                display.style.transition = 'opacity 0.25s ease-in-out';
+                display.style.opacity = '1';
+            };
+
+            if (display.complete) {
+                display.style.transition = 'opacity 0.25s ease-in-out';
+                display.style.opacity = '1';
+            }
+        }, 50);
 
         const trayWidth = tray.offsetWidth;
         const itemOffset = selected.offsetLeft;
