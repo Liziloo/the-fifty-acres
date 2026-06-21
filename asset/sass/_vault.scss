@@ -91,12 +91,12 @@ body.vault-theme {
     justify-content: center;
     position: relative;
     background: radial-gradient(circle at center, rgba(243, 221, 186, 0.04) 0%, #050609 80%);
-    padding: 100px 15% 20px 15%; // Increased top padding for 150px logo
+    padding: 100px 15% 20px 15%;
     min-height: 0;
 
     .stage-viewport {
+        width: 70%; // Image takes 70% width
         height: 100%;
-        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -109,6 +109,31 @@ body.vault-theme {
             box-shadow: 0 40px 100px rgba(0,0,0,0.9);
             border: 1px solid rgba(255,255,255,0.05);
             transition: opacity 0.3s ease;
+        }
+    }
+
+    .vault-label-plaque {
+        width: 30%; // Text takes 30% width
+        height: 100%;
+        padding: 2.5rem;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        h2 {
+            text-align: left !important;
+            margin: 0 0 0.5rem 0 !important;
+            font-size: 1.5rem !important;
+            color: var(--wheat) !important;
+            border: none !important;
+        }
+
+        .vault-description-text {
+            color: rgba(255,255,255,0.85);
+            font-size: 1rem;
+            line-height: 1.6;
+            font-style: italic;
         }
     }
 
@@ -136,67 +161,88 @@ body.vault-theme {
 .vault-control-panel {
     flex: 0 0 250px;
     height: 250px;
-    display: grid;
-    grid-template-columns: 450px 1fr;
+    display: flex;
+    flex-direction: column;
     background: #000;
     border-top: 1px solid rgba(255,255,255,0.1);
     z-index: 200;
 
-    .vault-label-plaque {
-        padding: 2.5rem;
-        border-right: 1px solid rgba(255,255,255,0.1);
-        overflow-y: auto;
+    .vault-vitrine-tray {
+        padding: 20px 0;
+        display: flex;
+        align-items: center;
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+    }
 
-        h2 {
-            text-align: left !important;
-            margin: 0 0 0.5rem 0 !important;
-            font-size: 1.5rem !important;
-            color: var(--wheat) !important;
-            border: none !important;
+    .vitrine-scroll {
+        display: flex;
+        gap: 1.5rem;
+        padding: 0 60px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        flex: 1;
+
+        // Hide scrollbars
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .vitrine-item {
+        flex: 0 0 120px;
+        height: 120px;
+        cursor: pointer;
+        opacity: 0.5;
+        background: rgba(255,255,255,0.02);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255,255,255,0.05);
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
 
-        .vault-description-text {
-            color: rgba(255,255,255,0.85); // Brightened from 0.4
-            font-size: 1rem;
-            line-height: 1.6;
-            font-style: italic;
+        &.active {
+            opacity: 1;
+            transform: translateY(-8px);
+            border: 1px solid var(--dusty-mauve);
         }
     }
 
-    .vault-vitrine-tray {
-        padding: 0 3rem;
-        overflow-x: auto;
-        display: flex;
-        align-items: center;
+    .vitrine-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        border: none;
+        color: var(--wheat);
+        opacity: 0.4;
+        font-size: 2.5rem;
+        cursor: pointer;
+        z-index: 10;
+        padding: 10px;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
 
-        .vitrine-scroll {
-            display: flex;
-            gap: 1.5rem;
+        &:hover {
+            opacity: 1;
+            color: var(--dusty-mauve);
         }
 
-        .vitrine-item {
-            flex: 0 0 120px;
-            height: 120px;
-            cursor: pointer;
-            opacity: 0.5;
-            background: rgba(255,255,255,0.02);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255,255,255,0.05);
+        &#vitrine-prev {
+            left: 0;
+        }
 
-            img {
-                max-width: 100%;
-                max-height: 100%;
-                object-fit: contain;
-            }
-
-            &.active {
-                opacity: 1;
-                transform: translateY(-8px);
-                border: 1px solid var(--dusty-mauve);
-            }
+        &#vitrine-next {
+            right: 0;
         }
     }
 }

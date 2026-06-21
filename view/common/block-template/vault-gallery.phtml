@@ -6,36 +6,37 @@
 
     <!-- Stage -->
     <div id="vault-stage" class="vault-stage">
-        <button id="vault-prev" class="vault-arrow">‹</button>
+        <button id="vault-prev" class="vault-arrow" aria-label="Previous image">‹</button>
         <div class="stage-viewport" id="vault-trigger-lightbox">
             <img id="vault-main-display"
-                 src="<?php echo $firstMedia->thumbnailUrl('large'); ?>"
-                 alt="<?php echo $this->escapeHtml($firstItem->displayTitle()); ?>">
+                src="<?php echo $this->escapeHtml($firstMedia->thumbnailUrl('large')); ?>"
+                alt="<?php echo $this->escapeHtml($firstItem->displayTitle()); ?>">
         </div>
-        <button id="vault-next" class="vault-arrow">›</button>
+        <div class="vault-label-plaque">
+            <h2 id="vault-title"><?php echo $this->escapeHtml($firstItem->displayTitle()); ?></h2>
+            <div id="vault-description" class="vault-description-text">
+                <?php echo $this->escapeHtml($firstItem->displayDescription()); ?>
+            </div>
+        </div>
+        <button id="vault-next" class="vault-arrow" aria-label="Next image">›</button>
     </div>
 
     <!-- Control Panel -->
     <div class="vault-control-panel">
-        <div class="vault-label-plaque">
-            <h2 id="vault-title"><?php echo $firstItem->displayTitle(); ?></h2>
-            <div id="vault-description" class="vault-description-text">
-                <?php echo $firstItem->displayDescription(); ?>
-            </div>
-        </div>
-
         <div class="vault-vitrine-tray">
+            <button id="vitrine-prev" class="vitrine-arrow" aria-label="Previous thumbnails">‹</button>
             <div class="vitrine-scroll">
                 <?php foreach ($this->resources as $index => $resource): ?>
-                    <?php $media = $resource->primaryMedia(); ?>
-                    <div class="vitrine-item <?php echo $index === 0 ? 'active' : ''; ?>"
-                         data-img="<?php echo $media->thumbnailUrl('large'); ?>"
-                         data-title="<?php echo $this->escapeHtml($resource->displayTitle()); ?>"
-                         data-desc="<?php echo $this->escapeHtml($resource->displayDescription()); ?>">
-                        <img src="<?php echo $media->thumbnailUrl('square'); ?>" alt="">
-                    </div>
+                <?php $media = $resource->primaryMedia(); ?>
+                <div class="vitrine-item <?php echo $index === 0 ? 'active' : ''; ?>"
+                    data-img="<?php echo $this->escapeHtml($media->thumbnailUrl('large')); ?>"
+                    data-title="<?php echo $this->escapeHtml($resource->displayTitle()); ?>"
+                    data-desc="<?php echo $this->escapeHtml($resource->displayDescription()); ?>">
+                    <img src="<?php echo $this->escapeHtml($media->thumbnailUrl('square')); ?>" alt="">
+                </div>
                 <?php endforeach; ?>
             </div>
+            <button id="vitrine-next" class="vitrine-arrow" aria-label="Next thumbnails">›</button>
         </div>
     </div>
 
@@ -54,7 +55,7 @@
     const desc = document.getElementById('vault-description');
     const lightbox = document.getElementById('vault-lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
-    const tray = document.querySelector('.vault-vitrine-tray');
+    const tray = document.querySelector('.vitrine-scroll');
     let currentIndex = 0;
 
     function updateVault(index) {
@@ -110,5 +111,19 @@
     lightbox.addEventListener('click', (e) => {
         if (e.target !== lightboxImg) closeLightbox();
     });
+
+    // Vitrine scroll arrows
+    const vitrinePrev = document.getElementById('vitrine-prev');
+    const vitrineNext = document.getElementById('vitrine-next');
+    const vitrineScroll = document.querySelector('.vitrine-scroll');
+
+    if (vitrinePrev && vitrineNext && vitrineScroll) {
+        vitrinePrev.addEventListener('click', () => {
+            vitrineScroll.scrollBy({ left: -150, behavior: 'smooth' });
+        });
+        vitrineNext.addEventListener('click', () => {
+            vitrineScroll.scrollBy({ left: 150, behavior: 'smooth' });
+        });
+    }
 })();
 </script>
