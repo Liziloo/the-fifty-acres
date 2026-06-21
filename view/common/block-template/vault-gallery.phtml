@@ -7,15 +7,17 @@
     <!-- Stage -->
     <div id="vault-stage" class="vault-stage">
         <button id="vault-prev" class="vault-arrow" aria-label="Previous image">‹</button>
-        <div class="stage-viewport" id="vault-trigger-lightbox">
-            <img id="vault-main-display"
-                src="<?php echo $this->escapeHtml($firstMedia->thumbnailUrl('large')); ?>"
-                alt="<?php echo $this->escapeHtml($firstItem->displayTitle()); ?>">
-        </div>
-        <div class="vault-label-plaque">
-            <h2 id="vault-title"><?php echo $this->escapeHtml($firstItem->displayTitle()); ?></h2>
-            <div id="vault-description" class="vault-description-text">
-                <?php echo $this->escapeHtml($firstItem->displayDescription()); ?>
+        <div class="stage-wrapper">
+            <div class="stage-viewport" id="vault-trigger-lightbox">
+                <img id="vault-main-display"
+                    src="<?php echo $this->escapeHtml($firstMedia->thumbnailUrl('large')); ?>"
+                    alt="<?php echo $this->escapeHtml($firstItem->displayTitle()); ?>">
+            </div>
+            <div class="vault-label-plaque">
+                <h2 id="vault-title"><?php echo $this->escapeHtml($firstItem->displayTitle()); ?></h2>
+                <div id="vault-description" class="vault-description-text">
+                    <?php echo $this->escapeHtml($firstItem->displayDescription()); ?>
+                </div>
             </div>
         </div>
         <button id="vault-next" class="vault-arrow" aria-label="Next image">›</button>
