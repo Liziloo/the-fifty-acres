@@ -59,7 +59,6 @@ h1, h2 {
     text-align: center;
     margin-bottom: 2.5rem;
     font-weight: normal;
-    line-height: 1.1;
 }
 
 h1 {
@@ -597,6 +596,43 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
             transform: translateY(-3px);
         }
     }
+}
+
+/* Site Notes*/
+.note {
+    /* Layout & Spacing */
+    margin: 25px 0 !important;
+    padding: 5px 0 5px 25px;
+    max-width: 85%;
+
+    /* The Thread: A single, elegant vertical accent */
+    border-left: 1px solid var(--palm-leaf);
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+
+    /* Background: Removed to prevent 'clunkiness' */
+    background-color: transparent;
+
+    /* Typography */
+    font-size: 0.9rem; /* Small, but remains legible */
+    line-height: 1.6;
+    font-style: italic;
+    color: #4a4a4a; /* A soft charcoal to distinguish from main body */
+}
+
+/* The Micro-Label: Provides context without taking up space */
+.note::before {
+    content: "Curatorial Note";
+    display: block;
+    font-family: sans-serif; /* Clean contrast to Serif body */
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em; /* Wide spacing creates the 'tiny/elegant' look */
+    text-transform: uppercase;
+    color: var(--palm-leaf);
+    margin-bottom: 10px;
+    font-style: normal;
 }
 
 /* ==========================================================================
