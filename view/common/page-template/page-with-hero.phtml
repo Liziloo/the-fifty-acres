@@ -1,6 +1,5 @@
 <?php
 $this->headLink()->appendStylesheet($this->assetUrl('css/page-blocks.css', 'Omeka'));
-$this->htmlElement('body')->appendAttribute('class', 'portrait-family');
 $this->pageTitle($page->title(), 2);
 $this->htmlElement('body')->appendAttribute('class', 'page-with-hero');
 $this->layout()->setVariable('page', $page);
@@ -29,11 +28,9 @@ $showPagePagination = $this->siteSetting('show_page_pagination', true);
 <?php endif; ?>
 
 <?php $this->trigger('view.show.before'); ?>
-<div class="portrait-grid-wrapper">
     <div class="blocks">
         <?php echo $this->content; ?>
     </div>
-</div>
 <?php $this->trigger('view.show.after'); ?>
 
 <?php if ($showPagePagination): ?>

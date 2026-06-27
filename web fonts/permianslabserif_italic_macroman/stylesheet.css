@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'permianslabseriftypefaceIt';
+    src: url('PermianSlabSerifTypeface-Italic-webfont.eot');
+    src: url('PermianSlabSerifTypeface-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('PermianSlabSerifTypeface-Italic-webfont.woff2') format('woff2'),
+         url('PermianSlabSerifTypeface-Italic-webfont.woff') format('woff'),
+         url('PermianSlabSerifTypeface-Italic-webfont.ttf') format('truetype'),
+         url('PermianSlabSerifTypeface-Italic-webfont.svg#permianslabseriftypefaceIt') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+

@@ -40,7 +40,7 @@ html, body {
 
 body {
     background-color: var(--sage-green);
-    font-family: "EB Garamond", serif;
+    font-family: "gandhi_serifregular", serif;
     font-size: $base-font-size;
     line-height: $base-line-height;
     color: var(--typewriter-black);
@@ -54,7 +54,7 @@ a {
 a:visited { color: $faded-spice; }
 
 h1, h2 {
-    font-family: "EB Garamond", serif;
+    font-family: "cardoregular", serif;
     color: var(--dusty-mauve);
     text-align: center;
     margin-bottom: 2.5rem;
@@ -378,6 +378,11 @@ blockquote {
     margin: 0 auto;
     width: 90%;
 }
+
+.page-layout-normal .block-html {
+    max-width: 625px;
+    margin: 1rem auto !important;
+}
 /* ==========================================================================
     BANNER
    ========================================================================== */
@@ -601,7 +606,7 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
 /* Site Notes*/
 .note {
     /* Layout & Spacing */
-    margin: 25px 0 !important;
+    margin: 25px auto !important;
     padding: 5px 0 5px 25px;
     max-width: 85%;
 
@@ -615,10 +620,11 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
     background-color: transparent;
 
     /* Typography */
-    font-size: 0.9rem; /* Small, but remains legible */
+    font-size: 0.9rem;
     line-height: 1.6;
     font-style: italic;
-    color: #4a4a4a; /* A soft charcoal to distinguish from main body */
+    color: #4a4a4a;
+    text-align: justify;
 }
 
 /* The Micro-Label: Provides context without taking up space */
@@ -770,22 +776,6 @@ body.site-page-family-portraits {
     Homepage Elements
    ========================================================================== */
 
-body.site-page-home {
-    .block-html, .block-heading {
-        padding: 0 32px;
-    }
-
-    .block-heading {
-        text-align: center;
-        color: var(--dusty-mauve);
-        margin-top: 3rem;
-    }
-
-    .block-html {
-        line-height: 2;
-        margin: 2.5rem 0 6rem 0;
-    }
-}
 
 /* Carousel */
 

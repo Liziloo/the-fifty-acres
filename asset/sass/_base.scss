@@ -34,17 +34,29 @@ $base-line-height: 1.7rem;
 }
 
 @font-face {
-    font-family: 'Blokletters';
-    src: url('../fonts/webfonts/blokletters/blokletterspotlood_potlood_macroman/Blokletters-Potlood-webfont.woff') format('woff');
+    font-family: 'architects_daughterregular';
+    src: url('../fonts/webfonts/architects-daughter/architectsdaughter-webfont.woff2') format('woff2'),
+         url('../fonts/webfonts/architects-daughter/architectsdaughter-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+
 }
 
 @font-face {
-    font-family: 'Balpen';
-    src: url('../fonts/webfonts/blokletters/bloklettersbalpen_balpen_macroman/Blokletters-Balpen-webfont.woff') format('woff');
+    font-family: 'cardoregular';
+    src: url('../fonts/webfonts/cardo/cardo-regular-webfont.woff2') format('woff2'),
+         url('../fonts/webfonts/cardo/cardo-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'gandhi_serifregular';
+    src: url('../fonts/webfonts/ghandi/GandhiSerif-Regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
 }
 
 
