@@ -48,8 +48,8 @@ $base-line-height: 1.7rem;
 
 @font-face {
     font-family: 'cardobold';
-    src: url('cardo-bold-webfont.woff2') format('woff2'),
-         url('cardo-bold-webfont.woff') format('woff');
+    src: url('../fonts/webfonts/cardo/cardo-bold-webfont.woff2') format('woff2'),
+         url('../fonts/webfonts/cardo/cardo-bold-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
