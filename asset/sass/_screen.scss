@@ -75,7 +75,6 @@ blockquote {
   border-left: 4px solid var(--dusty-mauve);
   padding: 1rem 2rem 0.5rem 2rem;
   margin: 4rem 10%;
-  font-family: serif;
   font-size: 1.25rem;
   font-style: italic;
   color: #3d3126;
@@ -191,12 +190,11 @@ blockquote {
 
     > ul.navigation > li > a,
     > ul.navigation > li > .parent-link > a {
-        font-family: "EB Garamond", serif !important;
-        font-size: 1.35rem !important;
-        font-variant: small-caps !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.05em !important;
-        font-weight: 400 !important;
+        font-family: "cardoregular", serif;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 400;
         color: var(--typewriter-black);
         text-decoration: none;
         display: inline-block;
@@ -231,12 +229,12 @@ blockquote {
 
     ul.navigation > li > ul > li > a,
     ul.navigation > li > ul > li > .parent-link > a {
-        font-family: "Lato", sans-serif !important;
-        font-size: 0.75rem !important;
-        text-transform: uppercase !important;
-        letter-spacing: 1.5px !important;
-        font-weight: 700 !important;
-        font-variant: normal !important;
+        font-family: "Lato", sans-serif;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-weight: 700;
+        font-variant: normal;
         color: var(--typewriter-black);
         text-decoration: none;
         opacity: 0.8;
@@ -279,17 +277,16 @@ blockquote {
         height: 24px;
         width: 24px;
         cursor: pointer;
-        background: transparent !important;
-        border: none !important;
+        background: transparent;
+        border: none;
         padding: 0;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: "Courier New", monospace !important;
-        font-weight: bold !important;
-        font-size: 1.2rem !important;
-        color: rgba(0,0,0,0.4) !important;
-        box-shadow: none !important;
+        font-family: "Courier New", monospace;
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: rgba(0,0,0,0.4);
         &:before { content: "+"; }
         &.open:before { content: "−"; color: var(--typewriter-black); }
     }
@@ -304,8 +301,9 @@ blockquote {
     &::before {
         content: "EST. 1856";
         display: block;
-        font-family: "Georgia", serif !important;
+        font-family: "cardoregular", serif;
         font-size: 0.75rem;
+        font-weight: bold;
         letter-spacing: 5px;
         color: var(--dusty-mauve);
         text-align: center;
@@ -328,7 +326,7 @@ blockquote {
         padding: 0 12px;
         height: 2.5rem;
         font-size: 0.95rem;
-        font-family: "Georgia", serif !important;
+        font-family: "cardoregular", serif;
         font-style: italic;
         color: var(--typewriter-black);
     }
@@ -338,7 +336,7 @@ blockquote {
         color: white;
         height: 2.5rem;
         border: none;
-        font-family: "Lato", sans-serif !important;
+        font-family: "Lato", sans-serif;
         font-variant: small-caps;
         text-transform: uppercase;
         font-size: 0.9rem;
@@ -491,9 +489,8 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
             }
 
             a {
-                font-family: "EB Garamond", serif;
+                font-family: "cardoregular", serif;
                 font-size: 1.15rem;
-                font-weight: bold;
                 color: var(--typewriter-black);
                 text-decoration: none;
                 &:hover { color: var(--dusty-mauve); }
@@ -631,7 +628,7 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
 .note::before {
     content: "Curatorial Note";
     display: block;
-    font-family: sans-serif; /* Clean contrast to Serif body */
+    font-family: 'Lato', sans-serif; /* Clean contrast to Serif body */
     font-size: 0.65rem;
     font-weight: 700;
     letter-spacing: 0.2em; /* Wide spacing creates the 'tiny/elegant' look */
@@ -735,7 +732,7 @@ body.site-page-family-portraits {
 
     /* 5. Typography */
     .link-title {
-        font-family: "EB Garamond", serif;
+        font-family: "cardoregular", serif;
         font-size: 1.2rem;
         color: var(--typewriter-black);
         letter-spacing: 0.5px;
@@ -975,7 +972,7 @@ body.site-page-family-portraits {
 
     h4 {
         margin: 0 0 10px 0;
-        font-family: "EB Garamond", serif;
+        font-family: "cardoregualr", serif;
         font-size: 1.15rem;
         line-height: 1.3;
         text-wrap: pretty;
@@ -1211,7 +1208,7 @@ body.narrative {
 
         .block-html {
             h3 {
-                font-family: "EB Garamond", serif;
+                font-family: "cardoregular", serif;
                 color: $dusty-mauve;
                 font-size: 1.8rem;
                 margin-top: $spacing-l;
@@ -1220,7 +1217,7 @@ body.narrative {
             }
 
             p {
-                font-family: "EB Garamond", serif;
+                font-family: "gandhi_serifregular", serif;
                 font-size: $base-font-size;
                 line-height: 1.8;
                 margin-bottom: $spacing-l;
@@ -1405,7 +1402,7 @@ body.site-page-portraits {
     }
 
     .link-title {
-        font-family: "EB Garamond", serif;
+        font-family: "cardoregular", serif;
         font-size: 1.25rem;
         color: var(--dusty-mauve);
         letter-spacing: 0.5px;
@@ -1459,7 +1456,7 @@ body.item.resource.show {
     .title {
         display: inline-block;
         color: var(--dusty-mauve);
-        font-family: "EB Garamond", serif;
+        font-family: "cardoregular", serif;
         font-size: 2.2rem;
         font-variant: small-caps;
         font-weight: bold;
@@ -1487,18 +1484,18 @@ body.item.resource.show {
     .archival-card-zone h3,
     .card-extensions-zone h3,
     .card-extensions-zone .linked-resources h3 {
-        display: none !important;
+        display: none;
     }
 
     /* 1. Primary Photo Zone - Restores Cabinet Card Base Framing */
     .primary-photo-zone {
         width: 100%;
         text-align: center;
-        margin-bottom: 25px !important; /* Drops the huge vertical gap */
-        padding: 0 !important;
+        margin-bottom: 25px; /* Drops the huge vertical gap */
+        padding: 0;
 
         .media-render {
-            display: inline-block !important;
+            display: inline-block;
             @extend %artifact-card; /* Restores the matting borders and shadows */
 
             img {
@@ -1507,10 +1504,10 @@ body.item.resource.show {
                 width: auto;
                 max-width: 100%;
                 border: 1px solid rgba(0, 0, 0, 0.1);
-                padding: 0 !important;
-                background: transparent !important;
-                box-shadow: none !important;
-                outline: none !important;
+                padding: 0;
+                background: transparent;
+                box-shadow: none;
+                outline: none;
             }
         }
     }
@@ -1519,71 +1516,67 @@ body.item.resource.show {
     .archival-card-zone {
         width: 100%;
         max-width: 650px;
-        background-color: #fdfdfd !important;
+        background-color: #fdfdfd;
         background-image:
             linear-gradient(90deg, transparent 149px, rgba(200, 0, 0, 0.15) 149px, rgba(200, 0, 0, 0.15) 150px, transparent 150px),
-            linear-gradient(rgba(0, 0, 200, 0.08) 1px, transparent 1px) !important;
-        background-size: 100% 100%, 100% 30px !important;
-        background-repeat: no-repeat, repeat !important;
-        border: 1px solid #d1d1d1 !important;
+            linear-gradient(rgba(0, 0, 200, 0.08) 1px, transparent 1px);
+        background-size: 100% 100%, 100% 38px;
+        background-repeat: no-repeat, repeat;
+        border: 1px solid #d1d1d1;
         transform: rotate(-0.5deg);
         box-shadow: -4px 8px 15px rgba(0, 0, 0, 0.06);
 
-        padding: 30px 0 !important;
-        margin: 0 auto 60px auto !important;
+        padding: 38px 0;
+        margin: 0 auto 60px auto;
 
         /* Standard Item Fields Layout Grid */
         dl.metadata-property-list {
-            display: grid !important;
-            grid-template-columns: 150px 1fr !important;
-            background: transparent !important;
-            margin: 0 !important;
-            padding: 0 15px 0 0 !important;
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            background: transparent;
+            margin: 0;
+            padding: 0 15px 0 0;
 
             div.property {
-                display: contents !important;
+                display: contents;
             }
 
             dt {
-                grid-column: 1 !important;
-                font-family: "Courier New", Courier, monospace !important;
-                font-size: 0.75rem !important;
-                color: #222 !important;
+                grid-column: 1;
+                font-family: "Courier New", Courier, monospace;
+                font-size: 0.75rem;
+                color: #222;
                 text-transform: uppercase;
                 letter-spacing: 1px;
                 text-align: right;
                 font-weight: 900;
                 padding-right: 20px;
-                padding-top: 6px;
-                padding-bottom: 6px;
                 margin: 0;
-                line-height: 1.4 !important;
+                line-height: 19px;
+                min-height: 38px;
             }
 
             dd {
-                grid-column: 2 !important;
-                margin: 0 !important;
-                padding-left: 20px !important;
-                padding-top: 4px;
-                padding-bottom: 6px;
-                font-family: "Courier New", Courier, monospace !important;
-                font-size: 0.9rem !important;
-                color: #444 !important;
+                grid-column: 2;
+                margin: 0;
+                padding-left: 20px;
+                font-family: "Courier New", Courier, monospace;
+                font-size: 0.9rem;
+                color: #444;
                 text-align: left;
-                line-height: 1.4 !important;
+                line-height: 19px;
                 word-break: break-word;
 
                 a {
                     color: var(--dusty-mauve);
                     text-decoration: underline;
                     display: inline-block;
-                    white-space: normal !important;
+                    white-space: normal;
                     &:hover { color: var(--rusty-spice); }
                 }
 
                 .value-literal {
                     display: block;
-                    margin-bottom: 6px;
                     &:last-child { margin-bottom: 0; }
                 }
             }
@@ -1591,42 +1584,42 @@ body.item.resource.show {
 
         /* Linked Block/Table Extensions Zone Layout */
         .card-extensions-zone {
-            display: block !important;
-            width: 100% !important;
-            margin-top: 10px !important;
-            padding: 0 30px 0 170px !important; /* Aligns content cleanly to the right of the red margin rule */
-            box-sizing: border-box !important;
+            display: block;
+            width: 100%;
+            margin-top: 10px;
+            padding: 0 30px 0 170px; /* Aligns content cleanly to the right of the red margin rule */
+            box-sizing: border-box;
 
             .linked-resources {
-                display: block !important;
-                width: 100% !important;
-                background: transparent !important;
-                border: none !important;
+                display: block;
+                width: 100%;
+                background: transparent;
+                border: none;
 
                 .linked-header {
-                    display: block !important;
-                    font-family: "Courier New", Courier, monospace !important;
-                    font-size: 0.85rem !important;
-                    font-weight: bold !important;
-                    color: #222 !important;
-                    margin: 15px 0 10px 0 !important;
-                    text-align: left !important;
-                    line-height: 1.4 !important;
+                    display: block;
+                    font-family: "Courier New", Courier, monospace;
+                    font-size: 0.85rem;
+                    font-weight: bold;
+                    color: #222;
+                    margin: 15px 0 10px 0;
+                    text-align: left;
+                    line-height: 1.4;
                 }
 
-                thead { display: none !important; }
+                thead { display: none; }
 
                 #linked-filter, .pagination {
-                    display: block !important;
-                    margin: 10px 0 !important;
-                    font-family: "Courier New", Courier, monospace !important;
-                    font-size: 0.8rem !important;
+                    display: block;
+                    margin: 10px 0;
+                    font-family: "Courier New", Courier, monospace;
+                    font-size: 0.8rem;
                     color: #444;
-                    text-align: left !important;
+                    text-align: left;
 
                     select, input, button {
-                        font-family: "Courier New", Courier, monospace !important;
-                        font-size: 0.8rem !important;
+                        font-family: "Courier New", Courier, monospace;
+                        font-size: 0.8rem;
                         background: #fffef9;
                         border: 1px solid #d1d1d1;
                         padding: 2px 5px;
@@ -1634,44 +1627,44 @@ body.item.resource.show {
                 }
 
                 table {
-                    display: table !important;
-                    width: 100% !important;
-                    border-collapse: collapse !important;
-                    border: none !important;
-                    background: transparent !important;
-                    margin: 10px 0 0 0 !important;
+                    display: table;
+                    width: 100%;
+                    border-collapse: collapse;
+                    border: none;
+                    background: transparent;
+                    margin: 10px 0 0 0;
                 }
 
-                tbody { display: table-row-group !important; }
+                tbody { display: table-row-group; }
 
                 tr.linked-resource {
-                    display: table-row !important;
-                    background: transparent !important;
+                    display: table-row;
+                    background: transparent;
 
                     td {
-                        display: table-cell !important;
-                        background: transparent !important;
-                        border: none !important;
-                        padding: 6px 0 !important;
-                        vertical-align: top !important;
-                        font-family: "Courier New", Courier, monospace !important;
-                        line-height: 1.4 !important;
+                        display: table-cell;
+                        background: transparent;
+                        border: none;
+                        padding: 6px 0;
+                        vertical-align: top;
+                        font-family: "Courier New", Courier, monospace;
+                        line-height: 1.4;
                     }
 
                     td.linked-label {
-                        width: 40% !important;
-                        font-size: 0.85rem !important;
-                        color: var(--dusty-mauve) !important;
-                        text-decoration: underline !important;
-                        text-align: left !important;
-                        padding-right: 15px !important;
+                        width: 40%;
+                        font-size: 0.85rem;
+                        color: var(--dusty-mauve);
+                        text-decoration: underline;
+                        text-align: left;
+                        padding-right: 15px;
                     }
 
                     td.linked-value {
-                        width: 60% !important;
-                        font-size: 0.85rem !important;
-                        color: #666 !important;
-                        text-align: left !important;
+                        width: 60%;
+                        font-size: 0.85rem;
+                        color: #666;
+                        text-align: left;
                     }
                 }
             }
@@ -1707,10 +1700,9 @@ body.media.resource.show {
         }
 
         p {
-            font-family: "EB Garamond", serif;
-            font-style: italic;
-            font-size: 1.1rem;
+            font-family: "Lato", sans-serif;
             margin-bottom: 20px;
+            font-variant: small-caps
         }
 
         a {
@@ -1924,9 +1916,10 @@ body.recipe .blocks-inner.page-layout-normal {
         background: #f3e5ab;
         padding: 0.5rem 2rem;
         border-left: 15px solid #8b4513;
-        font-family: monospace;
-        text-transform: uppercase;
-        font-size: .7rem;
+        font-family: "Lato", sans-serif;
+        font-variant: small-caps;
+        font-size: .8rem;
+        text-align: justify;
     }
 }
 
