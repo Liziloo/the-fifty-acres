@@ -57,6 +57,7 @@ h1, h2 {
     font-family: "cardoregular", serif;
     color: var(--dusty-mauve);
     text-align: center;
+    margin-bottom: 2.5rem;
     font-weight: normal;
 }
 
@@ -771,7 +772,9 @@ body.site-page-family-portraits {
 /* ==========================================================================
     Homepage Elements
    ========================================================================== */
-
+body.page-with-hero h1 {
+    margin-bottom: 2rem;
+}
 
 /* Carousel */
 
