@@ -27,12 +27,16 @@ $wheat: #f3ddba;
 $base-font-size: 1rem;
 $base-line-height: 1.7rem;
 
+// Primary body text font
 @font-face {
-    font-family: 'Lato';
-    font-style: italic; font-weight: 400;
-    src: url(https://fonts.gstatic.com/s/lato/v25/S6u8w4BMUTPHjxsAUi-qJCY.woff2) format('woff2');
+    font-family: 'gandhi_serifregular';
+    src: url('../fonts/webfonts/ghandi/GandhiSerif-Regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
 }
 
+// Primary heading font
 @font-face {
     font-family: 'cardoregular';
     src: url('../fonts/webfonts/cardo/cardo-regular-webfont.woff2') format('woff2'),
@@ -43,13 +47,22 @@ $base-line-height: 1.7rem;
 }
 
 @font-face {
-    font-family: 'gandhi_serifregular';
-    src: url('../fonts/webfonts/ghandi/GandhiSerif-Regular-webfont.woff') format('woff');
+    font-family: 'cardobold';
+    src: url('cardo-bold-webfont.woff2') format('woff2'),
+         url('cardo-bold-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
 }
 
+// Primary sans-serif
+@font-face {
+    font-family: 'Lato';
+    font-style: italic; font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/lato/v25/S6u8w4BMUTPHjxsAUi-qJCY.woff2) format('woff2');
+}
+
+// Handwriting font
 @font-face {
     font-family: 'cartoonist';
     src: url('../fonts/webfonts/cartoonist/sfcartoonisthand_regular_macroman/SF_Cartoonist_Hand-webfont.woff') format('woff');
@@ -57,9 +70,6 @@ $base-line-height: 1.7rem;
     font-style: normal;
 
 }
-
-
-
 
 // Units
 
