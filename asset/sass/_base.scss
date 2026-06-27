@@ -34,15 +34,6 @@ $base-line-height: 1.7rem;
 }
 
 @font-face {
-    font-family: 'architects_daughterregular';
-    src: url('../fonts/webfonts/architects-daughter/architectsdaughter-webfont.woff2') format('woff2'),
-         url('../fonts/webfonts/architects-daughter/architectsdaughter-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
     font-family: 'cardoregular';
     src: url('../fonts/webfonts/cardo/cardo-regular-webfont.woff2') format('woff2'),
          url('../fonts/webfonts/cardo/cardo-regular-webfont.woff') format('woff');
@@ -58,6 +49,16 @@ $base-line-height: 1.7rem;
     font-style: normal;
 
 }
+
+@font-face {
+    font-family: 'cartoonist';
+    src: url('../fonts/webfonts/cartoonist/sfcartoonisthand_regular_macroman/SF_Cartoonist_Hand-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
 
 
 // Units

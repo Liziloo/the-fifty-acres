@@ -1860,12 +1860,13 @@ body.recipe .blocks-inner.page-layout-normal {
         align-items: stretch;
 
         > * {
-            font-family: "Architects Daughter", serif;
+            font-family: "cartoonist", serif;
         }
 
         > h4 {
             width: 100%;
             margin-top: 31px;
+            font-size: 1.5rem;
         }
 
         > div {
@@ -1873,8 +1874,8 @@ body.recipe .blocks-inner.page-layout-normal {
             width: 100%;
             line-height: 30px;
             padding-top: 10px;
-            font-size: 0.8rem;
-            font-family: "Balpen", serif;
+            font-size: 1.25rem;
+            font-family: "cartoonist", serif;
 
             h4 {
                 margin: 0;
