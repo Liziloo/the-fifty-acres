@@ -356,6 +356,63 @@ blockquote {
 }
 
 /* ==========================================================================
+    Smart Back Button - Archival Tag Style
+   ========================================================================== */
+.smart-back-button {
+    a {
+        text-decoration: none;
+    }
+
+    width: 100px;
+    align-self:first baseline;
+
+    /* Spacing: Pulls it up toward the title and down toward the photo */
+    margin-top: -10px;
+    margin-bottom: 5px;
+    padding: 4px 14px;
+
+    /* Visuals: The "Tag" look */
+    border: 1px solid var(--dusty-mauve);
+    background-color: color-mix(in srgb, var(--dusty-mauve), transparent 92%);
+    border-radius: 2px;
+
+    /* Typography */
+    font-family: "Lato", sans-serif;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    color: var(--dusty-mauve);
+    text-decoration: none;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background-color: var(--dusty-mauve);
+        color: #fff;
+        transform: translateY(-1px);
+    }
+
+    .back-arrow {
+        margin-right: 6px;
+        font-size: 0.85rem;
+        line-height: 1;
+    }
+}
+
+body.item.resource.show {
+    /* Shrink the gap created by the title box */
+    .title {
+        margin-bottom: 5px !important;
+    }
+
+    /* Shrink the gap between the button and the photo */
+    .primary-photo-zone {
+        margin-top: 5px !important;
+        margin-bottom: 0 !important;
+    }
+}
+
+/* ==========================================================================
     Main Content Area
    ========================================================================== */
 .main {
