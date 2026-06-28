@@ -2,7 +2,7 @@
     THE ARTIFACT MASTER (Hybrid Cabinet Card)
    ========================================================================== */
 %artifact-card {
-    background: #e3d7c3 !important;
+    background: #634a34 !important;
     border: 1px solid #cec1ac !important;
     border-radius: 2px !important;
     box-shadow:
@@ -549,7 +549,7 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
             object-fit: contain;
             display: block;
             margin: auto; // Centers photo in the card window
-            background: #e3d7c3 !important; // Matches cardstock for seamless look
+            background: #634a34 !important; // Matches cardstock for seamless look
             border: 1px solid rgba(0,0,0,0.05);
             /* Reset Master Artifact styles from inner image */
             padding: 0 !important;
@@ -1189,8 +1189,8 @@ body.narrative {
 
                 a, p {
                     font-family: "Courier New", Courier, monospace;
-                    font-size: 0.65rem;
-                    color: color-mix(in srgb, $typewriter-black, transparent 20%);
+                    font-size: 0.7rem;
+                    color: $old-lace;
                     text-decoration: none;
                     text-transform: uppercase;
                     letter-spacing: 0.5px;
