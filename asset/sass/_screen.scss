@@ -482,6 +482,64 @@ footer { padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.0
     }
 }
 
+/* ==========================================================================
+    Inline Cabinet Card (Manual Embed)
+   ========================================================================== */
+.inline-cabinet-card {
+    @extend %artifact-card; // Inherits the 45px bottom padding
+    margin-bottom: $spacing-l;
+
+    &.align-left {
+        float: left;
+        margin-right: $spacing-l;
+    }
+    &.align-right {
+        float: right;
+        margin-left: $spacing-l;
+    }
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-width: 280px;
+        border: 1px solid rgba(0,0,0,0.1);
+        background: transparent;
+        box-shadow: none;
+        outline: none;
+        padding: 0;
+    }
+
+    .caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 12px;
+        margin: 0;
+        z-index: 10;
+
+        a, p {
+            margin: 0;
+            padding: 0;
+            line-height: 1.2;
+            text-decoration: none;
+
+            font-family: "Courier New", Courier, monospace;
+            font-size: 0.7rem;
+            color: $old-lace;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            display: block;
+        }
+    }
+}
+
 
 /* ==========================================================================
     Large Screen Overrides
