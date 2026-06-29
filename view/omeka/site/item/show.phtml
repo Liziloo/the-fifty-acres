@@ -9,7 +9,7 @@ $lang = $this->lang();
 $valueLang = $filterLocale ? [$lang, ''] : null;
 $adminEmail = $this->themeSetting('admin_email', 'your-email@example.com');
 
-// 1. Gather all file thumbnail paths for the layout
+// 1. Gather all file thumbnail paths
 $urlMap = [];
 foreach ($item->media() as $media) {
     $largeThumb = $media->thumbnailUrl('large');
@@ -31,9 +31,15 @@ try {
     $linkedResources = $response->getContent();
 } catch (\Exception $e) {}
 
-// 3. Logic for the "Actual" Back Button Fallback
+// 3. SAFE Fallback URL Logic
+// Default to the main item browse page for this site
+$fallbackUrl = $this->url('site/resource', ['controller' => 'item', 'action' => 'browse'], true);
+
+// If the item belongs to a set, try to use that as the fallback instead
 $itemSets = $item->itemSets();
-$fallbackUrl = !empty($itemSets) ? $itemSets[0]->url() : $this->url('site/resource', ['controller' => 'item', 'action' => 'browse'], true);
+if (is_array($itemSets) && isset($itemSets[0]) && is_object($itemSets[0])) {
+    $fallbackUrl = $itemSets[0]->url();
+}
 ?>
 
 <?php echo $this->pageTitle($item->displayTitle(null, $valueLang), 2); ?>
