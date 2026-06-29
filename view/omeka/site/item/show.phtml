@@ -38,21 +38,26 @@ try {
 
 <?php
 // Smart Back Button Logic for Item View
-$backUrl = $site->url() . '/items'; // Default fallback: the main items list
+$backUrl = $site->url() . '/item'; // Default fallback
 $referer = $_SERVER['HTTP_REFERER'] ?? '';
 $siteUrl = $site->url();
 
-// If the visitor came from within your site, use the actual previous page
+// 1. If they came from your site, go back to exactly where they were
 if (!empty($referer) && strpos($referer, $siteUrl) === 0) {
     $backUrl = $referer;
 }
+// 2. If they arrived via direct link, find the associated Resource
+else {
+    // We access the 'resource' property directly (NO parentheses)
+    if (isset($item->resource)) {
+        $backUrl = $item->resource->url();
+    }
+}
 
 if (!empty($backUrl)): ?>
-    <div class="smart-back-button">
-        <a href="<?php echo $backUrl; ?>">
-            <span class="back-arrow">&larr;</span> <?php echo $this->translate('Back'); ?>
-        </a>
-    </div>
+    <a href="<?php echo $backUrl; ?>" class="smart-back-button">
+        <span class="back-arrow">&larr;</span> <?php echo $this->translate('Back'); ?>
+    </a>
 <?php endif; ?>
 
 <?php $this->trigger('view.show.before'); ?>
