@@ -23,47 +23,31 @@ foreach ($item->media() as $media) {
     }
 }
 
-// 2. Safely capture the raw linked resources data using Omeka's system controllers directly
+// 2. Capture linked resources
 $api = $this->api();
 $linkedResources = [];
 try {
     $response = $api->search('items', ['property' => [['property' => '', 'type' => 'res', 'text' => $item->id()]]]);
     $linkedResources = $response->getContent();
-} catch (\Exception $e) {
-    // Dynamic fallback if the direct API search encounters a core configuration variance
-}
+} catch (\Exception $e) {}
+
+// 3. Logic for the "Actual" Back Button Fallback
+$itemSets = $item->itemSets();
+$fallbackUrl = !empty($itemSets) ? $itemSets[0]->url() : $this->url('site/resource', ['controller' => 'item', 'action' => 'browse'], true);
 ?>
 
 <?php echo $this->pageTitle($item->displayTitle(null, $valueLang), 2); ?>
 
-<?php
-// Smart Back Button Logic for Item View
-$backUrl = $site->url() . '/item'; // Default fallback
-$referer = $_SERVER['HTTP_REFERER'] ?? '';
-$siteUrl = $site->url();
-
-// 1. If they came from your site, go back to exactly where they were
-if (!empty($referer) && strpos($referer, $siteUrl) === 0) {
-    $backUrl = $referer;
-}
-// 2. If they arrived via direct link, find the associated Resource
-else {
-    // We access the 'resource' property directly (NO parentheses)
-    if (isset($item->resource)) {
-        $backUrl = $item->resource->url();
-    }
-}
-
-if (!empty($backUrl)): ?>
-    <a href="<?php echo $backUrl; ?>" class="smart-back-button">
-        <span class="back-arrow">&larr;</span> <?php echo $this->translate('Back'); ?>
-    </a>
-<?php endif; ?>
+<!-- ACTUAL BACK BUTTON -->
+<a href="<?php echo $fallbackUrl; ?>"
+   class="smart-back-button"
+   onclick="if(document.referrer.indexOf(window.location.host) !== -1) { history.back(); return false; }">
+    <span class="back-arrow">&larr;</span> <?php echo $this->translate('Back'); ?>
+</a>
 
 <?php $this->trigger('view.show.before'); ?>
 
 <div class="item-resource-layout">
-
     <div class="primary-photo-zone">
         <?php if ($primaryMedia = $item->primaryMedia()): ?>
             <div class="media-render">
@@ -74,7 +58,6 @@ if (!empty($backUrl)): ?>
 
     <div class="archival-card-zone">
         <dl class="metadata-property-list">
-
             <?php foreach ($item->values() as $term => $propertyData): ?>
                 <div class="property">
                     <dt><?php echo $this->escapeHtml($propertyData['property']->label()); ?></dt>
@@ -110,7 +93,6 @@ if (!empty($backUrl)): ?>
                     </dd>
                 </div>
             <?php endif; ?>
-
         </dl>
     </div>
 </div>
