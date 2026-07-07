@@ -65,11 +65,12 @@ h1 {
     font-size: 3.2rem;
     margin-top: 0; // Kills top margin to remove green strip
     padding-top: 40px; // Adds internal padding instead
+    line-height: 3.2rem;
 }
 h2 {
     font-size: 2.4rem;
     margin-top: 1rem;
-    line-height: 1rem;
+    line-height: 2.4rem;
 }
 
 blockquote {
@@ -2057,5 +2058,16 @@ body.recipe .blocks-inner.page-layout-normal {
 
     .block-heading {
         margin-top: 3rem;
+    }
+   }
+
+   /* ==========================================================================
+    Poem
+   ========================================================================== */
+   .poem {
+    width: fit-content;
+
+    hr {
+        border-top: 1px solid var(--rusty-spice);
     }
    }
